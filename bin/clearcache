@@ -1,0 +1,9 @@
+<?php
+$tempCacheDir =  str_replace("bin", "", __DIR__) . "temp/cache";
+if(!is_dir($tempCacheDir)) {
+    echo "Dir cache doesn't exist!";
+} else {
+    system("rm -rf ".escapeshellarg($tempCacheDir));
+    echo "The cache has been deleted!";
+}
+echo "\n";

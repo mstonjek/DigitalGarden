@@ -1,0 +1,18 @@
+services:
+	- App\Router\RouterFactory::createRouter
+	- CacheWorker
+search:
+    manager:
+        in: %appDir%/Model/Manager
+        classes:
+            - *Manager
+    entity:
+        in: %appDir%/Model/Entity
+    form:
+        in: %appDir%/Model/Form
+        classes:
+            - *FormFactory
+    repository:
+        in: %appDir%/Model/Repository
+        classes:
+            - *Repository

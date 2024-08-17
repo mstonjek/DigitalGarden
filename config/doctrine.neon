@@ -1,0 +1,39 @@
+extensions:
+    doctrine.dbal: Nettrine\DBAL\DI\DbalExtension
+    doctrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    doctrine.orm: Nettrine\ORM\DI\OrmExtension
+    doctrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
+    doctrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+#    doctrine.cache: Nettrine\Cache\DI\CacheExtension
+    nettrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
+    nettrine.fixtures: Nettrine\Fixtures\DI\FixturesExtension
+    nettrine.cache: Nettrine\Cache\DI\CacheExtension
+
+nettrine.fixtures:
+  paths:
+    - %appDir%/fixtures
+
+doctrine.orm.attributes:
+    mapping:
+        App\Model\Entity: %appDir%/Model/Entity
+
+nettrine.migrations:
+  directory: %appDir%/migrations
+  namespace: App\migrations
+  versionsOrganization: null
+  table: doctrine_migrations
+  column: version
+
+nettrine.cache:
+# driver: Doctrine\Common\Cache\ApcuCache()
+ driver: Doctrine\Common\Cache\ArrayCache()
+
+doctrine.dbal:
+    debug:
+        panel: %debugMode%
+    connection:
+        driver: pdo_mysql
+        host: %doctrine.host%
+        user: %doctrine.user%
+        password: %doctrine.password%
+        dbname: %doctrine.dbname%

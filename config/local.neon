@@ -1,0 +1,7 @@
+parameters:
+    doctrine:
+        host: '172.17.0.1'
+        user: 'root'
+        password: 'root'
+        dbname: 'digitalGarden'
+    
