@@ -22,7 +22,7 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: digitalGarden
+      MYSQL_DATABASE: digitalgarden
     volumes:
       - ./docker/data:/var/lib/mysql
     networks:
