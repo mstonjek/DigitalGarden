@@ -5,3 +5,4 @@ docker
 .php-cs-fixer.cache
 .DS_Store
 documents/*
+config/local.neon

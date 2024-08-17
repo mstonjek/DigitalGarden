@@ -1,6 +1,7 @@
 services:
-	- App\Router\RouterFactory::createRouter
-	- CacheWorker
+    - App\Router\RouterFactory::createRouter
+    - App\Service\AuthService(%github_client_id%, %github_client_secret%, %github_redirect_uri%)
+    - CacheWorker
 search:
     manager:
         in: %appDir%/Model/Manager

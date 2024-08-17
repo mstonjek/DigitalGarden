@@ -19,6 +19,9 @@ final class RouterFactory
             'presenter' => 'Homepage',
         ]);
 
+        $router->withModule('Front')->addRoute('login', 'Auth:login'); 
+        $router->withModule('Front')->addRoute('callback', 'Auth:callback');
+
         $router->withModule('Front')->addRoute('<presenter>[/<action=default>][/<id>]', [
             'presenter' => 'Homepage',
         ]);
