@@ -3,16 +3,20 @@
     namespace App\FrontModule\Presenters;
 
     use App\Model\Entity\User;
+    use App\Model\Entity\Flower;
     use App\Model\Repository\UserRepository;
+    use App\Repository\FlowerRepository;
     use Nette\Application\UI\Presenter;
 
 class DashboardPresenter extends Presenter
 {
     private User $user;
+    private ?Flower $flower = null;
 
 
     public function __construct(
         private UserRepository $userRepository,
+        private FlowerRepository $flowerRepository,
     ) {
         
     }
@@ -41,6 +45,9 @@ class DashboardPresenter extends Presenter
     {
         $this->user = $this->userRepository->findByGithubId($this->getSession('user')->id);
         $this->template->user = $this->user;
+
+        $this->flower = $this->flowerRepository->findFlowerByUser($this->user);
+        $this->template->flower = $this->flower;
 
     }
 

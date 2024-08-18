@@ -16,20 +16,12 @@
 
                 <table class="garden-table">
                     <tr>
-                        <td>🌷</td>
-                        <td>🌼</td>
-                        <td>🌻</td>
+                        {foreach $flowers as $flower}
+                            <td><a n:href="Homepage:flower $flower->flowerId" >🌸</a></td>
+                        {/foreach}
+
                     </tr>
-                    <tr>
-                        <td>🌸</td>
-                        <td>🌺</td>
-                        <td>🌹</td>
-                    </tr>
-                    <tr>
-                        <td>🌿</td>
-                        <td>🍃</td>
-                        <td>🍂</td>
-                    </tr>
+
                 </table>
             </div>
         </div>

@@ -9,6 +9,17 @@
 
     <div class="virtual-garden">
         <p>Here will render virtual flowers <3</p>
+
+        <table class="garden-table">
+            <tr>
+                {foreach $flowers as $flower}
+                    <td><a n:href="Homepage:flower $flower->flowerId" >🌸</a></td>
+                {/foreach}
+
+            </tr>
+
+        </table>
+
     </div>
 
 {/block}

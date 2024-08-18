@@ -4,11 +4,15 @@ namespace App\FrontModule\Presenters;
 
 
 
+use App\Repository\FlowerRepository;
+use http\Encoding\Stream\Inflate;
+
 class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
 {
     private bool $isLoggedIn = false;
 
     public function __construct(
+      private FlowerRepository $flowerRepository,
     ) {
     }
     public function beforeRender(): void
@@ -24,6 +28,19 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
 
     public function renderDefault(): void
     {
-       
+       $flowers = $this->flowerRepository->getAll();
+        $this->template->flowers = $flowers;
+
+    }
+
+    public function renderFlower(string $id): void
+    {
+        $flower = $this->flowerRepository->find($id);
+        if (!$flower) {
+            $this->error('Flower not found!');
+            $this->redirect("Homepage:");
+        }
+
+        $this->template->flower = $flower;
     }
 }

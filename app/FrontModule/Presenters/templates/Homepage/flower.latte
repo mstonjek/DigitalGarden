@@ -1,0 +1,144 @@
+{block content}
+    <div class="flower-details">
+        <h1>{$flower->flowerName}</h1>
+        <p class="latin-name">({$flower->flowerLatinName})</p>
+        <p class="description">{$flower->flowerDescription}</p>
+
+        <div class="flower-info">
+            <div class="info-item">
+                <strong>Family:</strong> {$flower->family}
+            </div>
+            <div class="info-item">
+                <strong>Height:</strong> {$flower->height} cm
+            </div>
+            <div class="info-item">
+                <strong>Planting Date:</strong> {$flower->plantingDate->format('F j, Y')}
+            </div>
+        </div>
+
+        <div class="flower-profession">
+            <div class="info-item">
+                <strong>Education:</strong> {$flower->country}
+            </div>
+            <div class="info-item">
+                <strong>Gender:</strong> {$flower->country}
+            </div>
+            <div class="info-item">
+                <strong>Country:</strong> {$flower->country}
+            </div>
+            <div class="info-item">
+                <strong>Web Portfolio:</strong> <a href="{$flower->webPortfolio}" target="_blank">View Portfolio</a>
+            </div>
+        </div>
+
+        <div class="flower-hobbies">
+            <div class="info-item">
+                <strong>Favourite Serial:</strong> {$flower->favouriteSerial}
+            </div>
+            <div class="info-item">
+                <strong>Favourite Song:</strong> {$flower->favouriteSong}
+            </div>
+            <div class="info-item">
+                <strong>Dream Vacation:</strong> {$flower->dreamVacation}
+            </div>
+            <div class="info-item">
+                <strong>Favourite Quote:</strong> {$flower->favouriteQuote}
+            </div>
+        </div>
+
+        <div class="owner-info">
+            <h2>Owner Information</h2>
+            <p><strong>Username:</strong> {$flower->user->username}</p>
+            <p><strong>Email:</strong> {$flower->user->email}</p>
+        </div>
+    </div>
+{/block}
+{block css}
+    <style>
+
+        /* Fast styling by chat GPT mini o4*/
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .flower-details {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .flower-details h1 {
+            font-size: 2.4em;
+            margin-bottom: 0.5em;
+            color: #2c3e50;
+        }
+
+        .flower-details .latin-name {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .flower-details .description {
+            margin: 1.5em 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        .flower-info, .flower-profession, .flower-hobbies {
+            margin-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item strong {
+            width: 180px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .info-item a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: #2980b9;
+        }
+
+        .owner-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .owner-info h2 {
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            color: #2c3e50;
+        }
+
+        .owner-info p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            color: #34495e;
+        }
+    </style>
+{/block}
+

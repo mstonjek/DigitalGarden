@@ -3,39 +3,33 @@
 {/block}
 
 {block content}
-
-    {* Fast structure generation by CHAT GPT o4 mini - I didnt want to copypaste :D*}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Přidáváte květinu</h3>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <h3 class="form-card-title">Přidáváte květinu</h3>
                     </div>
                     <form n:name="addFlowerForm">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="flowerName">Název*</label>
-                                        <input
-                                                n:name="flowerName"
-                                                id="flowerName"
-                                                class="form-control"
-                                                placeholder="Název květiny"
-                                        />
-                                    </div>
+                        <div class="form-card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="flowerName">Název*</label>
+                                    <input
+                                            n:name="flowerName"
+                                            id="flowerName"
+                                            class="form-control"
+                                            placeholder="Název květiny"
+                                    />
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="flowerLatinName">Latinský název*</label>
-                                        <input
-                                                n:name="flowerLatinName"
-                                                id="flowerLatinName"
-                                                class="form-control"
-                                                placeholder="Latinský název"
-                                        />
-                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label for="flowerLatinName">Latinský název*</label>
+                                    <input
+                                            n:name="flowerLatinName"
+                                            id="flowerLatinName"
+                                            class="form-control"
+                                            placeholder="Latinský název"
+                                    />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -73,19 +67,26 @@
                                         id="flowerEducation"
                                         class="form-control"
                                 >
+                                    <!-- Options should be inserted here -->
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="gender">Pohlaví*</label>
                                 <select
                                         n:name="gender"
+                                        id="gender"
+                                        class="form-control"
                                 >
+                                    <!-- Options should be inserted here -->
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="country">Země*</label>
                                 <input
                                         n:name="country"
+                                        id="country"
+                                        class="form-control"
+                                        placeholder="Země"
                                 />
                             </div>
                             <div class="form-group">
@@ -134,13 +135,104 @@
                                 />
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Uložit</button>
-                            <a href="" class="btn btn-dark ml-2">Zpět na seznam květin</a>
+                        <div class="form-card-footer">
+                            <button type="submit" class="btn btn-submit">Uložit</button>
+                            <a href="" class="btn btn-back">Zpět na seznam květin</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+{/block}
+
+{block css}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f6f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-card-header {
+            background: #4caf50;
+            color: #ffffff;
+            padding: 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 1.25em;
+        }
+
+        .form-card-title {
+            margin: 0;
+        }
+
+        .form-card-body {
+            padding: 20px;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #4caf50;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #c8e6c9;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+
+        .btn-submit {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .btn-back {
+            background-color: #616161;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #494949;
+        }
+    </style>
 {/block}

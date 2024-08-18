@@ -49,13 +49,15 @@ class GardenPresenter extends Presenter
         }
     }
 
-    public function renderGarden(): void
+    public function renderDefault(): void
     {
-
+        $flowers = $this->flowerRepository->getAll();
+        $this->template->flowers = $flowers;
     }
 
     protected function createComponentAddFlowerForm(): Form
     {
+        $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
         return $this->flowerFormFactory->create(null, $user, function (Flower $flower): void {
             $this->flashMessage('Flower created', 'alert-success');
             $this->redirect('Garden:');
