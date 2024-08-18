@@ -2,6 +2,7 @@
 
 namespace App\FrontModule\Presenters;
 
+use App\Model\Entity\FlowerGenderEnum;
 use Nette\Application\UI\Presenter;
 use App\Forms\FlowerFormFactory;
 use Nette\Application\UI\Form;

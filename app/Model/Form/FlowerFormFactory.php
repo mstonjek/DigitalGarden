@@ -43,11 +43,22 @@ final class FlowerFormFactory
             ->setRequired('Height is required.')
             ->addRule(Form::INTEGER, 'Height must be a number.');
 
-        $form->addSelect('flowerEducation', 'Education', FlowerEducationEnum::toArray())
-            ->setRequired('Education is required.');
 
-        $form->addSelect('gender', 'Gender', FlowerGenderEnum::toArray())
-            ->setRequired('Gender is required.');
+
+        $items = [];
+        foreach (FlowerEducationEnum::cases() as $education) {
+            $items[$education->value] = $education->name;
+        }
+        $form->addSelect('flowerEducation')
+            ->setItems($items);
+
+        $items = [];
+        foreach (FlowerGenderEnum::cases() as $gender) {
+            $items[$gender->value] = $gender->name;
+        }
+        $form->addSelect('gender')
+            ->setItems($items);
+        bdump($items);
 
         $form->addText('country', 'Country')
             ->setRequired('Country is required.');
