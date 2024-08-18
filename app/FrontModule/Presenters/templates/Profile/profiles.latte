@@ -1,0 +1,67 @@
+{block content}
+    <div class="garden-user-list">
+        <h1>Garden of Profiles</h1>
+
+        {foreach $users as $profile}
+            <div class="user-card">
+                <img src="{$profile->avatarUrl}" alt="Avatar of {$profile->name}" class="user-avatar">
+                <h2>{$profile->name}</h2>
+                {if $profile->bio}
+                    <p class="user-bio">Bio: {$profile->bio}</p>
+                {/if}
+            </div>
+        {/foreach}
+    </div>
+{/block}
+
+
+{block css}
+
+    <style>
+        /* Fast AI styles by CHAT GPT 4o mini */
+        
+        /* Garden-themed user list styles */
+        .garden-user-list {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8f0; /* Very light green background */
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-card {
+            background-color: #e8f5e9; /* Light green for card background */
+            border: 1px solid #a5d6a7; /* Soft green border */
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .user-bio {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+
+    </style>
+
+{/block}

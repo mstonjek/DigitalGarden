@@ -2,8 +2,8 @@
     <div class="dashboard-container">
         <h1>Welcome, {$user->name}!</h1>
         <p>This is your dashboard, only yours :D</p>
-        <a n:href="Profile:show " class="btn">See your profile</a>
-        <a n:href="Homepage" class="btn">Garden</a>
+        <a n:href="Profile:show $user->username" class="btn">See your profile</a>
+        <a n:href="Homepage:" class="btn">Garden</a>
         <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
 
         <div class="flower-opportunity">
