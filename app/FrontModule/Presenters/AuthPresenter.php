@@ -20,6 +20,7 @@ class AuthPresenter extends Presenter
         $state = $this->generateState(); 
         $this->getSession('oauth2')->state = $state;
         $authUrl .= '&state=' . $state;
+        $authUrl .= '&prompt=consent';
         $this->redirectUrl($authUrl);
     }
 
@@ -52,7 +53,7 @@ class AuthPresenter extends Presenter
         $this->authService->findOrCreateUser($user);
         $this->getSession('user')->id = $user['id'];
         
-        $this->redirect('Profile:show', $user['login']);
+        $this->redirect('Dashboard:default');
     }
 
     private function generateState(): string
