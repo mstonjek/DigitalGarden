@@ -1,82 +1,111 @@
 {block content}
     <div class="dashboard-container">
-        <h1>Welcome, {$user->name}!</h1>
-        <p>This is your dashboard, only yours :D</p>
-        <a n:href="Profile:show $user->username" class="btn">See your profile</a>
-        <a n:href="Homepage:" class="btn">Garden</a>
-        <a n:href="Profile:profiles" class="btn plant-flower-btn">Profiles</a>
-        <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
+
+        <div class="nav">
+            <a n:href="Profile:show $user->username" class="btn">See your profile</a>
+            <a n:href="Homepage:" class="btn">Garden</a>
+            <a n:href="Profile:profiles" class="btn">Profiles</a>
+            <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
+        </div>
+
+        <div class="about-user">
+            <h1>Welcome, {$user->name}!</h1>
+            <p>This is your dashboard. Enjoy your personalized space.</p>
+        </div>
 
         <div class="flower-opportunity">
-            <p>Go plant your flower into garden. After you plant her you can see her here.</p>
-
-            <a n:href="Homepage:flower $flower->flowerId">{$flower->flowerName}</a>
+            {if $flower !== null}
+                <p>You have a thriving flower!</p>
+                <a n:href="Garden:flower $flower->flowerId" class="flower-emoji">🌻</a>
+            {else}
+                <p>Plant a flower in your garden. Once planted, it will appear here.</p>
+            {/if}
         </div>
     </div>
 {/block}
 
 {block css}
     <style>
-            /* Fast styling by CHAT GPT 4o mini  */
-
-        /* Container for the dashboard content */
+        /* Chat gpt styles*/
         .dashboard-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #e8f5e9; /* Light green background */
-            border-radius: 10px;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #f7f7f7; /* Light grey background */
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Header Styling */
-        .dashboard-container h1 {
-            font-size: 2.5rem;
-            color: #4CAF50; /* Matching green color */
-            margin-bottom: 10px;
+        /* Navigation Styling */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        /* Paragraph Styling */
-        .dashboard-container p {
-            font-size: 1.2rem;
-            color: #333; /* Dark text color for readability */
-            margin-bottom: 20px;
-        }
-
-        /* Button Styling */
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #4CAF50; /* Matching button color */
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            color: #ffffff;
+            background-color: #007BFF; /* Modern blue color */
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin: 5px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
         }
 
         .btn:hover {
-            background-color: #45a049; /* Slightly darker on hover */
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-3px); /* Lift effect on hover */
         }
 
-        /* Specific Styling for Logout Button */
         .logout-btn {
-            background-color: #f44336; /* Red color for logout */
+            background-color: #dc3545; /* Bootstrap-like red */
         }
 
         .logout-btn:hover {
-            background-color: #d32f2f; /* Slightly darker red on hover */
+            background-color: #c82333; /* Darker red on hover */
         }
 
-        /* Opportunity Section Styling */
+        /* About User Section Styling */
+        .about-user h1 {
+            font-size: 2.8rem;
+            color: #333; /* Dark text color */
+            margin-bottom: 15px;
+        }
+
+        .about-user p {
+            font-size: 1.2rem;
+            color: #555; /* Medium grey for secondary text */
+            margin-bottom: 40px;
+        }
+
+        /* Flower Opportunity Section Styling */
         .flower-opportunity {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #c8e6c9; /* Even lighter green background */
-            border: 1px solid #4CAF50;
-            border-radius: 5px;
+            padding: 30px;
+            background-color: #e9f7ef; /* Light green background */
+            border: 1px solid #28a745; /* Matching green border */
+            border-radius: 10px;
+        }
+
+        .flower-opportunity p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .flower-emoji {
+            font-size: 12rem; /* Large emoji size */
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .flower-emoji:hover {
+            transform: scale(1.1); /* Slight zoom on hover */
         }
     </style>
 {/block}

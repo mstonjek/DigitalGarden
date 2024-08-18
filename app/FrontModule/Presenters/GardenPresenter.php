@@ -55,6 +55,17 @@ class GardenPresenter extends Presenter
         $this->template->flowers = $flowers;
     }
 
+    public function renderFlower(string $id): void
+    {
+        $flower = $this->flowerRepository->find($id);
+        if (!$flower) {
+            $this->error('Flower not found!');
+            $this->redirect("Dashboard:");
+        }
+
+        $this->template->flower = $flower;
+    }
+
     protected function createComponentAddFlowerForm(): Form
     {
         $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
