@@ -1,10 +1,79 @@
 {block content}
-    <h1>Welcome, {$user->name}!</h1>
-    <p>This is your dashboard, only yours :D</p>
-    <a n:href="Dashboard:logout">Logout</a>
+    <div class="dashboard-container">
+        <h1>Welcome, {$user->name}!</h1>
+        <p>This is your dashboard, only yours :D</p>
+        <a n:href="Profile:show " class="btn">See your profile</a>
+        <a n:href="Homepage" class="btn">Garden</a>
+        <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
 
-    You have an opportunity to plant your own awsome flower. Every player can have only one so think
-    
+        <div class="flower-opportunity">
+            <p>You have an opportunity to plant your own awesome flower. Every player can have only one, so think carefully!</p>
+        </div>
+    </div>
+{/block}
 
+{block css}
+    <style>
+            /* Fast styling by CHAT GPT 4o mini  */
 
+        /* Container for the dashboard content */
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e8f5e9; /* Light green background */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        /* Header Styling */
+        .dashboard-container h1 {
+            font-size: 2.5rem;
+            color: #4CAF50; /* Matching green color */
+            margin-bottom: 10px;
+        }
+
+        /* Paragraph Styling */
+        .dashboard-container p {
+            font-size: 1.2rem;
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #4CAF50; /* Matching button color */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049; /* Slightly darker on hover */
+        }
+
+        /* Specific Styling for Logout Button */
+        .logout-btn {
+            background-color: #f44336; /* Red color for logout */
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f; /* Slightly darker red on hover */
+        }
+
+        /* Opportunity Section Styling */
+        .flower-opportunity {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #c8e6c9; /* Even lighter green background */
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+        }
+    </style>
 {/block}

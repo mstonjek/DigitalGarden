@@ -1,3 +1,74 @@
 {block content}
-    Digital Garden main content
+
+    <h1>Welcome to the Digital Garden</h1>
+
+    <div class="garden-actions">
+        <a n:href="Auth:login" class="btn"><strong>Login</strong></a>
+        <a n:href="Profile:profiles" class="btn">Profiles</a>
+        <a n:href="Dashboard:" class="btn">Dashboard</a>
+    </div>
+
+    <div class="virtual-garden">
+        <p>Here will render virtual flowers <3</p>
+    </div>
+
+{/block}
+
+{block css}
+
+
+
+    <style>
+        /* Fast AI styles by CHAT GPT 4o mini */
+        /* Header Styling */
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50; /* A fresh green color */
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f8f4; /* Light background color */
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        /* Flexbox for action buttons */
+        .garden-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between buttons */
+            margin: 20px 0;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #4CAF50; /* Matching button color */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049; /* Slightly darker on hover */
+        }
+
+        /* Virtual Garden Section Styling */
+        .virtual-garden {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #4CAF50; /* Dashed border to make it distinct */
+            border-radius: 10px;
+            background-color: #e8f5e9; /* Light green background */
+            margin: 0 auto;
+            max-width: 600px; /* Centered content with max width */
+        }
+
+        .virtual-garden p {
+            font-size: 1.2rem;
+            color: #333; /* Dark text color for readability */
+        }
+    </style>
+
 {/block}

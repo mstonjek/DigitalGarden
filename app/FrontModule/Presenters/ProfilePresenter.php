@@ -13,6 +13,13 @@ class ProfilePresenter extends Presenter
 
     }
 
+    public function renderProfiles(): void
+    {
+        $users = $this->userRepository->getAll();
+
+        $this->template->users = $users;
+    }
+
     public function renderShow(string $username): void
     {
         $user = $this->userRepository->findByUsername($username);
