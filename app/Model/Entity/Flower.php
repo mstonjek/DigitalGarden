@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'flower')]
+#[ORM\UniqueConstraint(columns: ['user_id'])]
 class Flower
 {
 
@@ -57,7 +58,7 @@ class Flower
 
     #[ORM\OneToOne(targetEntity: User::class, inversedBy: 'flower')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'user_id', onDelete: 'CASCADE')]
-    private ?User $user = null;
+    public User $user;
 
     #[ORM\Column(name: 'planting_date', type: 'datetime')]
     public \DateTime $plantingDate;

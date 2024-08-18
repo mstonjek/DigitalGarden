@@ -14,5 +14,10 @@ class FlowerRepository extends BaseRepository
         parent::__construct($entityManager, Flower::class);
     }
 
+    public function findFlowerByUser(User $user): ?Flower
+    {
+        return $this->getRepository()->findOneBy(['user' => $user]);
+    }
+
 
 }

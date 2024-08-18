@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Forms;
 
 use App\Model\Entity\Flower;
+use App\Model\Entity\User;
 use App\Repository\FlowerRepository;
 use Nette\Application\UI\Form;
 use Nette\Utils\DateTime;
@@ -23,7 +24,7 @@ final class FlowerFormFactory
     ) {
     }
 
-    public function create(?Flower $flower, callable $onSuccess): Form
+    public function create(?Flower $flower, User $user, callable $onSuccess): Form
     {
         $form = $this->factory->create();
 
@@ -79,10 +80,11 @@ final class FlowerFormFactory
 
         $form->addSubmit('submit', 'Save');
 
-        $form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess, $flower): void {
+        $form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess, $user, $flower): void {
             if ($flower === null) {
                 $flower = new Flower();
             }
+
 
             $flower->flowerName = $values->flowerName;
             $flower->flowerLatinName = $values->flowerLatinName;
@@ -97,6 +99,7 @@ final class FlowerFormFactory
             $flower->favouriteSong = $values->favouriteSong;
             $flower->dreamVacation = $values->dreamVacation;
             $flower->favouriteQuote = $values->favouriteQuote;
+            $flower->user = $user;
             $flower->plantingDate = new \DateTime();
 
             $flower = $this->flowerRepository->update($flower);
