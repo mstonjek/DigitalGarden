@@ -40,6 +40,8 @@ class User
     public ?string $location = null;
 
 
+    #[ORM\OneToOne(targetEntity: Flower::class, mappedBy: 'user')]
+    private ?Flower $flower = null;
 
     #[ORM\Column(name: 'created_at', type: 'datetime')]
     public \DateTime $createdAt;

@@ -1,0 +1,157 @@
+{block title}
+    Přidat květinu
+{/block}
+
+{block content}
+
+    {* Fast structure generation by CHAT GPT o4 mini - I didnt want to copypaste :D*}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Přidáváte květinu</h3>
+                    </div>
+                    <form n:name="addFlowerForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="flowerName">Název*</label>
+                                        <input
+                                                n:name="flowerName"
+                                                id="flowerName"
+                                                class="form-control"
+                                                placeholder="Název květiny"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="flowerLatinName">Latinský název*</label>
+                                        <input
+                                                n:name="flowerLatinName"
+                                                id="flowerLatinName"
+                                                class="form-control"
+                                                placeholder="Latinský název"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="flowerDescription">Popis*</label>
+                                <textarea
+                                    n:name="flowerDescription"
+                                    id="flowerDescription"
+                                    class="form-control"
+                                    placeholder="Popis květiny"
+                                ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="family">Rodina*</label>
+                                <input
+                                        n:name="family"
+                                        id="family"
+                                        class="form-control"
+                                        placeholder="Rodina"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Výška (cm)*</label>
+                                <input
+                                        n:name="height"
+                                        id="height"
+                                        class="form-control"
+                                        type="number"
+                                        placeholder="Výška v centimetrech"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="flowerEducation">Vzdělání*</label>
+                                <select
+                                        n:name="flowerEducation"
+                                        id="flowerEducation"
+                                        class="form-control"
+                                >
+                                    {foreach $flowerEducation as $key => $value}
+                                        <option value="{$key}">{$value}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Pohlaví*</label>
+                                <select
+                                        n:name="gender"
+                                        id="gender"
+                                        class="form-control"
+                                >
+                                    {foreach $gender as $key => $value}
+                                        <option value="{$key}">{$value}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Země*</label>
+                                <input
+                                        n:name="country"
+                                        id="country"
+                                        class="form-control"
+                                        placeholder="Země"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="favouriteSerial">Oblíbený seriál*</label>
+                                <input
+                                        n:name="favouriteSerial"
+                                        id="favouriteSerial"
+                                        class="form-control"
+                                        placeholder="Oblíbený seriál"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="webPortfolio">Webové portfolio*</label>
+                                <input
+                                        n:name="webPortfolio"
+                                        id="webPortfolio"
+                                        class="form-control"
+                                        placeholder="Webové portfolio"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="favouriteSong">Oblíbená píseň*</label>
+                                <input
+                                        n:name="favouriteSong"
+                                        id="favouriteSong"
+                                        class="form-control"
+                                        placeholder="Oblíbená píseň"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="dreamVacation">Sny o dovolené*</label>
+                                <input
+                                        n:name="dreamVacation"
+                                        id="dreamVacation"
+                                        class="form-control"
+                                        placeholder="Sny o dovolené"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="favouriteQuote">Oblíbený citát</label>
+                                <input
+                                        n:name="favouriteQuote"
+                                        id="favouriteQuote"
+                                        class="form-control"
+                                        placeholder="Oblíbený citát"
+                                />
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Uložit</button>
+                            <a href="" class="btn btn-dark ml-2">Zpět na seznam květin</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
