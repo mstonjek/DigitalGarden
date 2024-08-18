@@ -4,62 +4,123 @@
 
         {foreach $users as $profile}
             <div class="user-card">
-                <img src="{$profile->avatarUrl}" alt="Avatar of {$profile->name}" class="user-avatar">
-                <h2>{$profile->name}</h2>
+                <div class="user-header">
+                    <img src="{$profile->avatarUrl}" alt="Avatar of {$profile->name}" class="user-avatar">
+                    <div class="user-info">
+                        <h2>{$profile->name}</h2>
+                        {if $profile->location}
+                            <div class="user-location">
+                                <span>🌍</span>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
                 {if $profile->bio}
                     <p class="user-bio">Bio: {$profile->bio}</p>
                 {/if}
+                <a n:href="Profile:Show $profile->username" class="user-profile-link">View Profile</a>
             </div>
         {/foreach}
     </div>
 {/block}
 
 
+
 {block css}
 
     <style>
         /* Fast AI styles by CHAT GPT 4o mini */
-        
+
         /* Garden-themed user list styles */
         .garden-user-list {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f0f8f0; /* Very light green background */
+            background-color: #a3d59d; /* Light teal background */
             border-radius: 15px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .user-card {
-            background-color: #e8f5e9; /* Light green for card background */
-            border: 1px solid #a5d6a7; /* Soft green border */
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
+            background-color: #ffffff; /* White background for card */
+            border: 1px solid #b2dfdb; /* Light teal border */
+            border-radius: 15px;
+            padding: 5px; /* Reduced padding */
+            margin-bottom: 15px; /* Reduced margin */
             display: flex;
+            flex-direction: initial;
             align-items: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-height: 300px; /* Set a maximum height */
+            overflow: hidden; /* Hide overflow if content is too large */
+        }
+
+        .user-card:hover {
+            transform: scale(1.03); /* Slight zoom effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Reduced margin */
+            justify-content: center;
         }
 
         .user-avatar {
-            width: 80px;
-            height: 80px;
+            width: 100px; /* Reduced size */
+            height: 100px; /* Reduced size */
             border-radius: 50%;
-            margin-right: 15px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .user-card h2 {
+        .user-info {
+            text-align: center;
+            max-width: 60%;
+        }
+
+        .user-info h2 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.8rem; /* Slightly smaller font size */
             color: #333;
         }
 
-        .user-bio {
-            font-size: 1rem;
-            color: #555;
-            margin-top: 5px;
+        .user-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px; /* Reduced margin */
+            font-size: 1rem; /* Slightly smaller font size */
+            color: #666;
         }
+
+        .user-bio {
+            font-size: 1rem; /* Slightly smaller font size */
+            color: #555;
+            margin-top: 5px; /* Reduced margin */
+            text-align: center;
+            width: 50%;
+        }
+
+        .user-profile-link {
+            display: inline-block;
+            padding: 10px 20px; /* Reduced padding */
+            font-size: 1rem; /* Slightly smaller font size */
+            color: #fff;
+            background-color: #00796b; /* Teal color */
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px; /* Reduced margin */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .user-profile-link:hover {
+            background-color: #004d40; /* Darker teal on hover */
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+
 
 
     </style>
