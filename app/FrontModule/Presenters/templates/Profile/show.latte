@@ -1,0 +1,29 @@
+{block content}
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="{$user->avatarUrl}" alt="{$user->username}'s avatar" class="profile-avatar">
+            <h1>{$user->name}</h1>
+            <p>@{$user->username}</p>
+        </div>
+
+        <div class="profile-details">
+            {if $user->bio}
+                <div class="profile-bio">
+                    <h2>Bio</h2>
+                    <p>{$user->bio}</p>
+                </div>
+            {/if}
+
+            <div class="profile-info">
+                <h2>Profile Information</h2>
+                <ul>
+                    <li><strong>Email:</strong> {$user->email}</li>
+                    <li><strong>GitHub Profile:</strong> <a href="{$user->profileUrl}" target="_blank">{$user->profileUrl}</a></li>
+                    {if $user->location}
+                        <li><strong>Location:</strong> {$user->location}</li>
+                    {/if}
+                </ul>
+            </div>
+        </div>
+    </div>
+{/block}

@@ -18,4 +18,9 @@ class UserRepository extends BaseRepository
     {
         return $this->getRepository()->findOneBy(['githubId' => $githubId]);
     }
+
+    public function findByUsername(string $username): ?User
+    {
+        return $this->getRepository()->findOneBy(['username' => $username]);
+    }
 }

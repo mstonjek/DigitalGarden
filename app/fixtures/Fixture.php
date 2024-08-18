@@ -21,6 +21,12 @@ class Fixture implements FixtureInterface
         $user = new User();
         $user->githubId = "dawdadawgduzagwuzdgwa";
         $user->username = "karel";
+        $user->name = "Karel Skiller";
+        $user->email = "dasdadsa";
+        $user->avatarUrl = "skibidi";
+        $user->profileUrl = "skibidi";
+        $user->bio = "Skilliissuue";
+        $user->location = "Lol";
 
         $manager->persist($user);
         $manager->flush();

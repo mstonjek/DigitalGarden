@@ -15,8 +15,13 @@ class AuthService
     private Github $provider;
     
 
-    public function __construct(string $clientId, string $clientSecret, string $redirectUri, private UserRepository $userRepository)
-    {
+    public function __construct(
+        string $clientId,
+        string $clientSecret, 
+        string $redirectUri, 
+        private UserRepository $userRepository
+        ) {
+
         $this->provider = new Github([
             'clientId'  => $clientId,
             'clientSecret'  => $clientSecret,
@@ -51,9 +56,15 @@ class AuthService
             $user = new User();
             $user->githubId = $userData['id'];
             $user->username = $userData['login'];
+            $user->name = $userData['name'];
+            $user->email = $userData['email'];
+            $user->avatarUrl = $userData['avatar_url'];
+            $user->bio = $userData['bio'];
+            $user->profileUrl = $userData['html_url'];
+            $user->location = $userData['location'];
+
             $user = $this->userRepository->update($user);
         }
-
     }
 
 }

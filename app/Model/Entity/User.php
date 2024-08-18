@@ -18,8 +18,28 @@ class User
     #[ORM\Column(name: 'github_id', type: 'string', length: 255, unique: true)]
     public string $githubId;
 
-    #[ORM\Column(name: 'username', type: 'string', length: 255)]
+    #[ORM\Column(name: 'username', type: 'string', length: 50)]
     public string $username;
+
+    #[ORM\Column(name: 'name', type: 'string', length: 255)]
+    public string $name;
+
+    #[ORM\Column(name: 'email', type: 'string', length: 255)]
+    public string $email;
+
+    #[ORM\Column(name: 'avatar_url', type: 'string', length: 255)]
+    public string $avatarUrl;
+
+    #[ORM\Column(name: 'bio', type: 'text', nullable: true, options: ["collation" => "utf8mb4_unicode_ci"])]
+    public ?string $bio = null;
+
+    #[ORM\Column(name: 'profile_url', type: 'string', length: 255)]
+    public string $profileUrl;
+
+    #[ORM\Column(name: 'location', type: 'string', length: 50, nullable: true)]
+    public ?string $location = null;
+
+
 
     #[ORM\Column(name: 'created_at', type: 'datetime')]
     public \DateTime $createdAt;
