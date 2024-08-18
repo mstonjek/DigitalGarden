@@ -1,24 +1,29 @@
 {block content}
     <div class="dashboard-container">
-
         <div class="nav">
-            <a n:href="Profile:show $user->username" class="btn">See your profile</a>
-            <a n:href="Homepage:" class="btn">Garden</a>
-            <a n:href="Profile:profiles" class="btn">Profiles</a>
-            <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
+            <div>
+                <a n:href="Homepage:" class="btn bnt-garden">Garden</a>
+                <a n:href="Profile:profiles" class="btn btn-all-profiles">Gardeners</a>
+                <a n:href="Dashboard:logout" class="btn logout-btn">Logout</a>
+            </div>
+
+            <a n:href="Profile:show $user->username" class=" btn-profile-pic">
+                    <img class="profile-pic" src="{$user->avatarUrl}" alt="{$user->name}'s profile picture">
+            </a>
+
         </div>
 
         <div class="about-user">
-            <h1>Welcome, {$user->name}!</h1>
-            <p>This is your dashboard. Enjoy your personalized space.</p>
+            <h1 class="garden-name-tag">{$user->username|firstUpper}'s garden</h1>
+            <p class="garden-about">Step into your personal garden. Nurture your flowers and watch them bloom!</p>
         </div>
 
         <div class="flower-opportunity">
             {if $flower !== null}
-                <p>You have a thriving flower!</p>
+                <h2 class="flower-message">Your flower is a beast!</h2>
                 <a n:href="Garden:flower $flower->flowerId" class="flower-emoji">🌻</a>
             {else}
-                <p>Plant a flower in your garden. Once planted, it will appear here.</p>
+                <p class="no-flower-message">Plant a flower in your garden. Once it blooms, you'll see it here.</p>
             {/if}
         </div>
     </div>
@@ -26,86 +31,127 @@
 
 {block css}
     <style>
-        /* Chat gpt styles*/
         .dashboard-container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: #f7f7f7; /* Light grey background */
-            border-radius: 12px;
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 6rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for more depth */
+            font-family: 'Poppins', sans-serif; /* Elegant, clean font */
+            border: 3px solid #d0e1d4; /* Soft border to mimic garden fencing */
         }
 
         /* Navigation Styling */
         .nav {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            justify-content: flex-end;
+            gap: 20px;
             margin-bottom: 30px;
+        }
+
+        .btn-profile-pic {
+            width: 10rem;
+
+        }
+
+        .profile-pic {
+            max-width: 35%;
+            border-radius: 50%;
         }
 
         .btn {
             padding: 12px 25px;
             font-size: 1.1rem;
-            color: #ffffff;
-            background-color: #007BFF; /* Modern blue color */
+            color: #fff;
+            background-color: #6bbf59; /* Vibrant garden green */
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 4px 10px rgba(107, 191, 89, 0.3);
         }
 
         .btn:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #5ca04f; /* Darker green on hover */
             transform: translateY(-3px); /* Lift effect on hover */
         }
 
         .logout-btn {
-            background-color: #dc3545; /* Bootstrap-like red */
+            background-color: #bf6060; /* Earthy red for logout */
         }
 
         .logout-btn:hover {
-            background-color: #c82333; /* Darker red on hover */
+            background-color: #a35050; /* Darker earthy red on hover */
         }
 
         /* About User Section Styling */
         .about-user h1 {
-            font-size: 2.8rem;
-            color: #333; /* Dark text color */
+            font-size: 2.7rem;
+            color: #3d6e3d; /* Deep garden green for text */
             margin-bottom: 15px;
         }
 
         .about-user p {
             font-size: 1.2rem;
-            color: #555; /* Medium grey for secondary text */
+            color: #517c51; /* Softer green for secondary text */
             margin-bottom: 40px;
         }
 
         /* Flower Opportunity Section Styling */
         .flower-opportunity {
             padding: 30px;
-            background-color: #e9f7ef; /* Light green background */
-            border: 1px solid #28a745; /* Matching green border */
-            border-radius: 10px;
+            background-color: #bd5d28; /* Soft light green background */
+            border: 2px solid #8bc34a; /* Bright green border */
+            border-radius: 12px;
+            background-image: url('https://www.transparenttextures.com/patterns/flowers.png'); /* Subtle floral background */
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 123, 0, 0.1);
         }
 
         .flower-opportunity p {
-            font-size: 1.2rem;
-            color: #333;
+            font-size: 1.3rem;
+            color: #4a7c59; /* Matching green text color */
             margin-bottom: 20px;
         }
 
         .flower-emoji {
             font-size: 12rem; /* Large emoji size */
             text-decoration: none;
+            margin-right: 20px;
             display: inline-block;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3)); /* Add a shadow for depth */
         }
 
         .flower-emoji:hover {
             transform: scale(1.1); /* Slight zoom on hover */
+            filter: brightness(1.2); /* Slightly brighter on hover */
+        }
+
+        /* Adding a Decorative Border for Flower Opportunity */
+        .flower-opportunity::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed #8bc34a; /* Decorative dashed border */
+            border-radius: 12px;
+            opacity: 0.7;
+        }
+
+        /* Overall Background and Font Styling */
+        body {
+            background-color: #f0f8f0; /* Soft background color */
+            background-image: url('https://www.transparenttextures.com/patterns/grass.png'); /* Subtle grass texture */
+            font-family: 'Poppins', sans-serif;
+            color: #333; /* Ensure text is readable */
+            line-height: 1.6;
         }
     </style>
 {/block}
+
+
