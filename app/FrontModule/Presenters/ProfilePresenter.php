@@ -13,7 +13,7 @@ class ProfilePresenter extends Presenter
 
     }
 
-    public function renderProfiles(): void
+    public function renderDefault(): void
     {
         $users = $this->userRepository->getAll();
 

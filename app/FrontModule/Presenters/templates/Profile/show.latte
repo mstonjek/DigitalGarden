@@ -1,3 +1,18 @@
+{php
+    $pronounce = "";
+    switch($user->flower->gender){
+    case App\Model\Entity\FlowerGenderEnum::MALE:
+    $pronounce = "He's";
+    break;
+    case App\Model\Entity\FlowerGenderEnum::FEMALE:
+    $pronounce = "She's";
+    break;
+    case App\Model\Entity\FlowerGenderEnum::OTHER:
+    $pronounce = "It's";
+    break;
+    }
+}
+
 {block content}
     <div class="profile-container">
 
@@ -18,8 +33,8 @@
         {if $user->flower->flowerId}
                 <div class="flower-info">
                     {if $user->flower->flowerName}
-                        <p class="flower-name">This user has a flower: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId"><span class="flower-name-strong">{$user->flower->flowerName}</span> 🌱 <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
-                        <p class="flower-description">She's from {$user->flower->country}, {$user->flower->height} cm tall and has (education)</p>
+                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId"><span class="flower-name-strong">{$user->flower->flowerName}</span> 🌱 <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
+                        <p class="flower-description">{$pronounce} from {$user->flower->country}, {$user->flower->height} cm tall and has (education)</p>
 
                         {if $user->flower->favouriteQuote}
                             <q class="flower-quote">{$user->flower->favouriteQuote} 🌸</q>
@@ -31,7 +46,7 @@
 
         {if $user->bio}
             <div class="bio-div">
-                <h2 class="bio-title">Bio</h2>
+                <h2 class="bio-title">Gardener's Story:</h2>
                 <p class="bio-text">{$user->bio}</p>
 
                 {if $user->flower->flowerName}
@@ -41,7 +56,7 @@
         {/if}
 
         <div class="profile-info">
-            <h2>Profile Information</h2>
+            <h2>Profile Information:</h2>
                 <ul>
                     <li><strong>Email:</strong> {$user->email}</li>
                     <li><strong>GitHub Profile:</strong> <a class="github-link" href="{$user->profileUrl}" target="_blank"> 🐙</a></li>
@@ -70,21 +85,14 @@
             text-decoration: none;
             font-size: 1.1rem;
             color: #4CAF50;
-            display: inline-flex;
-            justify-content: flex-end;
-            align-items: center;
-            border: 2px solid #4CAF50;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-            background-color: #e5ffe5;
+            display: inline-block;
+            margin-left: 1.5rem;
             transition: all 0.3s ease;
         }
 
         .flower-link:hover {
-            background-color: #4CAF50;
-            border-color: #4CAF50;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: scale(1.05);
+            filter: brightness(1.1);
+            transform: scale(1.15);
         }
 
         .github-link {
