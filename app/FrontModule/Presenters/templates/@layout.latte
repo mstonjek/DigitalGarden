@@ -14,13 +14,57 @@
             font-family: "Edu VIC WA NT Beginner", system-ui;
         }
 
+        .site-footer {
+            color: #0c0707;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-nav {
+            margin-top: 1rem;
+        }
+
+        .footer-nav a {
+            color: #0c0707;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+
+
     </style>
 
     {ifset css}
         {include css}
     {/ifset}
+
+    {ifset script}
+        {include script}
+    {/ifset}
 </head>
 <body>
 {include content}
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Digital Garden 🌻</p>
+        <nav class="footer-nav">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </nav>
+    </div>
+</footer>
+
 </body>
 </html>

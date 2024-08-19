@@ -2,8 +2,8 @@
     <div class="dashboard-container">
         <div class="nav">
             <div class="nav-links">
-                <a n:href="Homepage:" class="btn bnt-garden"><span class="nav-emoji">🌻</span>Garden</a>
-                <a n:href="Profile:profiles" class="btn btn-all-profiles"><span class="nav-emoji">👤</span>People</a>
+                <a n:href="Homepage:" class="btn bnt-garden"><span class="nav-emoji">🌻Garden</span></a>
+                <a n:href="Profile:profiles" class="btn btn-all-profiles"><span class="nav-emoji">👤People</span></a>
             </div>
 
             <a n:href="Profile:show $user->username" class=" btn-profile-pic">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="about-user">
-            <h1 class="garden-name-tag">{$user->username|firstUpper}'s garden <a n:href="Dashboard:logout" style="text-decoration: none;"><span class="nav-emoji">🚪</span></a></h1>
+            <h1 class="garden-name-tag">{$user->username|firstUpper}'s garden <a href="#" id="logoutLink" onclick="confirmLogout(event)" style="text-decoration: none;"><span class="nav-emoji">🚪</span></a></h1>
             <p class="garden-about">"Step into your personal garden. Nurture your flowers and watch them bloom!"</p>
         </div>
 
@@ -25,6 +25,22 @@
             {/if}
         </div>
     </div>
+
+
+{/block}
+
+{block script}
+
+    <script>
+
+        function confirmLogout(event) {
+            event.preventDefault();
+            const userConfirmed = confirm("Are you sure you want to log out?");
+            if (userConfirmed) window.location.href = {$basePath} + "/dashboard/logout";
+        }
+
+    </script>
+
 {/block}
 
 {block css}
@@ -60,6 +76,14 @@
             height: 72px;
             padding-top: 0.35rem;
             border-radius: 50%;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+            display: inline-block;
+        }
+
+        .btn-profile-pic:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .profile-pic {
