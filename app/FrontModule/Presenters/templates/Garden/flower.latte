@@ -1,77 +1,86 @@
 {block content}
     <div class="flower-details-container">
-        <div class="flower-details">
-            <h1>{$flower->flowerName} <span class="flower-emoji">🌸</span></h1>
-            <p class="latin-name">({$flower->flowerLatinName})</p>
-            <p class="description">{$flower->flowerDescription}</p>
 
-            <div class="flower-info">
-                <div class="info-item">
-                    <strong>Family:</strong> {$flower->family}
+            <div class="nav-menu">
+                <a class="return-link" n:href="Dashboard:default">🔙</a>
+                <p class="date-of-plant">Planted in {$flower->plantingDate->format("M Y")}</p>
+            </div>
+
+            <div class="flower-header">
+                <div class="flower-names">
+                    <h1 class="flower-title">{$flower->flowerName} <span class="flower-emoji">🌸</span></h1>
+                    <p class="flower-latin-name">({$flower->flowerLatinName})</p>
                 </div>
-                <div class="info-item">
-                    <strong>Height:</strong> {$flower->height} cm
+                <p class="flower-description">{$flower->flowerDescription}</p>
+            </div>
+
+            <div class="main-content">
+                <div class="flower-related">
+                    <div class="flower-info">
+                        <div class="info-item">
+                            <span>Family:</span> {$flower->family}
+                        </div>
+                        <div class="info-item">
+                            <span>Height:</span> {$flower->height} cm
+                        </div>
+                    </div>
+
+                    <div class="flower-profession">
+                        <div class="info-item">
+                            <span>Education:</span> {$flower->country}
+                        </div>
+                        <div class="info-item">
+                            <span>Gender:</span> {$flower->country}
+                        </div>
+                        <div class="info-item">
+                            <span>Country:</span> {$flower->country}
+                        </div>
+                        <div class="info-item">
+                            <span>Web:</span> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link">View Portfolio</a>
+                        </div>
+                    </div>
+
+                    <div class="flower-hobbies">
+                        <div class="info-item">
+                            <span>Serial:</span> {$flower->favouriteSerial}
+                        </div>
+                        <div class="info-item">
+                            <span>Song:</span> {$flower->favouriteSong}
+                        </div>
+                        <div class="info-item">
+                            <span >Vacation:</span> {$flower->dreamVacation}
+                        </div>
+                        <div class="info-item">
+                            <span >Quote:</span> {$flower->favouriteQuote}
+                        </div>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <strong>Birthday:</strong> {$flower->plantingDate->format('F j, Y')}
+
+                <div class="user-related">
+                    <div class="owner-info">
+                        <h2>Owner:</h2>
+                        <h3>{$flower->user->name} from {if $flower->user->location} {$flower->user->location} {/if}</h3>
+                        <p>@{$flower->user->username}</p>
+                        <p><strong>Email:</strong> {$flower->user->email} - You can praise that flower <span class="heart-emoji">💖</span></p>
+                        <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
+                    </div>
                 </div>
             </div>
 
-            <div class="flower-profession">
-                <div class="info-item">
-                    <strong>Education:</strong> {$flower->country}
-                </div>
-                <div class="info-item">
-                    <strong>Gender:</strong> {$flower->country}
-                </div>
-                <div class="info-item">
-                    <strong>Country:</strong> {$flower->country}
-                </div>
-                <div class="info-item">
-                    <strong>Web Portfolio:</strong> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link">View Portfolio</a>
-                </div>
-            </div>
-
-            <div class="flower-hobbies">
-                <div class="info-item">
-                    <strong>Favourite Serial:</strong> {$flower->favouriteSerial}
-                </div>
-                <div class="info-item">
-                    <strong>Favourite Song:</strong> {$flower->favouriteSong}
-                </div>
-                <div class="info-item">
-                    <strong>Dream Vacation:</strong> {$flower->dreamVacation}
-                </div>
-                <div class="info-item">
-                    <strong>Favourite Quote:</strong> {$flower->favouriteQuote}
-                </div>
-            </div>
-
-            <div class="owner-info">
-                <h2>Owner Information:</h2>
-                <h3>{$flower->user->name}</h3>
-                <p>@{$flower->user->username}</p>
-                <p><strong>Email:</strong> {$flower->user->email} - You can praise that flower <span class="heart-emoji">💖</span></p>
-                <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
-            </div>
-        </div>
     </div>
 {/block}
 
 {block css}
     <style>
         body {
-            background-color: #e5ffe5;
-            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
-            color: #333;
-            margin: 0;
-            padding: 0;
+            background-color: #ddf6dd;
+            line-height: 1.6;
         }
 
         .flower-details-container {
-            max-width: 100%;
+            max-width: calc(100% - 30rem);
             margin: 2.5rem auto;
-            padding: 3.5rem;
+            padding: 3.5rem 5rem;
             background-color: #e5ffe5;
             background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
             border-radius: 2.5rem;
@@ -80,13 +89,104 @@
             border: 0.4rem dashed #88bd8f;
         }
 
-        .flower-details {
-            background-color: #ddf6dd;
-            padding: 2rem;
-            border-radius: 2rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+
+        .nav-menu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
         }
 
-        
+        .return-link {
+            text-decoration: none;
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .return-link:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .date-of-plant{
+            font-size: 1.65rem;
+        }
+
+
+
+        .flower-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .flower-title {
+            font-size: 3rem;
+            color: #3a623a;
+            font-weight: lighter;
+            margin: 0;
+        }
+
+        .flower-latin-name {
+            font-size: 1.65rem;
+            color: #666;
+            margin-top: 0;
+        }
+
+        .flower-description {
+            font-size: 1.2rem;
+            max-width: 45%;
+            text-align: justify;
+            color: #3a623a;
+        }
+
+
+
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .flower-related {
+            border: 1px solid #4CAF50;
+            background-color: #c8e6c9;
+            color: #3a623a; /* temporary color */
+            border-radius: 1rem;
+        }
+
+        .flower-info {
+            border-bottom: 0.1rem dashed #4caf50;
+            padding: 1rem;
+        }
+
+        .flower-profession {
+            border-bottom: 0.1rem dashed #4caf50;
+            padding: 1rem;
+        }
+
+        .flower-hobbies {
+            padding: 1rem;
+        }
+
+        .info-item span {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+
+
+
+        .owner-avatar {
+            max-width: 20%;
+            max-height: 20%;
+        }
+
+
     </style>
 {/block}
