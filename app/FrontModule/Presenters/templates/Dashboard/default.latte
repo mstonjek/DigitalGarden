@@ -1,4 +1,23 @@
 {block content}
+
+    {php
+        $plantingDateObj = $flower->plantingDate;
+        $currentDate = new DateTime();
+        $interval = $currentDate->diff($plantingDateObj);
+
+        $ageString = "";
+        if ($interval->y > 0) {
+        $ageString .= $interval->y . " years ";
+        }
+        if ($interval->m > 0) {
+        $ageString .= $interval->m . " months ";
+        }
+        if ($interval->d > 0) {
+        $ageString .= $interval->d . " days ";
+        }
+        $flowerAge = trim($ageString) ?: "less than a day";
+    }
+
     <div class="dashboard-container">
         <div class="nav">
             <div class="nav-links">
@@ -20,9 +39,14 @@
         <div class="flower-opportunity">
             {if $flower !== null}
                 <a n:href="Garden:flower $flower->flowerId" class="flower-emoji">🌻</a>
+                <div class="flower-age-div">
+                    <p class="flower-age">Flower age: <span>{$flowerAge}</span></p>
+                </div>
             {else}
                 <p class="no-flower-message">Plant a flower in your garden. Once it blooms, you'll see it here.</p>
+                <p class="flower-status">You have 0 / 1 flowers</p>
             {/if}
+
         </div>
     </div>
 
@@ -57,6 +81,28 @@
             border: 0.4rem dashed #88bd8f;
         }
 
+        .flower-age {
+            max-width: 40%;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .flower-age span {
+            color: #f0f0f0;
+            font-weight: normal;
+        }
+
+        .flower-age-div {
+            display: flex;
+            justify-content: center;
+
+        }
 
         .nav {
             display: flex;
@@ -109,11 +155,14 @@
             font-size: 1.2rem;
             font-style: italic;
             color: #3a623a;
+            margin-bottom: 0.5rem;
+        }
+        .about-user p:last-child {
             margin-bottom: 2rem;
         }
 
         .flower-opportunity {
-            padding: 3rem;
+            padding: 2.1rem;
             background-color: #668539;
             border: 0.1rem solid darkslategrey;
             border-radius: 2rem;
@@ -133,7 +182,7 @@
         }
 
         .flower-emoji {
-            font-size: 12rem;
+            font-size: 11rem;
             text-decoration: none;
             display: inline-block;
             transition: transform 0.3s ease, filter 0.3s ease;
