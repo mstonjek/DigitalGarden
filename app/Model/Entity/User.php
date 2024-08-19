@@ -41,7 +41,7 @@ class User
 
 
     #[ORM\OneToOne(targetEntity: Flower::class, mappedBy: 'user')]
-    private ?Flower $flower = null;
+    public ?Flower $flower = null;
 
     #[ORM\Column(name: 'created_at', type: 'datetime')]
     public \DateTime $createdAt;

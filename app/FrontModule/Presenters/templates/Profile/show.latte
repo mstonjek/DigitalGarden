@@ -1,22 +1,41 @@
 {block content}
     <div class="profile-container">
-        <a n:href="Dashboard:default">Back</a>
-        <div class="profile-header">
-            <img src="{$user->avatarUrl}" alt="{$user->username}'s avatar" class="profile-avatar">
-            <h1>{$user->name}</h1>
-            <p>@{$user->username}</p>
+
+        <div class="return-link">
+            <a n:href="Dashboard:default">🔙</a>
+            <p>Member since {$user->createdAt->format("M Y")}</p>
         </div>
 
-        <div class="profile-details">
-            {if $user->bio}
-                <div class="profile-bio">
-                    <h2>Bio</h2>
-                    <p>{$user->bio}</p>
-                </div>
-            {/if}
+        <div class="profile-header">
 
-            <div class="profile-info">
-                <h2>Profile Information</h2>
+            <div class="profile-names">
+                <h1>{$user->name}</h1>
+                <p>@{$user->username}</p>
+            </div>
+            <img src="{$user->avatarUrl}" alt="{$user->username}'s avatar" class="profile-avatar">
+        </div>
+
+        {if $user->flower->flowerId}
+                <div class="flower-info">
+                    <p class="flower-name">This user have a flower {$user->flower->flowerName} <span class="flower-latin">({$user->flower->flowerLatinName})</span></p>
+                    <p class="flower-description">She's from {$user->flower->country}, {$user->flower->height} cm tall and has (education)</p>
+                    {if $user->flower->favouriteQuote}
+                    <q class="flower-quote">{$user->flower->favouriteQuote}</q>
+                    {/if}
+                </div>
+        {/if}
+
+
+        {if $user->bio}
+            <div class="profile-bio">
+                <h2>Bio</h2>
+                <p>{$user->bio}</p>
+                <q>And I am also proud of my {$user->flower->flowerName} 🌻</q>
+            </div>
+        {/if}
+
+        <div class="profile-info">
+            <h2>Profile Information</h2>
                 <ul>
                     <li><strong>Email:</strong> {$user->email}</li>
                     <li><strong>GitHub Profile:</strong> <a href="{$user->profileUrl}" target="_blank">{$user->profileUrl}</a></li>
@@ -24,42 +43,72 @@
                         <li><strong>Location:</strong> {$user->location}</li>
                     {/if}
                 </ul>
-            </div>
         </div>
+
     </div>
 {/block}
 
 {block css}
     <style>
 
-        /* Fast AI styles by CHAT GPT 4o mini */
-        /* Container for profile */
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #e8f5e9; /* Light green background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
         }
 
-        /* Profile Header Styling */
+        .return-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .return-link a {
+            text-decoration: none;
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .return-link a:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .profile-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 5rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 1.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
         .profile-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
 
         .profile-avatar {
-            width: 120px;
-            height: 120px;
+            max-width: 20%;
+            max-height: 20%;
             border-radius: 50%;
-            border: 4px solid #4CAF50; /* Green border around avatar */
-            margin-bottom: 10px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .profile-header h1 {
-            font-size: 2rem;
-            color: #4CAF50; /* Matching green color */
+            font-size: 2.75rem; /* Larger size for emphasis */
+            color: #3d6e3d; /* Dark green color */
             margin: 0;
         }
 
@@ -69,24 +118,53 @@
             margin: 0;
         }
 
-        /* Profile Details Styling */
-        .profile-details {
-            margin-top: 20px;
+        /* Flower Information Styling */
+        .flower-info {
+            background-color: #c8e6c9; /* Light green background */
+            padding: 1rem;
+            border: 1px solid #4CAF50; /* Border to match theme */
+            border-radius: 8px; /* Rounded corners */
+            margin-bottom: 2rem; /* Space below */
         }
 
+        .flower-name {
+            font-size: 1.3rem; /* Slightly larger for emphasis */
+            color: #3d6e3d; /* Dark green color */
+            font-weight: bold;
+        }
+
+        .flower-latin {
+            font-style: italic;
+            color: #666; /* Slightly lighter color */
+        }
+
+        .flower-description {
+            font-size: 1.2rem;
+            color: #333; /* Darker text for readability */
+            margin-top: 0.5rem;
+        }
+
+        .flower-quote {
+            font-size: 1.2rem;
+            color: #3a623a; /* Slightly lighter green */
+            display: block;
+            margin-top: 1rem;
+        }
+
+        /* Bio and Profile Information Styling */
         .profile-bio, .profile-info {
-            background-color: #c8e6c9; /* Even lighter green background */
-            padding: 15px;
+            background-color: #c8e6c9; /* Light green background */
+            padding: 1rem;
             border: 1px solid #4CAF50; /* Border to match theme */
-            border-radius: 5px;
-            margin-bottom: 20px;
+            border-radius: 8px; /* Rounded corners */
+            margin-bottom: 2rem;
         }
 
         .profile-bio h2, .profile-info h2 {
             font-size: 1.5rem;
-            color: #4CAF50;
+            color: #4CAF50; /* Matching green color */
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
 
         .profile-info ul {
@@ -97,17 +175,30 @@
 
         .profile-info li {
             font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 8px;
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0.8rem; /* Space between items */
         }
 
         .profile-info a {
-            color: #4CAF50;
+            color: #4CAF50; /* Matching green color for links */
             text-decoration: none;
         }
 
         .profile-info a:hover {
-            text-decoration: underline;
+            text-decoration: underline; /* Underline on hover for better visibility */
         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 1rem; /* Reduce padding on smaller screens */
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
     </style>
 {/block}
