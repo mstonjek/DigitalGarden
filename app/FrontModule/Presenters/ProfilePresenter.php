@@ -4,6 +4,7 @@
 
     use Nette\Application\UI\Presenter;
     use App\Model\Repository\UserRepository;
+
 class ProfilePresenter extends Presenter
 {
     public function __construct(
@@ -15,7 +16,7 @@ class ProfilePresenter extends Presenter
 
     public function renderDefault(): void
     {
-        $this->template->users = [];
+
     }
 
     public function renderShow(string $username): void
@@ -33,10 +34,20 @@ class ProfilePresenter extends Presenter
 
     public function actionSearch(string $q = ""): void
     {
+        $response = [];
         $users = $this->userRepository->search($q, 10);
-        bdump($users);
-        $json = json_encode($users, JSON_THROW_ON_ERROR);
-        $this->sendJson($json);
+
+        foreach ($users as $iterator => $user) {
+            $response[$iterator] = [
+                "username" => $user->username,
+                "avatarUrl" => $user->avatarUrl,
+                "name" => $user->name,
+                "location" => $user->location ? $user->location : null,
+                "flowerId" => $user->flower ? $user->flower->flowerId : null
+            ];
+        }
+        $this->sendJson($response);
     }
+
 }
     

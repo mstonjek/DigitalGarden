@@ -1,15 +1,15 @@
 {block content}
-    <div id="search-container">
-        <label>
-            <input onkeyup="search(this.value)" type="search" placeholder="Začněte psát..." class="form-control">
-        </label>
+    <div id="search-container" class="garden-search-container">
+        <label for="search-input">Find Your Gardener:</label>
+        <div class="garden-search-box">
+            <div class="search-input" id="search-input" contenteditable="true" placeholder="Type here..." oninput="search(this.innerText)"></div>
+        </div>
     </div>
 
     <div id="users-container" class="scrollable-container">
-        <table>
-            <tbody id="result">
-            </tbody>
-        </table>
+        <div id="result" class="window-of-profiles">
+
+        </div>
     </div>
 
     <div id="loading-indicator" style="display: none;">Loading...</div>
@@ -19,7 +19,7 @@
             if (query.length > 2) {
                 const xhttp = new XMLHttpRequest();
                 const loadingIndicator = document.getElementById('loading-indicator');
-                const tbody = document.querySelector('#result');
+                const resultContainer = document.getElementById('result');
                 const endpoint = {link Profile:search};
 
                 loadingIndicator.style.display = 'block';
@@ -29,16 +29,26 @@
 
                     if (xhttp.status === 200) {
                         let response = JSON.parse(this.responseText);
-                        tbody.innerHTML = '';
+                        resultContainer.innerHTML = '';
 
                         response.forEach(user => {
-                            let tr = tbody.insertRow();
-                            let tdName = tr.insertCell();
-                            tdName.innerText = user.name;
-                            let tdUsername = tr.insertCell();
-                            tdUsername.innerText = user.username;
-                            let tdEmail = tr.insertCell();
-                            tdEmail.innerText = user.email;
+                            let card = document.createElement('div');
+                            card.className = 'user-card';
+
+                            let cardContent = `
+                                <div class="user-header">
+                                    <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
+                                    <div class="user-info">
+                                        <h2>${ user.name}</h2>
+                                        ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
+                                    </div>
+                                </div>
+                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
+                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="user-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>'}
+                            `;
+
+                            card.innerHTML = cardContent;
+                            resultContainer.appendChild(card);
                         });
                     } else {
                         console.error('Error:', xhttp.statusText);
@@ -50,19 +60,76 @@
                     console.error('Request failed');
                 };
 
-                xhttp.open("GET", `${ endpoint }?q=${ query }`, true);
+                xhttp.open("GET", `${ endpoint}?q=${ query}`, true);
                 xhttp.send();
             }
-
         }
+
+        function focusInput() {
+            const input = document.getElementById('search-input');
+            input.focus();
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(input);
+            range.collapse(false);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+
+        document.addEventListener('DOMContentLoaded', focusInput);
     </script>
 {/block}
 
-{block scripts}
+
+{block css}
+    <style>
+
+        .garden-search-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            width: 6rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+
+        }
+
+        .search-input {
+            flex: 1;
+            outline: none;
+            white-space: pre;
+            word-wrap: break-word;
+            min-width: 0;
+            padding: 0;
+            margin: 0;
+            font-size: 1.25rem;
+        }
 
 
 
+
+        .user-card {
+            border: 1px solid;
+            border-radius: 1rem;
+            overflow: hidden;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .user-avatar {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+
+
+
+    </style>
 {/block}
+
 
 
 {*
