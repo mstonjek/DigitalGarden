@@ -15,9 +15,7 @@ class ProfilePresenter extends Presenter
 
     public function renderDefault(): void
     {
-        $users = $this->userRepository->getAll();
-
-        $this->template->users = $users;
+        $this->template->users = [];
     }
 
     public function renderShow(string $username): void

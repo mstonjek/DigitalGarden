@@ -23,4 +23,6 @@ class UserRepository extends BaseRepository
     {
         return $this->getRepository()->findOneBy(['username' => $username]);
     }
+
+
 }
