@@ -24,5 +24,20 @@ class UserRepository extends BaseRepository
         return $this->getRepository()->findOneBy(['username' => $username]);
     }
 
+    public function search(string $query = "", int $limit = 50) {
+        $queryBuilder = $this->getRepository()->createQueryBuilder('l');
+
+        $orX = $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->like('l.username', ':query'),
+        );
+
+        $queryBuilder->setMaxResults($limit);
+
+        return $queryBuilder->where($orX)
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->execute();
+    }
+
 
 }

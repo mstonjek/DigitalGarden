@@ -1,12 +1,67 @@
 {block content}
     <div id="search-container">
-        <input type="text" id="search-input" placeholder="Search gardeners...">
+        <label>
+            <input onkeyup="search(this.value)" type="search" placeholder="Začněte psát..." class="form-control">
+        </label>
     </div>
 
     <div id="users-container" class="scrollable-container">
+        <table>
+            <tbody id="result">
+            </tbody>
+        </table>
     </div>
 
     <div id="loading-indicator" style="display: none;">Loading...</div>
+
+    <script>
+        function search(query) {
+            if (query.length > 2) {
+                const xhttp = new XMLHttpRequest();
+                const loadingIndicator = document.getElementById('loading-indicator');
+                const tbody = document.querySelector('#result');
+                const endpoint = {link Profile:search};
+
+                loadingIndicator.style.display = 'block';
+
+                xhttp.onload = function () {
+                    loadingIndicator.style.display = 'none';
+
+                    if (xhttp.status === 200) {
+                        let response = JSON.parse(this.responseText);
+                        tbody.innerHTML = '';
+
+                        response.forEach(user => {
+                            let tr = tbody.insertRow();
+                            let tdName = tr.insertCell();
+                            tdName.innerText = user.name;
+                            let tdUsername = tr.insertCell();
+                            tdUsername.innerText = user.username;
+                            let tdEmail = tr.insertCell();
+                            tdEmail.innerText = user.email;
+                        });
+                    } else {
+                        console.error('Error:', xhttp.statusText);
+                    }
+                };
+
+                xhttp.onerror = function () {
+                    loadingIndicator.style.display = 'none';
+                    console.error('Request failed');
+                };
+
+                xhttp.open("GET", `${ endpoint }?q=${ query }`, true);
+                xhttp.send();
+            }
+
+        }
+    </script>
+{/block}
+
+{block scripts}
+
+
+
 {/block}
 
 

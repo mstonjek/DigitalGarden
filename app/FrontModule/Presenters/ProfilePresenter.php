@@ -4,12 +4,12 @@
 
     use Nette\Application\UI\Presenter;
     use App\Model\Repository\UserRepository;
-
 class ProfilePresenter extends Presenter
 {
     public function __construct(
         private UserRepository $userRepository
-    ) {
+    )
+    {
 
     }
 
@@ -31,6 +31,12 @@ class ProfilePresenter extends Presenter
 
     }
 
+    public function actionSearch(string $q = ""): void
+    {
+        $users = $this->userRepository->search($q, 10);
+        bdump($users);
+        $json = json_encode($users, JSON_THROW_ON_ERROR);
+        $this->sendJson($json);
+    }
 }
-
     
