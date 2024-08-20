@@ -6,3 +6,5 @@ docker
 .DS_Store
 documents/*
 config/local.neon
+config/local-prod.neon
+.github

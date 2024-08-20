@@ -1,23 +1,24 @@
 {block content}
 
-    {php
-        $plantingDateObj = $flower->plantingDate;
-        $currentDate = new DateTime();
-        $interval = $currentDate->diff($plantingDateObj);
+    {if $flower}
+        {php
+            $plantingDateObj = $flower->plantingDate;
+            $currentDate = new DateTime();
+            $interval = $currentDate->diff($plantingDateObj);
 
-        $ageString = "";
-        if ($interval->y > 0) {
-        $ageString .= $interval->y . " years ";
+            $ageString = "";
+            if ($interval->y > 0) {
+            $ageString .= $interval->y . " years ";
+            }
+            if ($interval->m > 0) {
+            $ageString .= $interval->m . " months ";
+            }
+            if ($interval->d > 0) {
+            $ageString .= $interval->d . " days ";
+            }
+            $flowerAge = trim($ageString) ?: "less than a day";
         }
-        if ($interval->m > 0) {
-        $ageString .= $interval->m . " months ";
-        }
-        if ($interval->d > 0) {
-        $ageString .= $interval->d . " days ";
-        }
-        $flowerAge = trim($ageString) ?: "less than a day";
-    }
-
+    {/if}
     <div class="dashboard-container">
         <div class="nav">
             <div class="nav-links">

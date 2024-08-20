@@ -36,7 +36,7 @@
                             <span>Country:</span> {$flower->country}
                         </div>
                         <div class="info-item">
-                            <span>Web:</span> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link">View Portfolio</a>
+                            <span>Web:</span> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link"> 🌐 </a>
                         </div>
                     </div>
 
@@ -58,11 +58,23 @@
 
                 <div class="user-related">
                     <div class="owner-info">
-                        <h2>Owner:</h2>
-                        <h3>{$flower->user->name} from {if $flower->user->location} {$flower->user->location} {/if}</h3>
-                        <p>@{$flower->user->username}</p>
-                        <p><strong>Email:</strong> {$flower->user->email} - You can praise that flower <span class="heart-emoji">💖</span></p>
-                        <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
+
+                        <div class="top-section">
+                            <h2 class="question-title" >Who's beauty is it? <span class="star-emoji">💫</span> </h2>
+                            <div class="owner-header">
+                                <div class="owner-names">
+                                    <h3 class="owner-name">{$flower->user->name}'s 🌍</h3>
+                                    <p class="owner-username">@{$flower->user->username}</p>
+                                </div>
+                                <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
+                            </div>
+                        </div>
+
+                        <div class="contact-section">
+                            <p class="contact-instance">⬇️ You can praise that flower <span class="heart-emoji">💖</span></p>
+                            <h2><a href="mailto:" class="contact-email">{$flower->user->email}</a></h2>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -158,6 +170,7 @@
             background-color: #c8e6c9;
             color: #3a623a; /* temporary color */
             border-radius: 1rem;
+            width: 45%;
         }
 
         .flower-info {
@@ -174,6 +187,20 @@
             padding: 1rem;
         }
 
+        .flower-link {
+            text-decoration: none;
+            font-size: 1.25rem;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .flower-link:hover {
+            transform: scale(1.35);
+            filter: brightness(1.2);
+        }
+
         .info-item span {
             color: #4caf50;
             font-size: 1.2rem;
@@ -181,10 +208,58 @@
 
 
 
+        .user-related {
+            width: 45%;
+        }
+
+        .owner-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 0.1rem;
+        }
+
+        .top-section {
+            border: 2px solid darkslategrey;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-instance {
+            margin-top: 3rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-email {
+            text-decoration: none;
+            margin-top: 1rem;
+            font-size: 1.75rem;
+
+        }
+
+        .question-title {
+            text-align: center;
+            margin: 0 0 1rem;
+        }
+
+        .owner-name {
+            margin: 0;
+        }
+
+        .owner-username {
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 0;
+        }
 
         .owner-avatar {
             max-width: 20%;
             max-height: 20%;
+            border-radius: 50%;
         }
 
 
