@@ -63,16 +63,16 @@
                             <h2 class="question-title" >Who's beauty is it? <span class="star-emoji">💫</span> </h2>
                             <div class="owner-header">
                                 <div class="owner-names">
-                                    <h3 class="owner-name">{$flower->user->name}'s 🌍</h3>
-                                    <p class="owner-username">@{$flower->user->username}</p>
+                                    <h3 class="owner-name">{$flower->user->name}'s <span class="planet-emoji">🌍</span></h3>
+                                    <p class="owner-username"><a class="owner-username-link" n:href="Profile:show $flower->user->username">@{$flower->user->username}</a></p>
                                 </div>
                                 <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
                             </div>
                         </div>
 
                         <div class="contact-section">
-                            <p class="contact-instance">⬇️ You can praise that flower <span class="heart-emoji">💖</span></p>
-                            <h2><a href="mailto:" class="contact-email">{$flower->user->email}</a></h2>
+                            <p class="contact-instance"><span class="emoji-contact">⬇</span>️ You can praise that flower <span class="emoji-contact">💖</span></p>
+                            <h2><a href="mailto:{$flower->user->email}" class="contact-email">{$flower->user->email} <span class="emoji-contact">📫</span></a></h2>
                         </div>
 
                     </div>
@@ -197,8 +197,8 @@
         }
 
         .flower-link:hover {
-            transform: scale(1.35);
-            filter: brightness(1.2);
+            transform: scale(1.55);
+            filter: brightness(1.1);
         }
 
         .info-item span {
@@ -230,30 +230,75 @@
         }
 
         .contact-instance {
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .contact-section h2 {
+            margin: 0;
         }
 
         .contact-email {
             text-decoration: none;
-            margin-top: 1rem;
-            font-size: 1.75rem;
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: lighter;
+            margin-top: 0.35rem;
+            color: #666;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
 
+        .emoji-contact {
+            font-size: 1.45rem;
+        }
+
+        .planet-emoji {
+            font-size: 1.35rem;
+        }
+
+        .star-emoji {
+            font-size: 1.85rem;
+        }
+
+        .contact-email:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .question-title {
             text-align: center;
             margin: 0 0 1rem;
+            font-size: 1.65rem;
+            color: #4caf50;
+            font-weight: normal;
         }
 
         .owner-name {
             margin: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3a623a;
         }
 
         .owner-username {
             font-size: 1.3rem;
             text-align: center;
             margin: 0;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+            font-weight: lighter;
+        }
+
+        .owner-username-link {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .owner-username:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .owner-avatar {

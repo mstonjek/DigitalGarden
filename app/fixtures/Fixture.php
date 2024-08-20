@@ -18,6 +18,7 @@ class Fixture implements FixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
+
         $user = new User();
         $user->githubId = "dawdadawgduzagwuzdgwa";
         $user->username = "karel";
