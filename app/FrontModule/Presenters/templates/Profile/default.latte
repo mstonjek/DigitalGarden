@@ -3,7 +3,7 @@
 
         <div class="header-navigation">
             <a class="return-emoji" n:href="Dashboard:default">🔙</a>
-            <p class="number-of-users">Number of users: 2</p>
+            <p class="number-of-users">Number of users: {$userCount}</p>
         </div>
 
         <div class="main-content">
@@ -19,7 +19,7 @@
             <div id="users-container" class="profiles-section">
                     <div id="result" class="profiles-window">
                         <!-- Profile cards style in the script block -->
-
+                        <h2 id="result-placeholder" class="result-info"><span class="placeholder-emoji">🧑‍🌾</span> Here will appear <span class="placeholder-emoji">⬇️</span></h2>
                     </div>
                     <div id="loading-indicator" style="display: none;">Loading...</div>
             </div>
@@ -115,13 +115,12 @@
         }
 
 
-
         .profiles-section {
             display: inline-block;
             border: 0.1rem solid darkslategrey;
             margin-top: 1.5rem;
             min-width: 83%;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 1rem;
             min-height: 22.75rem;
             background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
@@ -129,22 +128,58 @@
         }
 
         .profiles-window {
+            display: flex;
+            padding-top: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: space-evenly;
+        }
 
+        .result-info {
+            font-size: 2.5rem;
+            margin: 2rem 0 0;
+            font-weight: lighter;
+        }
+
+        .placeholder-emoji {
+            font-size: 2.75rem;
         }
 
 
+        /*
 
+        <div class="user-card">
+            <div class="user-header">
+                <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
+                    <div class="user-info">
+                        <h2 class="user-name" >${ user.name}</h2>
+                            <p class="user-username">${ user.username}</p>
+                                ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
+                    </div>
+                </div>
+                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
+                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>
+        </div>
+
+         */
 
 
 
 
 
         .user-card {
-            border: 1px solid;
+            border: 0.3rem dashed #004d40;
             border-radius: 1rem;
             overflow: hidden;
             text-align: center;
             padding: 1rem;
+            background-color: #ddf6dd;
+            background-image: url("https://www.transparenttextures.com/patterns/little-pluses.png");
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .user-header {
+
         }
 
         .user-avatar {
@@ -153,6 +188,39 @@
             height: 80px;
             object-fit: cover;
         }
+
+        .user-info {
+
+        }
+
+        .user-name {
+
+        }
+
+        .user-username {
+
+        }
+
+        .user-location {
+
+        }
+
+
+        .user-links {
+
+        }
+
+        .user-profile-link {
+
+        }
+
+        .flower-profile-link {
+
+        }
+
+
+
+
 
 
 
@@ -169,6 +237,7 @@
                 const xhttp = new XMLHttpRequest();
                 const loadingIndicator = document.getElementById('loading-indicator');
                 const resultContainer = document.getElementById('result');
+                const resultPlaceholder = document.getElementById('result-placeholder');
                 const endpoint = {link Profile:search};
 
                 loadingIndicator.style.display = 'block';
@@ -193,8 +262,9 @@
                                         ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
                                     </div>
                                 </div>
+                                <div class="user-links">
                                 <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
-                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>'}
+                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p></div>'}
                             `;
 
                             card.innerHTML = cardContent;

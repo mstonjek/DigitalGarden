@@ -39,5 +39,9 @@ class UserRepository extends BaseRepository
             ->execute();
     }
 
+    public function getUserCount(): int {
+        return $this->getRepository()->count([]);
+    }
+
 
 }
