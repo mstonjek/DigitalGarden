@@ -15,17 +15,18 @@
 
         <div class="nav-links">
             <a n:href="Dashboard:" class="return-link">🔙</a>
-            <a n:href="Garden:Add" class="plant-flower-link">Plant a Flower</a>
+            <a n:href="Garden:Add" class="plant-flower-link"><span class="arrow-emoji">➡️</span> Plant a Flower <span class="arrow-emoji">⬅️</span></a>
         </div>
 
         <div class="garden-info">
-            <h1 class="garden-title">Welcome in garden</h1>
-            <p class="garden-announcement">Welcome to the Virtual Garden! 🌸 Ready to plant your own flower? Follow the steps below!</p>
-            <p class="garden-warning" >Heads up: You can only plant one flower, so make it awesome! 🌻</p>
+            <div class="paragraph-div">
+                <p class="garden-announcement">🌺 Already planted a flower? Try to find it below! 👇</p>
+                <p class="garden-warning" >🌷 Heads-up: You’ve got one shot to plant your flower—make it awesome! 🌻</p>
+            </div>
+            <h1 class="garden-title">Welcome to the Virtual Garden! 🌸</h1>
         </div>
 
         <div class="garden-block">
-            <div class="garden-placeholder">
                 <div class="garden-container-table">
                     <p class="flower-stats">31 flowers planted</p>
                     {foreach $flowers as $flower}
@@ -35,8 +36,6 @@
                     <div class="garden-element" style="top: 50%; left: 70%;">🍀</div>
                     <div class="garden-element" style="top: 80%; left: 30%;">🐰</div>
                 </div>
-
-            </div>
         </div>
     </div>
 
@@ -49,8 +48,8 @@
 
         .garden-container {
             max-width: calc(100% - 30rem);
-            margin: 2.5rem auto;
-            padding: 3.5rem 5rem;
+            margin: 1.5rem auto;
+            padding: 1.5rem 5rem 3rem;
             background-color: #e5ffe5;
             background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
             border-radius: 2.5rem;
@@ -85,7 +84,45 @@
 
 
 
+        .garden-info {
+            text-align: center;
+            margin-top: 0.55rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
+        .garden-info h1 {
+            font-size: 2.65rem;
+            color: #3d6e3d;
+            margin-top: 0.45rem;
+            margin-bottom: 1.75rem;
+            text-align: center;
+        }
+
+        .garden-info p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3a623a;
+        }
+
+        .paragraph-div {
+            border: 0.1rem solid #4caf50;
+            border-radius: 1rem;
+            padding: 0.25rem;
+            background-color: #c8e6c9;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+
+
+        .garden-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 
 
@@ -96,8 +133,8 @@
 
         .garden-container-table {
             position: relative;
-            width: 80%;
-            height: 20rem;
+            width: 100%;
+            min-height: 43vh;
             border: 2px solid #4CAF50;
             border-radius: 1rem;
             overflow: hidden !important;
@@ -120,35 +157,9 @@
 
 {block css}
     <style>
-        /* Fast AI styles by CHAT GPT 4o mini */
-        /* Container for garden registration */
-        .garden-registration-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #e8f5e9; /* Light green background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            text-align: center;
-        }
-        
 
 
-        /* Garden Info Styling */
-        .garden-info {
-            background-color: #c8e6c9; /* Even lighter green background */
-            padding: 20px;
-            border: 1px solid #4CAF50; /* Border to match theme */
-            border-radius: 5px;
-            text-align: left;
-            margin-top: 20px;
-        }
 
-        .garden-info p {
-            font-size: 1.2rem;
-            color: #333; /* Dark text color for readability */
-            margin-bottom: 15px;
-        }
 
 
 
