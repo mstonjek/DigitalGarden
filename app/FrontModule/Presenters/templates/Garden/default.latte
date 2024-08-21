@@ -8,6 +8,8 @@
         return $flower;
         }, $flowers);
 
+    }
+
 
     }
 
@@ -15,7 +17,7 @@
 
         <div class="nav-links">
             <a n:href="Dashboard:" class="return-link">🔙</a>
-            <a n:href="Garden:Add" class="plant-flower-link"><span class="arrow-emoji">➡️</span> Plant a Flower <span class="arrow-emoji">⬅️</span></a>
+            <a n:href="Garden:Add" class="plant-flower-link"><span class="arrow-emoji">➡️</span> Plant a Flower as 123 other users <span class="arrow-emoji">⬅️</span></a>
         </div>
 
         <div class="garden-info">
@@ -25,16 +27,16 @@
             </div>
             <h1 class="garden-title">Welcome to the Virtual Garden! 🌸</h1>
         </div>
-
         <div class="garden-block">
+
                 <div class="garden-container-table">
-                    <p class="flower-stats">31 flowers planted</p>
                     {foreach $flowers as $flower}
-                        <a n:href="Garden:flower $flower->flowerId" class="flower" style="top: {$flower->randomTop}%; left: {$flower->randomLeft}%; transform: rotate({$flower->randomRotate}deg);">🌸</a>
+                        <a n:href="Garden:flower $flower->flowerId" class="flower">🌸</a>
                     {/foreach}
-                    <div class="garden-element" style="top: 10%; left: 20%;">🥚</div>
-                    <div class="garden-element" style="top: 50%; left: 70%;">🍀</div>
-                    <div class="garden-element" style="top: 80%; left: 30%;">🐰</div>
+                    {for $i=0;$i<5;$i++}
+                    <div class="garden-element"
+                         style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{randomEmoji()}</div>
+                    {/for}
                 </div>
         </div>
     </div>
@@ -116,20 +118,13 @@
             width: 100%;
         }
 
-
-
         .garden-block {
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-
-
-
-
-
-        /* Garden  */
 
         .garden-container-table {
             position: relative;
@@ -137,17 +132,39 @@
             min-height: 43vh;
             border: 2px solid #4CAF50;
             border-radius: 1rem;
-            overflow: hidden !important;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            background-color: #4caf50;
+            overflow: hidden;
         }
 
-        .garden-container-table::before {
-            content: '🌿';
-            font-size: 5rem;
+        .flower {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            top: {$flower->randomTop}%;
+            left: {$flower->randomLeft}%;
+            transform: rotate({$flower->randomRotate}deg);
+            text-decoration: none;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
         }
+
+        .flower:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+
+
+        .garden-element {
+            position: absolute;
+            font-size: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+
+
+
     </style>
 
 

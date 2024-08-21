@@ -9,6 +9,7 @@ use App\Forms\FlowerFormFactory;
 use App\Repository\FlowerRepository;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Form;
+use Latte;
 
 class GardenPresenter extends Presenter
 {
@@ -53,6 +54,16 @@ class GardenPresenter extends Presenter
     {
         $flowers = $this->flowerRepository->getAll();
         $this->template->flowers = $flowers;
+
+        $this->template->addFunction('randomNum', function(int $min, int $max) {
+            return rand($min, $max);
+        });
+
+        $this->template->addFunction('randomEmoji', function() {
+            $emojis = ['🌳', '🍃', '🍂', '🌾', '🌱', '🐝', '🦋', '🐞', '🌤️', '🌈', '🌧️', '🌨️', '⛅', '🌿', '🐦', '🦗', '🦠', '🌻', '🍄', '🌰', '🪴'];
+            return $emojis[array_rand($emojis)];
+        });
+
     }
 
     public function renderFlower(string $id): void
