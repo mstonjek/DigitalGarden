@@ -9,17 +9,19 @@
         <div class="main-content">
 
             <div class="search-section">
-                <h1 class="search-title">Find your gardener:</h1>
+                <h1 class="search-title">Find your Gardener:</h1>
                 <div class="search-div">
-                    <div class="search-input" id="search-input" contenteditable="true" oninput="search(this.innerText)"></div>
+                    <!-- TODO: The user can see all users by entering 3 spaces :/ Not fixing now xd -->
+                    <div class="search-input" id="search-input" contenteditable="true" onkeydown="preventEnter(event)" oninput="search(this.innerText)">@</div>
                 </div>
             </div>
 
             <div id="users-container" class="profiles-section">
-                <div id="result" class="profiles-window">
-                    <!-- Profile cards style in the script block -->
-                </div>
-                <div id="loading-indicator" style="display: none;">Loading...</div>
+                    <div id="result" class="profiles-window">
+                        <!-- Profile cards style in the script block -->
+
+                    </div>
+                    <div id="loading-indicator" style="display: none;">Loading...</div>
             </div>
 
         </div>
@@ -71,28 +73,23 @@
         }
 
         .main-content {
-
+            margin-top: 0.5rem;
         }
 
         .search-section {
             display: flex;
             align-items: baseline;
             justify-content: flex-start;
-            gap: 1.5rem;
+            gap: 1.35rem;
         }
 
         .search-title {
-            font-size: 1.95rem;
+            font-size: 1.9rem;
             margin-left: 1.5rem;
             margin-top: 1.5rem;
             font-weight: bold;
             color: #4caf50;
         }
-
-
-
-
-
 
         .search-div {
             display: flex;
@@ -102,10 +99,10 @@
             width: 6rem;
             height: 3rem;
             border-radius: 0.5rem;
-
         }
 
         .search-input {
+            font-style: italic;
             flex: 1;
             outline: none;
             white-space: pre;
@@ -113,8 +110,31 @@
             min-width: 0;
             padding: 0;
             margin: 0;
-            font-size: 1.25rem;
+            font-size: 1.65rem;
+            color: #666;
         }
+
+
+
+        .profiles-section {
+            display: inline-block;
+            border: 0.1rem solid darkslategrey;
+            margin-top: 1.5rem;
+            min-width: 83%;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            min-height: 22.75rem;
+            background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+            background-color: #AA4A44;
+        }
+
+        .profiles-window {
+
+        }
+
+
+
+
 
 
 
@@ -142,7 +162,9 @@
 
 {block script}
     <script>
-        function search(query) {
+        function search(rawQuery) {
+            const query = rawQuery.startsWith('@') ? rawQuery.substring(1) : rawQuery;
+
             if (query.length > 2) {
                 const xhttp = new XMLHttpRequest();
                 const loadingIndicator = document.getElementById('loading-indicator');
@@ -190,6 +212,7 @@
 
                 xhttp.open("GET", `${ endpoint}?q=${ query}`, true);
                 xhttp.send();
+
             }
         }
 
@@ -202,6 +225,12 @@
             range.collapse(false);
             sel.removeAllRanges();
             sel.addRange(range);
+        }
+
+        function preventEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', focusInput);
