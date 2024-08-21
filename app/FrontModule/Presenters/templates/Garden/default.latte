@@ -1,31 +1,120 @@
 {block content}
-    <div class="garden-registration-container">
-        <h1>Join the Virtual Garden</h1>
 
-        <a n:href="Garden:Add" class="btn plant-flower-btn">Plant a Flower</a>
-        <a n:href="Dashboard:" class="btn plant-flower-btn">Back</a>
+    {php
+        $flowers = array_map(function($flower) {
+        $flower->randomTop = rand(0, 90);
+        $flower->randomLeft = rand(0, 90);
+        $flower->randomRotate = rand(-30, 30);
+        return $flower;
+        }, $flowers);
+
+
+    }
+
+    <div class="garden-container">
+
+        <div class="nav-links">
+            <a n:href="Dashboard:" class="return-link">🔙</a>
+            <a n:href="Garden:Add" class="plant-flower-link">Plant a Flower</a>
+        </div>
 
         <div class="garden-info">
-            <p>Welcome to the Virtual Garden! 🌸 Ready to plant your own flower? Follow the steps below!</p>
-            <p>Heads up: You can only plant one flower, so make it awesome! 🌻</p>
+            <h1 class="garden-title">Welcome in garden</h1>
+            <p class="garden-announcement">Welcome to the Virtual Garden! 🌸 Ready to plant your own flower? Follow the steps below!</p>
+            <p class="garden-warning" >Heads up: You can only plant one flower, so make it awesome! 🌻</p>
         </div>
 
         <div class="garden-block">
             <div class="garden-placeholder">
-                <p>🌱 Your flower will appear here once planted! 🌺</p>
+                <div class="garden-container-table">
+                    <p class="flower-stats">31 flowers planted</p>
+                    {foreach $flowers as $flower}
+                        <a n:href="Garden:flower $flower->flowerId" class="flower" style="top: {$flower->randomTop}%; left: {$flower->randomLeft}%; transform: rotate({$flower->randomRotate}deg);">🌸</a>
+                    {/foreach}
+                    <div class="garden-element" style="top: 10%; left: 20%;">🥚</div>
+                    <div class="garden-element" style="top: 50%; left: 70%;">🍀</div>
+                    <div class="garden-element" style="top: 80%; left: 30%;">🐰</div>
+                </div>
 
-                <table class="garden-table">
-                    <tr>
-                        {foreach $flowers as $flower}
-                            <td><a n:href="Garden:flower $flower->flowerId" >🌸</a></td>
-                        {/foreach}
-
-                    </tr>
-
-                </table>
             </div>
         </div>
     </div>
+
+    <style>
+
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
+        }
+
+        .garden-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 3.5rem 5rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .return-link {
+            text-decoration: none;
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .return-link:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .plant-flower-link {
+            font-size: 1.65rem;
+            text-decoration: none;
+            color: #030303;
+        }
+
+
+
+
+
+
+
+
+
+
+        /* Garden  */
+
+        .garden-container-table {
+            position: relative;
+            width: 80%;
+            height: 20rem;
+            border: 2px solid #4CAF50;
+            border-radius: 1rem;
+            overflow: hidden !important;
+        }
+
+        .garden-container-table::before {
+            content: '🌿';
+            font-size: 5rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+
+
 {/block}
 
 
@@ -42,24 +131,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
             text-align: center;
         }
+        
 
-        /* Button Styling */
-        .plant-flower-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            color: #fff;
-            background-color: #4CAF50; /* Matching green color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .plant-flower-btn:hover {
-            background-color: #45a049; /* Slightly darker on hover */
-        }
 
         /* Garden Info Styling */
         .garden-info {
@@ -77,29 +150,8 @@
             margin-bottom: 15px;
         }
 
-        .garden-info ol {
-            font-size: 1.2rem;
-            color: #333;
-            margin: 0;
-            padding-left: 20px;
-        }
 
-        .garden-info li {
-            margin-bottom: 10px;
-        }
 
-        /* Table Styling */
-        .garden-table {
-            width: 100%;
-            max-width: 600px;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
 
-        .garden-table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
     </style>
 {/block}

@@ -21,7 +21,7 @@
                         <!-- Profile cards style in the script block -->
                         <h2 id="result-placeholder" class="result-info"><span class="placeholder-emoji">🧑‍🌾</span> Here will appear <span class="placeholder-emoji">⬇️</span></h2>
                     </div>
-                    <div id="loading-indicator" style="display: none;">Loading...</div>
+                    <div id="loading-indicator" class="loader" style="display: none;">Loading</div>
             </div>
 
         </div>
@@ -149,28 +149,6 @@
             font-size: 2.75rem;
         }
 
-
-        /*
-
-        <div class="user-card">
-            <div class="user-header">
-                <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
-                    <div class="user-info">
-                        <h2 class="user-name" >${ user.name}</h2>
-                            <p class="user-username">${ user.username}</p>
-                                ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
-                    </div>
-                </div>
-                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
-                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>
-        </div>
-
-         */
-
-
-
-
-
         .user-card {
             border: 0.1rem solid darkslategrey;
             border-radius: 1rem;
@@ -255,10 +233,32 @@
             filter: brightness(1.2);
         }
 
+        .loader {
+            margin-top: 2rem;
+            font-size: 2.3rem;
+            color: #f4fdf4;
+        }
 
+        .loader::after {
+            content: '...';
+            display: inline-block;
+            animation: dots 0.5s steps(3, end) infinite;
+        }
 
-
-
+        @keyframes dots {
+            0%, 20% {
+                content: '';
+            }
+            40% {
+                content: '.';
+            }
+            60% {
+                content: '..';
+            }
+            80%, 100% {
+                content: '...';
+            }
+        }
 
 
 
@@ -272,57 +272,65 @@
 
             if (query.length > 2) {
                 const xhttp = new XMLHttpRequest();
+                const endpoint = {link Profile:search};
+                const basePath = {$basePath};
+
                 const loadingIndicator = document.getElementById('loading-indicator');
+                const timeOut = 1000;
+
                 const resultContainer = document.getElementById('result');
                 const resultPlaceholder = document.getElementById('result-placeholder');
-                const endpoint = {link Profile:search};
 
                 loadingIndicator.style.display = 'block';
 
                 xhttp.onload = function () {
-                    loadingIndicator.style.display = 'none';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
 
-                    if (xhttp.status === 200) {
-                        let response = JSON.parse(this.responseText);
-                        resultContainer.innerHTML = '';
+                        if (xhttp.status === 200) {
+                            let response = JSON.parse(this.responseText);
+                            resultContainer.innerHTML = '';
 
-                        response.forEach(user => {
-                            let card = document.createElement('div');
-                            card.className = 'user-card';
+                            response.forEach(user => {
+                                let card = document.createElement('div');
+                                card.className = 'user-card';
 
-                            let cardContent = `
-                                <div class="user-header">
-                                    <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
-                                    <div class="user-names">
-                                        <p class="user-username"><a class="user-username-link" href="${ user.profileUrl}">@${ user.username}</a></p>
-                                        <h2 class="user-name" >${ user.name}</h2>
-
-                                    </div>
-                                    ${ user.location ? `<div class="user-location">${ user.location} <span>🌍</span></div>` : ''}
+                                let cardContent = `
+                            <div class="user-header">
+                                <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
+                                <div class="user-names">
+                                    <p class="user-username"><a class="user-username-link" href="${ user.profileUrl}">@${ user.username}</a></p>
+                                    <h2 class="user-name" >${ user.name}</h2>
                                 </div>
-                                <div class="user-links">
-                                <a href="Profile:Show ${ user.username}" class="user-profile-link"> 👤 </a>
-                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> ❌ </p></div>'}
-                            `;
+                                ${ user.location ? `<div class="user-location">${ user.location} <span>🌍</span></div>` : ''}
+                            </div>
+                            <div class="user-links">
+                                <a href="${ basePath}/profile/show?username=${ user.username}" class="user-profile-link"> 👤 </a>
+                                ${ user.flowerId ? `<a href="${ basePath}/garden/flower/${ user.flowerId}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> 🚫 </p>'}
+                            </div>
+                        `;
 
-                            card.innerHTML = cardContent;
-                            resultContainer.appendChild(card);
-                        });
-                    } else {
-                        console.error('Error:', xhttp.statusText);
-                    }
+                                card.innerHTML = cardContent;
+                                resultContainer.appendChild(card);
+                            });
+                        } else {
+                            console.error('Error:', xhttp.statusText);
+                        }
+                    }, timeOut);
                 };
 
                 xhttp.onerror = function () {
-                    loadingIndicator.style.display = 'none';
-                    console.error('Request failed');
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                        console.error('Request failed');
+                    }, timeOut);
                 };
 
                 xhttp.open("GET", `${ endpoint}?q=${ query}`, true);
                 xhttp.send();
-
             }
         }
+
 
         function focusInput() {
             const input = document.getElementById('search-input');

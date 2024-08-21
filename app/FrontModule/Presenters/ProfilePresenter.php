@@ -41,7 +41,7 @@ class ProfilePresenter extends Presenter
         foreach ($users as $iterator => $user) {
             $response[$iterator] = [
                 "username" => $user->username,
-                "avatarUrl" => "https://via.placeholder.com/150",
+                "avatarUrl" => $user->avatarUrl,
                 "profileUrl" => $user->profileUrl,
                 "name" => $user->name,
                 "location" => $user->location ? $user->location : null,
