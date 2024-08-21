@@ -33,7 +33,7 @@ Create `local.neon` for these .env vars:
         password:
         dbname: `
 
-Spuštění
+Launch
 ------------
 `docker-compose up -d` Parametr -d -> it won't spam log
 
