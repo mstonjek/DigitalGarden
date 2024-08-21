@@ -1,5 +1,8 @@
 # Digital Garden
 
+<img src="https://github.com/user-attachments/assets/b5cf37fa-e2e0-4900-8d13-47d7dea916d0" alt="image description" width="65%"/>
+
+
 Welcome to the **Digital Garden** project! This is a virtual garden where anyone can plant a flower. All you need is a GitHub account and a bit of imagination. But there's a catch—each user can plant only one flower! 
 
 This project has the potential to grow into a vast herbal collection 🌻, but it needs some dedicated gardeners to make that happen. If you're reading this, why not plant a flower? If you want to, of course.
