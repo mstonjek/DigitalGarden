@@ -9,7 +9,7 @@
         <div class="main-content">
 
             <div class="search-section">
-                <h1 class="search-title">Find your Gardener:</h1>
+                <h1 class="search-title"><span class="title-emoji">🌸</span> Find Gardener:</h1>
                 <div class="search-div">
                     <!-- TODO: The user can see all users by entering 3 spaces :/ Not fixing now xd -->
                     <div class="search-input" id="search-input" contenteditable="true" onkeydown="preventEnter(event)" oninput="search(this.innerText)">@</div>
@@ -91,6 +91,10 @@
             color: #4caf50;
         }
 
+        .title-emoji {
+            font-size: 2.2rem;
+        }
+
         .search-div {
             display: flex;
             align-items: center;
@@ -168,54 +172,87 @@
 
 
         .user-card {
-            border: 0.3rem dashed #004d40;
+            border: 0.1rem solid darkslategrey;
             border-radius: 1rem;
             overflow: hidden;
             text-align: center;
-            padding: 1rem;
-            background-color: #ddf6dd;
-            background-image: url("https://www.transparenttextures.com/patterns/little-pluses.png");
-            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
-        }
-
-        .user-header {
-
+            padding: 1.5rem;
+            background-color: #c8e6c9;
         }
 
         .user-avatar {
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            width: 5rem;
+            height: 5rem;
             object-fit: cover;
-        }
-
-        .user-info {
-
-        }
-
-        .user-name {
-
+            border: 1px solid lightslategray;
         }
 
         .user-username {
+            margin: 0.5rem 0 0;
+            font-size: 1.25rem;
+            font-weight: lighter;
+            color: #666;
+        }
+
+        .user-username-link:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        .user-username-link {
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: lighter;
+            color: #666;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .user-name {
+            margin: 0 0 1rem;
+            font-size: 1.35rem;
+            color: #4caf50;
+
 
         }
 
         .user-location {
-
+            margin-bottom: 1rem;
+            color: #3a623a;
         }
 
 
         .user-links {
-
+            display: flex;
+            justify-content: space-evenly;
+            align-items: baseline;
         }
 
         .user-profile-link {
+            text-decoration: none;
+            font-size: 1.75rem;
+            display: inline-block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
 
+        .user-profile-link:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .flower-profile-link {
+            text-decoration: none;
+            font-size: 1.75rem;
+            display: inline-block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
 
+        .flower-profile-link:hover {
+            transform: scale(1.3);
+            filter: brightness(1.2);
         }
 
 
@@ -256,15 +293,16 @@
                             let cardContent = `
                                 <div class="user-header">
                                     <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
-                                    <div class="user-info">
+                                    <div class="user-names">
+                                        <p class="user-username"><a class="user-username-link" href="${ user.profileUrl}">@${ user.username}</a></p>
                                         <h2 class="user-name" >${ user.name}</h2>
-                                        <p class="user-username">${ user.username}</p>
-                                        ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
+
                                     </div>
+                                    ${ user.location ? `<div class="user-location">${ user.location} <span>🌍</span></div>` : ''}
                                 </div>
                                 <div class="user-links">
-                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
-                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p></div>'}
+                                <a href="Profile:Show ${ user.username}" class="user-profile-link"> 👤 </a>
+                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> ❌ </p></div>'}
                             `;
 
                             card.innerHTML = cardContent;
