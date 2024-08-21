@@ -1,143 +1,137 @@
-{block title}
-    Přidat květinu
-{/block}
-
 {block content}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-12">
                 <div class="form-card">
                     <div class="form-card-header">
-                        <h3 class="form-card-title">Přidáváte květinu</h3>
+                        <h3 class="form-card-title">Add a flower</h3>
                     </div>
                     <form n:name="addFlowerForm">
                         <div class="form-card-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="flowerName">Název*</label>
+                                    <label for="flowerName">Name</label>
                                     <input
                                             n:name="flowerName"
                                             id="flowerName"
                                             class="form-control"
-                                            placeholder="Název květiny"
+                                            placeholder="Flower name"
                                     />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="flowerLatinName">Latinský název*</label>
+                                    <label for="flowerLatinName">Latin name</label>
                                     <input
                                             n:name="flowerLatinName"
                                             id="flowerLatinName"
                                             class="form-control"
-                                            placeholder="Latinský název"
+                                            placeholder="Latin name"
                                     />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="flowerDescription">Popis*</label>
+                                <label for="flowerDescription">Description</label>
                                 <textarea
                                     n:name="flowerDescription"
                                     id="flowerDescription"
                                     class="form-control"
-                                    placeholder="Popis květiny"
+                                    placeholder="Description"
                                 ></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="family">Rodina*</label>
+                                <label for="family">Family</label>
                                 <input
                                         n:name="family"
                                         id="family"
                                         class="form-control"
-                                        placeholder="Rodina"
+                                        placeholder="Family"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="height">Výška (cm)*</label>
+                                <label for="height">Height (cm)</label>
                                 <input
                                         n:name="height"
                                         id="height"
                                         class="form-control"
                                         type="number"
-                                        placeholder="Výška v centimetrech"
+                                        placeholder="Height (cm)"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="flowerEducation">Vzdělání*</label>
+                                <label for="flowerEducation">Education</label>
                                 <select
                                         n:name="flowerEducation"
                                         id="flowerEducation"
                                         class="form-control"
                                 >
-                                    <!-- Options should be inserted here -->
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="gender">Pohlaví*</label>
+                                <label for="gender">Gender</label>
                                 <select
                                         n:name="gender"
                                         id="gender"
                                         class="form-control"
                                 >
-                                    <!-- Options should be inserted here -->
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="country">Země*</label>
+                                <label for="country">Country</label>
                                 <input
                                         n:name="country"
                                         id="country"
                                         class="form-control"
-                                        placeholder="Země"
+                                        placeholder="Country"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="favouriteSerial">Oblíbený seriál*</label>
+                                <label for="favouriteSerial">Favourite serial</label>
                                 <input
                                         n:name="favouriteSerial"
                                         id="favouriteSerial"
                                         class="form-control"
-                                        placeholder="Oblíbený seriál"
+                                        placeholder="Serial"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="webPortfolio">Webové portfolio*</label>
+                                <label for="webPortfolio">Web portfolio</label>
                                 <input
                                         n:name="webPortfolio"
                                         id="webPortfolio"
                                         class="form-control"
-                                        placeholder="Webové portfolio"
+                                        placeholder="Portfolio"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="favouriteSong">Oblíbená píseň*</label>
+                                <label for="favouriteSong">Favourite song</label>
                                 <input
                                         n:name="favouriteSong"
                                         id="favouriteSong"
                                         class="form-control"
-                                        placeholder="Oblíbená píseň"
+                                        placeholder="Song"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="dreamVacation">Sny o dovolené*</label>
+                                <label for="dreamVacation">Dream vacation</label>
                                 <input
                                         n:name="dreamVacation"
                                         id="dreamVacation"
                                         class="form-control"
-                                        placeholder="Sny o dovolené"
+                                        placeholder="Dream vacation"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="favouriteQuote">Oblíbený citát</label>
+                                <label for="favouriteQuote">Favourite quote</label>
                                 <input
                                         n:name="favouriteQuote"
                                         id="favouriteQuote"
                                         class="form-control"
-                                        placeholder="Oblíbený citát"
+                                        placeholder="Quote"
                                 />
                             </div>
                         </div>
                         <div class="form-card-footer">
-                            <button type="submit" class="btn btn-submit">Uložit</button>
-                            <a href="" class="btn btn-back">Zpět na seznam květin</a>
+                            <button type="submit" class="btn btn-submit">Add</button>
+                            <a href="" class="btn btn-back">Back</a>
                         </div>
                     </form>
                 </div>

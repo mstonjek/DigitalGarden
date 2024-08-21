@@ -1,90 +1,100 @@
 {block content}
-    <div id="search-container" class="garden-search-container">
-        <label for="search-input">Find Your Gardener:</label>
-        <div class="garden-search-box">
-            <div class="search-input" id="search-input" contenteditable="true" placeholder="Type here..." oninput="search(this.innerText)"></div>
+    <div class="profiles-container">
+
+        <div class="header-navigation">
+            <a class="return-emoji" n:href="Dashboard:default">🔙</a>
+            <p class="number-of-users">Number of users: 2</p>
         </div>
+
+        <div class="main-content">
+
+            <div class="search-section">
+                <h1 class="search-title">Find your gardener:</h1>
+                <div class="search-div">
+                    <div class="search-input" id="search-input" contenteditable="true" oninput="search(this.innerText)"></div>
+                </div>
+            </div>
+
+            <div id="users-container" class="profiles-section">
+                <div id="result" class="profiles-window">
+                    <!-- Profile cards style in the script block -->
+                </div>
+                <div id="loading-indicator" style="display: none;">Loading...</div>
+            </div>
+
+        </div>
+
     </div>
 
-    <div id="users-container" class="scrollable-container">
-        <div id="result" class="window-of-profiles">
-
-        </div>
-    </div>
-
-    <div id="loading-indicator" style="display: none;">Loading...</div>
-
-    <script>
-        function search(query) {
-            if (query.length > 2) {
-                const xhttp = new XMLHttpRequest();
-                const loadingIndicator = document.getElementById('loading-indicator');
-                const resultContainer = document.getElementById('result');
-                const endpoint = {link Profile:search};
-
-                loadingIndicator.style.display = 'block';
-
-                xhttp.onload = function () {
-                    loadingIndicator.style.display = 'none';
-
-                    if (xhttp.status === 200) {
-                        let response = JSON.parse(this.responseText);
-                        resultContainer.innerHTML = '';
-
-                        response.forEach(user => {
-                            let card = document.createElement('div');
-                            card.className = 'user-card';
-
-                            let cardContent = `
-                                <div class="user-header">
-                                    <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
-                                    <div class="user-info">
-                                        <h2>${ user.name}</h2>
-                                        ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
-                                    </div>
-                                </div>
-                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
-                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="user-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>'}
-                            `;
-
-                            card.innerHTML = cardContent;
-                            resultContainer.appendChild(card);
-                        });
-                    } else {
-                        console.error('Error:', xhttp.statusText);
-                    }
-                };
-
-                xhttp.onerror = function () {
-                    loadingIndicator.style.display = 'none';
-                    console.error('Request failed');
-                };
-
-                xhttp.open("GET", `${ endpoint}?q=${ query}`, true);
-                xhttp.send();
-            }
-        }
-
-        function focusInput() {
-            const input = document.getElementById('search-input');
-            input.focus();
-            const range = document.createRange();
-            const sel = window.getSelection();
-            range.selectNodeContents(input);
-            range.collapse(false);
-            sel.removeAllRanges();
-            sel.addRange(range);
-        }
-
-        document.addEventListener('DOMContentLoaded', focusInput);
-    </script>
 {/block}
-
 
 {block css}
     <style>
 
-        .garden-search-box {
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
+        }
+
+        .profiles-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 3.5rem 5rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
+        .header-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .return-emoji {
+            text-decoration: none;
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .return-emoji:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .number-of-users {
+            font-size: 1.65rem;
+        }
+
+        .main-content {
+
+        }
+
+        .search-section {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-start;
+            gap: 1.5rem;
+        }
+
+        .search-title {
+            font-size: 1.95rem;
+            margin-left: 1.5rem;
+            margin-top: 1.5rem;
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+
+
+
+
+
+        .search-div {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -130,73 +140,70 @@
     </style>
 {/block}
 
+{block script}
+    <script>
+        function search(query) {
+            if (query.length > 2) {
+                const xhttp = new XMLHttpRequest();
+                const loadingIndicator = document.getElementById('loading-indicator');
+                const resultContainer = document.getElementById('result');
+                const endpoint = {link Profile:search};
 
+                loadingIndicator.style.display = 'block';
 
-{*
-{block content}
-    <div class="garden-dashboard-container">
+                xhttp.onload = function () {
+                    loadingIndicator.style.display = 'none';
 
-        <div class="return-link">
-            <a n:href="Dashboard:default">🔙</a>
-            <p class="number-of-users">Number of users: 2</p>
-        </div>
+                    if (xhttp.status === 200) {
+                        let response = JSON.parse(this.responseText);
+                        resultContainer.innerHTML = '';
 
-        <div class="garden-user-list">
-            <div class="search-section">
-                <h1 class="garden-title">Search for Gardener:</h1>
-                <input type="search">
-            </div>
+                        response.forEach(user => {
+                            let card = document.createElement('div');
+                            card.className = 'user-card';
 
-            <div class="window-of-profiles">
-
-                {foreach $users as $profile}
-                    <div class="user-card">
-                        <div class="user-header">
-                            <img src="{$profile->avatarUrl}" alt="Avatar of {$profile->name}" class="user-avatar">
-                            <div class="user-info">
-                                <h2>{$profile->name}</h2>
-                                {if $profile->location}
-                                    <div class="user-location">
-                                        <span>🌍</span> {$profile->location}
+                            let cardContent = `
+                                <div class="user-header">
+                                    <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
+                                    <div class="user-info">
+                                        <h2 class="user-name" >${ user.name}</h2>
+                                        <p class="user-username">${ user.username}</p>
+                                        ${ user.location ? `<div class="user-location"><span>🌍</span> ${ user.location}</div>` : ''}
                                     </div>
-                                {/if}
-                            </div>
-                        </div>
-                        <a n:href="Profile:Show $profile->username" class="user-profile-link">View Profile</a>
-                        {if $profile->flower}
-                            <a n:href="Garden:flower $profile->flower->flowerId" class="user-profile-link">View Flower</a>
-                        {else}
-                            <p>Dont have flower _:/</p>
-                        {/if}
-                    </div>
-                {/foreach}
+                                </div>
+                                <a href="Profile:Show ${ user.username}" class="user-profile-link">View Profile</a>
+                                ${ user.flowerId ? `<a href="Garden:flower ${ user.flowerId}" class="flower-profile-link">View Flower</a>` : '<p>Don\'t have flower _:/</p>'}
+                            `;
 
-            </div>
+                            card.innerHTML = cardContent;
+                            resultContainer.appendChild(card);
+                        });
+                    } else {
+                        console.error('Error:', xhttp.statusText);
+                    }
+                };
 
-        </div>
-    </div>
-{/block}
+                xhttp.onerror = function () {
+                    loadingIndicator.style.display = 'none';
+                    console.error('Request failed');
+                };
 
-{block css}
-    <style>
-        .garden-dashboard-container {
-            max-width: calc(100% - 30rem);
-            margin: 2.5rem auto;
-            padding: 3.5rem 5rem;
-            background-color: ;
-            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
-            border-radius: 2.5rem;
-            text-align: center;
-            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
-            border: 0.4rem dashed #88bd8f;
+                xhttp.open("GET", `${ endpoint}?q=${ query}`, true);
+                xhttp.send();
+            }
         }
 
+        function focusInput() {
+            const input = document.getElementById('search-input');
+            input.focus();
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(input);
+            range.collapse(false);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
 
-
-
-
-    </style>
+        document.addEventListener('DOMContentLoaded', focusInput);
+    </script>
 {/block}
-
-
-*}
