@@ -43,19 +43,21 @@ class GardenPresenter extends Presenter
         }
 
         $inputNames = ["flowerName" => "Give your flower a name",
-            "flowerLatin" => "How to translate it to latin?",
+            "flowerLatinName" => "How to translate it to latin?",
             "family" => "From which family is your flower?",
             "flowerDescription" => "Make up a story of your flower",
             "height" => "How tall is your flower?",
             "flowerEducation" => "How educated is your flower?",
             "gender" => "What gender does your flower identify with?",
-            "flowerCountry" => "From which part of the world does your flower come from?",
+            "country" => "From which part of the world does your flower come from?",
+            "webPortfolio" => "Provide a link to your flower's online portfolio",
             "favouriteSerial" => "What TV series does your flower never miss an episode of?",
-            "webProfile" => "Provide a link to your flower's online portfolio",
             "favouriteSong" => "What's the song that gets your flower dancing?",
-            "dreamVacation" => "Where does your flower dream of going on vacation?",
             "favouriteQuote" => "Which quote motivates your flower the most?",
+            "dreamVacation" => "Where does your flower dream of going on vacation?",
         ];
+
+        $this->template->inputNames = $inputNames;
 
         /*
          *

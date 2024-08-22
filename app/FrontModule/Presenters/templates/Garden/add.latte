@@ -28,26 +28,91 @@
 
         <div class="form-container">
 
-            {foreach $userInput as $inputMessage => $inputName}
+            <form n:name="addFlowerForm">
 
-                <div class="input-card">
-                    <label for="inputLabel">{$inputName}</label>
-                    <input
-                            n:name="{$inputName}"
-                            id="flowerName"
-                            class="form-control"
-                            placeholder="Flower name"
-                    />
-                </div>
+                {foreach $inputNames as $inputPlaceholder => $inputName}
+                    <div class="card form-card {if $iterator->first}active{/if}">
+                        {$iterator}
+                        <div class="card-body">
+                            <h5 class="card-title">{$inputName}</h5>
+                                <input type="hidden" name="questionIndex" value="{$iterator}">
+                                <div class="form-group">
+                                    <label>
+                                        {if $inputPlaceholder === "flowerEducation" || $inputPlaceholder === "gender"}
+                                            <select n:name="{$inputPlaceholder}" required>
+                                            </select>
+                                        {elseif $inputPlaceholder === "flowerDescription"}
+                                            <textarea n:name="{$inputPlaceholder}" required></textarea>
+                                        {else}
+                                            <input required {if $inputPlaceholder === "height"}type="number" {else}type="text"{/if} class="form-control" n:name="{$inputPlaceholder}">
+                                        {/if}
+                                    </label>
+                                </div>
+                                {if $iterator->last}
+                                    <button n:name="submit" type="submit" class="btn btn-submit">Add</button>
+                                {else}
+                                    <button type="button" class="btn btn-primary next-btn">Next</button>
+                                {/if}
 
-            {/foreach}
+                                {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
+                        </div>
+                    </div>
+                {/foreach}
+            </form>
+
 
 
         </div>
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var $cards = $('.form-card');
+            var currentIndex = 0;
+
+            $('.next-btn').click(function() {
+                var $currentCard = $cards.eq(currentIndex);
+                var $formElements = $currentCard.find('input, select, textarea');
+
+                var isValid = true;
+
+                $formElements.each(function() {
+                    if (!this.checkValidity()) {
+                        isValid = false;
+                        this.reportValidity();
+                        return false;
+                    }
+                });
+
+                if (isValid) {
+                    var $nextCard = $cards.eq(currentIndex + 1);
+
+                    if ($nextCard.length) {
+                        $currentCard.removeClass('active');
+                        $nextCard.addClass('active');
+                        currentIndex++;
+                    }
+                }
+            });
+
+            $('.prev-btn').click(function() {
+                var $currentCard = $cards.eq(currentIndex);
+                var $prevCard = $cards.eq(currentIndex - 1);
+
+                if ($prevCard.length) {
+                    $currentCard.removeClass('active');
+                    $prevCard.addClass('active');
+                    currentIndex--;
+                }
+            });
+        });
+
+    </script>
+
 {/block}
+{*
 
 <form n:name="addFlowerForm">
     <div class="form-card-body">
@@ -178,8 +243,21 @@
     </div>
 </form>
 
+*}
+
 {block css}
     <style>
+
+        .form-card {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+
+        .is-invalid {
+            border: 1px solid red;
+        }
 
     </style>
 {/block}
