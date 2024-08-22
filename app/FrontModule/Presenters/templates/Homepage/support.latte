@@ -1,0 +1,89 @@
+{block content}
+
+    <div class="support-container">
+        <div class="nav-links">
+            <div class="front-pages">
+                <a n:href="Homepage:about" class="front-nav">🌟 About Project</a>
+                <a n:href="Homepage:rules" class="front-nav">🌿 Garden Rules</a>
+                <a n:href="Homepage:support" class="front-nav active">💚 Support Us</a>
+                <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
+            </div>
+            <a n:href="Auth:login" class="login-link">Login</a>
+        </div>
+
+
+    </div>
+
+{/block}
+
+{block css}
+
+    <style>
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
+        }
+
+        .support-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 3.5rem 5rem 2rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .front-nav {
+            text-decoration: none;
+            color: #467341;
+            display: inline-block;
+            font-size: large;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .front-pages {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2.5rem;
+        }
+
+        .login-link {
+            border: 1px solid #004d40;
+            padding: 0.75rem 2.5rem;
+            font-size: 1rem;
+            border-radius: 0.75rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/soft-grid.png');
+            color: #003d29;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-link:hover {
+            background-color: #467341;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .front-nav:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+    </style>
+
+{/block}

@@ -1,49 +1,56 @@
 {block content}
 
-
-    <div class="homepage-container">
-
+    <div class="about-container">
         <div class="nav-links">
             <div class="front-pages">
-                <a n:href="Homepage:about" class="about-us-link">🌟 About Project</a>
-                <a n:href="Homepage:rules" class="about-us-link">🌿 Garden Rules</a>
-                <a n:href="Homepage:support" class="about-us-link">💚 Support Us</a>
-                <a n:href="Homepage:default" class="about-us-link active">🏠 Home</a>
+                <a n:href="Homepage:about" class="front-nav active">🌟 About Us</a>
+                <a n:href="Homepage:rules" class="front-nav">🌿 Garden Rules</a>
+                <a n:href="Homepage:support" class="front-nav">💚 Support Us</a>
+                <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
             </div>
             <a n:href="Auth:login" class="login-link">Login</a>
         </div>
 
         <div class="titles">
-            <h1 class="welcome-title">Dive into Garden Adventures! 🦋</h1>
-            <p class="plant-flower">🌷 Join the fun — plant a flower today and watch the garden thrive!</p>
+            <h1 class="welcome-title"> Welcome to the Digital Garden! 🐝</h1>
+            <p class="plant-flower">🌹 Ready to Make Your Mark? Plant a Flower! 🌷</p>
         </div>
 
-        <div class="garden-preview">
-                <h4 class="garden-title" >Our garden is growing <3</h4>
-            <p>🚜
-                 {foreach $flowers as $flower}
-                    <a class="flower" title="{$flower->flowerName}" n:href="Homepage:flower $flower->flowerId" >🌸</a>
-                {/foreach}
+        <div class="main-content">
+            <h4 class="description-title">What’s This Cool Project All About? 🤔💡</h4>
+            <p class="description">
+                Hey there! Welcome to the <strong>Digital Garden</strong>, where <strong>YOU</strong> get to grow your own flower in this vibrant virtual space! 🌼🎉<br>
+                All you need is a <strong>GitHub account</strong> and a sprinkle of imagination. 🦣🌺
+            </p>
+
+            <h4 class="description-title">Our Epic Vision & Goals 🚀🐦‍🔥</h4>
+            <p class="description">
+                We’re on a quest to build <strong>the most epic</strong> virtual garden ever, blooming with flowers from <strong>amazing people</strong> like you! 🪻🌈<br>
+                Each person can plant just <strong>one flower</strong>, making every single bloom extra special. So dive in, plant your flower, and help us create a garden that’s truly out of this world! 📝🦕
+            </p>
+
+            <h4 class="description-title">Get Involved and Shine! 💐🐙</h4>
+            <p class="description">
+                Ready to jump in? 🌱<br>
+                Plant a flower, watch it blossom, and become part of our <strong>incredible</strong> garden adventure. <br>
+                Note: Since this is <strong>still a demo</strong>, you might spot a few bugs or hiccups. 🐞✨<br>
+                Thanks for being <strong>awesome</strong> and helping us grow. Happy planting!🧑‍🌾🐛🪴
             </p>
         </div>
-        <p class="garden-info">🌼 Sneak peek of our garden! Log in to reveal the full bloom! 🐝🌱</p>
-
-
-
-
     </div>
+
 
 {/block}
 
 {block css}
-    <style>
 
+    <style>
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
         }
 
-        .homepage-container {
+        .about-container {
             max-width: calc(100% - 30rem);
             margin: 2.5rem auto;
             padding: 3.5rem 5rem 2rem;
@@ -61,7 +68,7 @@
             justify-content: space-between;
         }
 
-        .about-us-link {
+        .front-nav {
             text-decoration: none;
             color: #467341;
             display: inline-block;
@@ -99,22 +106,12 @@
             color: #fff;
         }
 
-        .about-us-link:hover {
+        .front-nav:hover {
             transform: scale(1.2);
             filter: brightness(1.2);
         }
 
-        .titles {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-
         .welcome-title {
-            text-align: center;
             font-size: 2.5rem;
             margin: 3.75rem 0 0;
             color: #3d6e3d;
@@ -128,32 +125,12 @@
             margin: 0;
         }
 
-        .garden-info {
-            font-weight: lighter;
-            font-style: italic;
-            font-size: large;
-            color: #222;
-            margin: 1.5rem 0 0;
-        }
-
-        .garden-preview {
-            border: 0.2rem dashed #459f49;
+        .main-content {
+            text-align: justify;
+            max-width: 80%;
+            border: 0.1rem solid #4caf50;
             padding: 1rem;
-            border-radius: 1rem;
-            height: 40vh;
-            width: 72%;
-            background-color: #c0f5c5;
-            text-align: center;
-            margin: 2rem auto 0;
         }
-
-        .garden-title {
-            font-size: 1.2rem;
-            color: #666;
-            margin: 0.5rem 0;
-            font-weight: lighter;
-        }
-
 
     </style>
 
