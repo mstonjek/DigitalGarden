@@ -6,227 +6,180 @@
                     <div class="form-card-header">
                         <h3 class="form-card-title">Add a flower</h3>
                     </div>
-                    <form n:name="addFlowerForm">
-                        <div class="form-card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="flowerName">Name</label>
-                                    <input
-                                            n:name="flowerName"
-                                            id="flowerName"
-                                            class="form-control"
-                                            placeholder="Flower name"
-                                    />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="flowerLatinName">Latin name</label>
-                                    <input
-                                            n:name="flowerLatinName"
-                                            id="flowerLatinName"
-                                            class="form-control"
-                                            placeholder="Latin name"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="flowerDescription">Description</label>
-                                <textarea
-                                    n:name="flowerDescription"
-                                    id="flowerDescription"
-                                    class="form-control"
-                                    placeholder="Description"
-                                ></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="family">Family</label>
-                                <input
-                                        n:name="family"
-                                        id="family"
-                                        class="form-control"
-                                        placeholder="Family"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="height">Height (cm)</label>
-                                <input
-                                        n:name="height"
-                                        id="height"
-                                        class="form-control"
-                                        type="number"
-                                        placeholder="Height (cm)"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="flowerEducation">Education</label>
-                                <select
-                                        n:name="flowerEducation"
-                                        id="flowerEducation"
-                                        class="form-control"
-                                >
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select
-                                        n:name="gender"
-                                        id="gender"
-                                        class="form-control"
-                                >
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <input
-                                        n:name="country"
-                                        id="country"
-                                        class="form-control"
-                                        placeholder="Country"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="favouriteSerial">Favourite serial</label>
-                                <input
-                                        n:name="favouriteSerial"
-                                        id="favouriteSerial"
-                                        class="form-control"
-                                        placeholder="Serial"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="webPortfolio">Web portfolio</label>
-                                <input
-                                        n:name="webPortfolio"
-                                        id="webPortfolio"
-                                        class="form-control"
-                                        placeholder="Portfolio"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="favouriteSong">Favourite song</label>
-                                <input
-                                        n:name="favouriteSong"
-                                        id="favouriteSong"
-                                        class="form-control"
-                                        placeholder="Song"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="dreamVacation">Dream vacation</label>
-                                <input
-                                        n:name="dreamVacation"
-                                        id="dreamVacation"
-                                        class="form-control"
-                                        placeholder="Dream vacation"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="favouriteQuote">Favourite quote</label>
-                                <input
-                                        n:name="favouriteQuote"
-                                        id="favouriteQuote"
-                                        class="form-control"
-                                        placeholder="Quote"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-card-footer">
-                            <button type="submit" class="btn btn-submit">Add</button>
-                            <a href="" class="btn btn-back">Back</a>
-                        </div>
-                    </form>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="add-container">
+
+        <div class="nav">
+            <div class="nav-links">
+                <a n:href="Dashboard:default">🔙</a>
+                <p >Careful, you can't edit flower</p>
+            </div>
+        </div>
+
+        <div class="titles">
+            <h1 class="title">Add a flower</h1>
+            <p class="description">Make sure that it is a masterpiece!</p>
+        </div>
+
+        <div class="form-container">
+
+            {foreach $userInput as $inputMessage => $inputName}
+
+                <div class="input-card">
+                    <label for="inputLabel">{$inputName}</label>
+                    <input
+                            n:name="{$inputName}"
+                            id="flowerName"
+                            class="form-control"
+                            placeholder="Flower name"
+                    />
+                </div>
+
+            {/foreach}
+
+
+        </div>
+
+
+    </div>
 {/block}
+
+<form n:name="addFlowerForm">
+    <div class="form-card-body">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="flowerName">Name</label>
+                <input
+                        n:name="flowerName"
+                        id="flowerName"
+                        class="form-control"
+                        placeholder="Flower name"
+                />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="flowerLatinName">Latin name</label>
+                <input
+                        n:name="flowerLatinName"
+                        id="flowerLatinName"
+                        class="form-control"
+                        placeholder="Latin name"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="flowerDescription">Description</label>
+            <textarea
+                                    n:name="flowerDescription"
+                                    id="flowerDescription"
+                                    class="form-control"
+                                    placeholder="Description"
+            ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="family">Family</label>
+            <input
+                    n:name="family"
+                    id="family"
+                    class="form-control"
+                    placeholder="Family"
+            />
+        </div>
+        <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input
+                    n:name="height"
+                    id="height"
+                    class="form-control"
+                    type="number"
+                    placeholder="Height (cm)"
+            />
+        </div>
+        <div class="form-group">
+            <label for="flowerEducation">Education</label>
+            <select
+                    n:name="flowerEducation"
+                    id="flowerEducation"
+                    class="form-control"
+            >
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select
+                    n:name="gender"
+                    id="gender"
+                    class="form-control"
+            >
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input
+                    n:name="country"
+                    id="country"
+                    class="form-control"
+                    placeholder="Country"
+            />
+        </div>
+        <div class="form-group">
+            <label for="favouriteSerial">Favourite serial</label>
+            <input
+                    n:name="favouriteSerial"
+                    id="favouriteSerial"
+                    class="form-control"
+                    placeholder="Serial"
+            />
+        </div>
+        <div class="form-group">
+            <label for="webPortfolio">Web portfolio</label>
+            <input
+                    n:name="webPortfolio"
+                    id="webPortfolio"
+                    class="form-control"
+                    placeholder="Portfolio"
+            />
+        </div>
+        <div class="form-group">
+            <label for="favouriteSong">Favourite song</label>
+            <input
+                    n:name="favouriteSong"
+                    id="favouriteSong"
+                    class="form-control"
+                    placeholder="Song"
+            />
+        </div>
+        <div class="form-group">
+            <label for="dreamVacation">Dream vacation</label>
+            <input
+                    n:name="dreamVacation"
+                    id="dreamVacation"
+                    class="form-control"
+                    placeholder="Dream vacation"
+            />
+        </div>
+        <div class="form-group">
+            <label for="favouriteQuote">Favourite quote</label>
+            <input
+                    n:name="favouriteQuote"
+                    id="favouriteQuote"
+                    class="form-control"
+                    placeholder="Quote"
+            />
+        </div>
+    </div>
+    <div class="form-card-footer">
+        <button type="submit" class="btn btn-submit">Add</button>
+        <a href="" class="btn btn-back">Back</a>
+    </div>
+</form>
 
 {block css}
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f6f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
 
-        .container {
-            padding: 20px;
-        }
-
-        .form-card {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-card-header {
-            background: #4caf50;
-            color: #ffffff;
-            padding: 15px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            font-size: 1.25em;
-        }
-
-        .form-card-title {
-            margin: 0;
-        }
-
-        .form-card-body {
-            padding: 20px;
-        }
-
-        .form-row {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            color: #4caf50;
-            display: block;
-            margin-bottom: 0.5em;
-        }
-
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #c8e6c9;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-
-        .form-control:focus {
-            border-color: #4caf50;
-            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
-        }
-
-        .btn-submit {
-            background-color: #4caf50;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .btn-submit:hover {
-            background-color: #45a049;
-        }
-
-        .btn-back {
-            background-color: #616161;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-back:hover {
-            background-color: #494949;
-        }
     </style>
 {/block}

@@ -42,18 +42,39 @@ class GardenPresenter extends Presenter
             $this->redirect('Homepage:');
         }
 
+        $inputNames = ["flowerName" => "Give your flower a name",
+            "flowerLatin" => "How to translate it to latin?",
+            "family" => "From which family is your flower?",
+            "flowerDescription" => "Make up a story of your flower",
+            "height" => "How tall is your flower?",
+            "flowerEducation" => "How educated is your flower?",
+            "gender" => "What gender does your flower identify with?",
+            "flowerCountry" => "From which part of the world does your flower come from?",
+            "favouriteSerial" => "What TV series does your flower never miss an episode of?",
+            "webProfile" => "Provide a link to your flower's online portfolio",
+            "favouriteSong" => "What's the song that gets your flower dancing?",
+            "dreamVacation" => "Where does your flower dream of going on vacation?",
+            "favouriteQuote" => "Which quote motivates your flower the most?",
+        ];
 
-        $existingFlower = $this->flowerRepository->findFlowerByUser($user);
-        if ($existingFlower !== null) {
+        /*
+         *
+         * $existingFlower = $this->flowerRepository->findFlowerByUser($user);
+            if ($existingFlower !== null) {
             $this->flashMessage('You already own a flower', 'alert-danger');
             $this->redirect('Garden:');
         }
+         * */
+
+
     }
 
     public function renderDefault(): void
     {
+        $flowerCount = $this->flowerRepository->getFlowerCount();
         $flowers = $this->flowerRepository->getAll();
         $this->template->flowers = $flowers;
+        $this->template->flowerCount = $flowerCount;
 
         $this->template->addFunction('randomNum', function(int $min, int $max) {
             return rand($min, $max);
