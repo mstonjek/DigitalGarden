@@ -1,84 +1,107 @@
 {block content}
 
-    <h1>Welcome to the Digital Garden</h1>
 
-    <div class="garden-actions">
-        <a n:href="Auth:login" class="btn"><strong>Login</strong></a>
-        <a n:href="Profile:default" class="btn">Profiles</a>
-    </div>
+    <div class="homepage-container">
 
-    <div class="virtual-garden">
-        <p>Here will render virtual flowers <3</p>
+        <div class="nav-links">
+            <div class="front-pages">
+                <a href="#" class="about-us-link">About Project</a>
+                <a href="#" class="about-us-link">Garden rules</a>
+                <a href="#" class="about-us-link">Support Us</a>
+            </div>
+            <a href="#" class="login-link">Login</a>
+        </div>
 
-        <table class="garden-table">
-            <tr>
+        <div class="titles">
+            <h1 class="welcome-title">Welcome in the garden</h1>
+            <h3 class="plant-flower">Plant a flower - we need you :D </h3>
+        </div>
+
+        <div class="garden-preview">
+                <h4>Here will render flowers <3</h4>
+            <p>
                 {foreach $flowers as $flower}
-                    <td><a n:href="Homepage:flower $flower->flowerId" >🌸</a></td>
+                    <a title="{$flower->flowerName}" n:href="Homepage:flower $flower->flowerId" >🌸</a>
                 {/foreach}
+            </p>
 
-            </tr>
+        </div>
 
-        </table>
+
+
 
     </div>
 
 {/block}
 
 {block css}
-
-
-
     <style>
-        /* Fast AI styles by CHAT GPT 4o mini */
-        /* Header Styling */
-        h1 {
-            font-size: 2.5rem;
-            color: #4CAF50; /* A fresh green color */
-            text-align: center;
-            padding: 20px;
-            background-color: #f0f8f4; /* Light background color */
-            border-bottom: 2px solid #4CAF50;
+
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
         }
 
-        /* Flexbox for action buttons */
-        .garden-actions {
+        .homepage-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 3.5rem 5rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
+        .nav-links {
             display: flex;
-            justify-content: center;
-            gap: 15px; /* Space between buttons */
-            margin: 20px 0;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Button Styling */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #4CAF50; /* Matching button color */
+        .about-us-link {
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            color: #467341;
+            display: inline-block;
+            font-size: larger;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+            margin-left: 2rem;
         }
 
-        .btn:hover {
-            background-color: #45a049; /* Slightly darker on hover */
-        }
 
-        /* Virtual Garden Section Styling */
-        .virtual-garden {
+        .login-link {
+            border: 1px solid #004d40;
+            padding: 0.75rem 2.5rem;
+            font-size: 1rem;
+            border-radius: 0.75rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/soft-grid.png');
+            color: #003d29;
             text-align: center;
-            padding: 20px;
-            border: 2px dashed #4CAF50; /* Dashed border to make it distinct */
-            border-radius: 10px;
-            background-color: #e8f5e9; /* Light green background */
-            margin: 0 auto;
-            max-width: 600px; /* Centered content with max width */
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .virtual-garden p {
-            font-size: 1.2rem;
-            color: #333; /* Dark text color for readability */
+        .login-link:hover {
+            background-color: #467341;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            color: #fff;
         }
+
+
+
+
+        .about-us-link:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+
     </style>
 
 {/block}

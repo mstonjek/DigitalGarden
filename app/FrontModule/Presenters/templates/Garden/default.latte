@@ -11,13 +11,12 @@
     }
 
 
-    }
 
     <div class="garden-container">
 
         <div class="nav-links">
             <a n:href="Dashboard:" class="return-link">🔙</a>
-            <a n:href="Garden:Add" class="plant-flower-link"><span class="arrow-emoji">➡️</span> Plant a Flower as 123 other users <span class="arrow-emoji">⬅️</span></a>
+            <a n:href="Garden:Add" class="plant-flower-link"><span class="arrow-emoji">➡️</span> 123 flowers, add yours <span class="arrow-emoji">⬅️</span></a>
         </div>
 
         <div class="garden-info">
@@ -31,7 +30,7 @@
 
                 <div class="garden-container-table">
                     {foreach $flowers as $flower}
-                        <a n:href="Garden:flower $flower->flowerId" class="flower">🌸</a>
+                        <a n:href="Garden:flower $flower->flowerId" title="{$flower->flowerName}" class="flower">🌸</a>
                     {/foreach}
                     {for $i=0;$i<5;$i++}
                     <div class="garden-element"
@@ -79,9 +78,15 @@
         }
 
         .plant-flower-link {
-            font-size: 1.65rem;
+            font-size: 1.55rem;
             text-decoration: none;
             color: #030303;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .plant-flower-link:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
         }
 
 
