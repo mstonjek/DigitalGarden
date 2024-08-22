@@ -5,27 +5,27 @@
 
         <div class="nav-links">
             <div class="front-pages">
-                <a href="#" class="about-us-link">About Project</a>
-                <a href="#" class="about-us-link">Garden rules</a>
-                <a href="#" class="about-us-link">Support Us</a>
+                <a href="#" class="about-us-link">🌟 About Project</a>
+                <a href="#" class="about-us-link">🌿 Garden Rules</a>
+                <a href="#" class="about-us-link">💚 Support Us</a>
             </div>
-            <a href="#" class="login-link">Login</a>
+            <a n:href="Auth:login" class="login-link">Login</a>
         </div>
 
         <div class="titles">
-            <h1 class="welcome-title">Welcome in the garden</h1>
-            <h3 class="plant-flower">Plant a flower - we need you :D </h3>
+            <h1 class="welcome-title">Dive into Garden Adventures! 🦋</h1>
+            <p class="plant-flower">🌷 Join the fun — plant a flower today and watch the garden thrive!</p>
         </div>
 
         <div class="garden-preview">
-                <h4>Here will render flowers <3</h4>
-            <p>
-                {foreach $flowers as $flower}
-                    <a title="{$flower->flowerName}" n:href="Homepage:flower $flower->flowerId" >🌸</a>
+                <h4 class="garden-title" >Our garden is growing <3</h4>
+            <p>🚜
+                 {foreach $flowers as $flower}
+                    <a class="flower" title="{$flower->flowerName}" n:href="Homepage:flower $flower->flowerId" >🌸</a>
                 {/foreach}
             </p>
-
         </div>
+        <p class="garden-info">🌼 Sneak peek of our garden! Log in to reveal the full bloom! 🐝🌱</p>
 
 
 
@@ -45,7 +45,7 @@
         .homepage-container {
             max-width: calc(100% - 30rem);
             margin: 2.5rem auto;
-            padding: 3.5rem 5rem;
+            padding: 3.5rem 5rem 2rem;
             background-color: #e5ffe5;
             background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
             border-radius: 2.5rem;
@@ -67,9 +67,14 @@
             font-size: larger;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-            margin-left: 2rem;
         }
 
+        .front-pages {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2.5rem;
+        }
 
         .login-link {
             border: 1px solid #004d40;
@@ -93,12 +98,59 @@
             color: #fff;
         }
 
-
-
-
         .about-us-link:hover {
             transform: scale(1.2);
             filter: brightness(1.2);
+        }
+
+        .titles {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+
+        .welcome-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 3.75rem 0 0;
+            color: #3d6e3d;
+        }
+
+        .plant-flower {
+            text-align: center;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #666;
+            margin: 0;
+        }
+
+        .garden-info {
+            font-weight: lighter;
+            font-style: italic;
+            font-size: large;
+            color: #222;
+            margin: 1.5rem 0 0;
+        }
+
+        .garden-preview {
+            border: 0.2rem dashed #459f49;
+            padding: 1rem;
+            border-radius: 1rem;
+            height: 40vh;
+            width: 72%;
+            background-color: #c0f5c5;
+            text-align: center;
+            margin: 2rem auto 0;
+        }
+
+        .garden-title {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 0.5rem 0;
+            font-weight: lighter;
         }
 
 
