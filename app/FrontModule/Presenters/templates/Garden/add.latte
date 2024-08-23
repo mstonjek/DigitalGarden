@@ -21,6 +21,7 @@
                     <div class="card form-card {if $iterator->first}activeInput{/if}">
                         <div class="card-body">
                             <h5 class="card-title">{$inputName}</h5>
+                            <p class="enter-info">Press enter to continue</p>
                                 <div class="form-group">
                                     <label>
                                         {if $inputPlaceholder === "flowerEducation" || $inputPlaceholder === "gender"}
@@ -34,14 +35,14 @@
 
                             <div class="form-footer">
 
-                                <p class="indexer">{$iterator}/{count($inputNames)}</p>
+                                <p class="indexer">⭐ {$iterator}/{count($inputNames)}</p>
 
                                 <div class="button-group">
-                                    {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
+                                    {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">⬅️ Prev</button>{/if}
                                     {if $iterator->last}
-                                        <button n:name="submit" type="submit" class="btn btn-submit">Add</button>
+                                        <button n:name="submit" type="submit" class="btn btn-submit">Save ✅</button>
                                     {else}
-                                        <button type="button" class="btn btn-primary next-btn">Next</button>
+                                        <button type="button" class="btn btn-primary next-btn">Next ➡️</button>
                                     {/if}
                                 </div>
                             </div>
@@ -221,36 +222,39 @@
         .card {
             border: 0.1rem dashed #4caf50;
             border-radius: 1rem;
-            min-height: 36vh;
+            min-height: 41.5vh;
             display: flex;
             justify-content: center;
             align-items: baseline;
-            margin: 1.5rem auto;
+            margin: 2.5rem auto 0.5rem;
             flex-direction: column;
-            padding: 1rem;
+            padding: 1.5rem;
         }
 
         .card-title {
-            font-size: 1.75rem;
-            margin: 0;
-            font-weight: bold;
-            color: #333;
+            font-size: 2.4rem;
+            margin: 1.25rem auto 0;
+            color: #4caf50;
+            font-weight: lighter;
+
         }
 
         .form-control,
         select {
             border: none;
-            font-style: italic !important;
             border-radius: 0;
             background-color: transparent;
-            font-size: 1.7rem;
+            font-size: 2.5rem;
             white-space: pre;
             word-wrap: break-word;
             flex: 1;
             outline: none;
-            padding: 5px;
+            margin-top: 4.25rem;
+            margin-bottom: 4.5rem;
+            padding: 0.5rem;
+            font-family: "Edu VIC WA NT Beginner", system-ui;
             color: #666;
-            font-weight: lighter;
+            font-weight: lighter !important;
             text-align: center;
             display: inline-block;
             width: auto;
@@ -295,6 +299,14 @@
 
         .indexer {
             margin: 0;
+        }
+
+        .enter-info {
+            margin: 0;
+            color: #666;
+            font-weight: lighter;
+            font-style: italic;
+            opacity: 65%;
         }
 
 

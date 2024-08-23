@@ -51,10 +51,10 @@ class GardenPresenter extends Presenter
             "gender" => "What gender does your flower identify with?",
             "country" => "Which country is your flower from?",
             "webPortfolio" => "Provide a link to your flower's online portfolio:",
-            "favouriteSerial" => "What TV series does your flower never miss an episode of?",
+            "favouriteSerial" => "Which TV series does your flower never miss?",
             "favouriteSong" => "What's the song that gets your flower dancing?",
             "favouriteQuote" => "Which quote motivates your flower the most?",
-            "dreamVacation" => "Where does your flower dream of going on vacation?",
+            "dreamVacation" => "Where does your flower dream of vacationing?",
         ];
 
         $this->template->inputNames = $inputNames;
