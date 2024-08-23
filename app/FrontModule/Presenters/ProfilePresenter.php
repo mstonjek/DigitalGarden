@@ -20,7 +20,7 @@ class ProfilePresenter extends Presenter
         $this->template->userCount = $userCount;
     }
 
-    public function renderShow(string $username): void
+    public function renderShow(string $username, ): void
     {
         $user = $this->userRepository->findByUsername($username);
 
