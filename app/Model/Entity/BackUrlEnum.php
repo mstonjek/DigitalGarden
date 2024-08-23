@@ -10,5 +10,5 @@ enum BackUrlEnum: string
     case GARDEN = 'Garden:';
     case GARDEN_ADD = 'Garden:add';
     case GARDEN_FLOWER = 'Garden:flower?flowerId=';
-    
+
 }

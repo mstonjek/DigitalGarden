@@ -2,6 +2,7 @@
 
     namespace App\FrontModule\Presenters;
 
+    use App\Model\Entity\BackUrlEnum;
     use Nette\Application\UI\Presenter;
     use App\Model\Repository\UserRepository;
 
@@ -20,7 +21,7 @@ class ProfilePresenter extends Presenter
         $this->template->userCount = $userCount;
     }
 
-    public function renderShow(string $username, ): void
+    public function renderShow(string $username, string $backUrl, ?string $argument = null): void
     {
         $user = $this->userRepository->findByUsername($username);
 

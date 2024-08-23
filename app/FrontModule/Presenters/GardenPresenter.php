@@ -89,9 +89,9 @@ class GardenPresenter extends Presenter
 
     }
 
-    public function renderFlower(string $id): void
+    public function renderFlower(string $flowerId, string $backUrl, ?string $argument = null): void
     {
-        $flower = $this->flowerRepository->find($id);
+        $flower = $this->flowerRepository->find($flowerId);
         if (!$flower) {
             $this->error('Flower not found!');
             $this->redirect("Dashboard:");

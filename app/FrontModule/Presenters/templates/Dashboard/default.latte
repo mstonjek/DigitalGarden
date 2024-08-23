@@ -26,7 +26,7 @@
                 <a n:href="Profile:default" class="btn btn-all-profiles"><span class="nav-emoji">👤People</span></a>
             </div>
 
-            <a n:href="Profile:show $user->username" class=" btn-profile-pic">
+            <a n:href="Profile:show $user->username, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class=" btn-profile-pic">
                     <img class="profile-pic" src="{$user->avatarUrl}" alt="{$user->name}'s profile picture">
             </a>
 

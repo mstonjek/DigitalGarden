@@ -35,7 +35,7 @@
         {if $user->flower}
                 <div class="flower-info">
                     {if $user->flower->flowerName}
-                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId"><span class="flower-name-strong">{$user->flower->flowerName}</span> 🌱 <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
+                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW, $user->username"><span class="flower-name-strong">{$user->flower->flowerName}</span> 🌱 <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
                         <p class="flower-description">{$pronounce} from {$user->flower->country}, {$user->flower->height} cm tall and has (education)</p>
 
                         {if $user->flower->favouriteQuote}
