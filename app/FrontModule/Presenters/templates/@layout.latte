@@ -34,6 +34,11 @@
             align-items: center;
         }
 
+        .footer-content p {
+            margin-bottom: 0;
+            margin-top: 1rem;
+        }
+
         .footer-nav {
             margin-top: 1rem;
         }
@@ -44,7 +49,14 @@
             margin: 0 0.5rem;
             padding: 0.3rem 0.6rem;
             border-radius: 0.5rem;
-            transition: background-color 0.3s ease;
+            display: inline-block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .footer-nav a:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
         }
 
 

@@ -59,7 +59,6 @@ final class FlowerFormFactory
         }
         $form->addSelect('gender')
             ->setItems($items);
-        bdump($items);
 
         $form->addText('country', 'Country')
             ->setRequired('Country is required.');

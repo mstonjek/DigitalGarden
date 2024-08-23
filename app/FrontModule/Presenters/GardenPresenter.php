@@ -62,15 +62,6 @@ class GardenPresenter extends Presenter
 
         $this->template->inputNames = $inputNames;
 
-        /*
-         *
-         * $existingFlower = $this->flowerRepository->findFlowerByUser($user);
-            if ($existingFlower !== null) {
-            $this->flashMessage('You already own a flower', 'alert-danger');
-            $this->redirect('Garden:');
-        }
-         * */
-
 
     }
 
@@ -100,7 +91,6 @@ class GardenPresenter extends Presenter
         }
         if ($argument !== null) {
             $backUrl = "Dashboard:default";
-            bdump($backUrl);
         }
         if (!$flower) {
             $this->error('Flower not found!');
