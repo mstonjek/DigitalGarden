@@ -20,27 +20,31 @@
                 {foreach $inputNames as $inputPlaceholder => $inputName}
                     <div class="card form-card {if $iterator->first}activeInput{/if}">
                         <div class="card-body">
-                            <h5 class="card-title">{$iterator}. {$inputName}</h5>
+                            <h5 class="card-title">{$inputName}</h5>
                                 <div class="form-group">
                                     <label>
                                         {if $inputPlaceholder === "flowerEducation" || $inputPlaceholder === "gender"}
                                             <select n:name="{$inputPlaceholder}" required>
                                             </select>
-                                        {elseif $inputPlaceholder === "flowerDescription"}
-                                            <textarea n:name="{$inputPlaceholder}" required></textarea>
                                         {else}
                                             <input required {if $inputPlaceholder === "height"}type="number" {else}type="text"{/if} class="form-control" n:name="{$inputPlaceholder}">
                                         {/if}
                                     </label>
                                 </div>
 
-                                {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
+                            <div class="form-footer">
 
-                                {if $iterator->last}
-                                    <button n:name="submit" type="submit" class="btn btn-submit">Add</button>
-                                {else}
-                                    <button type="button" class="btn btn-primary next-btn">Next</button>
-                                {/if}
+                                <p class="indexer">{$iterator}/{count($inputNames)}</p>
+
+                                <div class="button-group">
+                                    {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
+                                    {if $iterator->last}
+                                        <button n:name="submit" type="submit" class="btn btn-submit">Add</button>
+                                    {else}
+                                        <button type="button" class="btn btn-primary next-btn">Next</button>
+                                    {/if}
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -68,9 +72,7 @@
                 }
             }
 
-            focusOnFirstInput($cards.eq(currentIndex));
-
-            $('.next-btn').click(function() {
+            function goToNextCard() {
                 let $currentCard = $cards.eq(currentIndex);
                 let $formElements = $currentCard.find('input, select, textarea');
 
@@ -95,9 +97,9 @@
                         focusOnFirstInput($nextCard);
                     }
                 }
-            });
+            }
 
-            $('.prev-btn').click(function() {
+            function goToPrevCard() {
                 let $currentCard = $cards.eq(currentIndex);
                 let $prevCard = $cards.eq(currentIndex - 1);
 
@@ -108,9 +110,33 @@
 
                     focusOnFirstInput($prevCard);
                 }
+            }
+
+            focusOnFirstInput($cards.eq(currentIndex));
+
+            $('.next-btn').click(function() {
+                goToNextCard();
+            });
+
+            $('.prev-btn').click(function() {
+                goToPrevCard();
+            });
+
+            $(document).keydown(function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+
+                    let $activeCard = $cards.eq(currentIndex);
+                    let $focusedElement = $activeCard.find('input:focus, select:focus, textarea:focus');
+
+                    if ($focusedElement.length) {
+                        goToNextCard();
+                    }
+                }
             });
         });
     </script>
+
 
 
 
@@ -193,8 +219,8 @@
 
 
         .card {
-            max-width: 65%;
-            border: 1px dashed #4caf50;
+            border: 0.1rem dashed #4caf50;
+            border-radius: 1rem;
             min-height: 36vh;
             display: flex;
             justify-content: center;
@@ -204,28 +230,72 @@
             padding: 1rem;
         }
 
-        .card .card-title {
-            font-size: 1.5rem;
+        .card-title {
+            font-size: 1.75rem;
+            margin: 0;
             font-weight: bold;
             color: #333;
         }
 
         .form-control,
-        textarea,
         select {
             border: none;
+            font-style: italic !important;
             border-radius: 0;
             background-color: transparent;
             font-size: 1.7rem;
+            white-space: pre;
+            word-wrap: break-word;
+            flex: 1;
+            outline: none;
             padding: 5px;
+            color: #666;
+            font-weight: lighter;
+            text-align: center;
+            display: inline-block;
+            width: auto;
+            height: auto;
+            min-width: 8rem;
+            min-height: 3rem;
         }
 
-        .form-control:focus,
-        textarea:focus,
+
+        ::placeholder {
+            color: #999;
+        }
+
+        input:focus,
         select:focus {
+            caret-color: #333;
+            caret-shape: underscore;
             outline: none;
         }
-        
+
+        .form-footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: baseline;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #467341;
+            border: none;
+            background-color: transparent;
+            display: inline-block;
+            font-size: 1.5rem;
+            font-family: "Edu VIC WA NT Beginner", system-ui;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+        .btn:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .indexer {
+            margin: 0;
+        }
 
 
         .form-card {

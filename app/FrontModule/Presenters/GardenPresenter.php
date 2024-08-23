@@ -42,15 +42,15 @@ class GardenPresenter extends Presenter
             $this->redirect('Homepage:');
         }
 
-        $inputNames = ["flowerName" => "Give your flower a name",
+        $inputNames = ["flowerName" => "Give your flower a name:",
             "flowerLatinName" => "How to translate it to latin?",
             "family" => "From which family is your flower?",
-            "flowerDescription" => "Make up a story of your flower",
+            "flowerDescription" => "Make up a story of your flower:",
             "height" => "How tall is your flower?",
             "flowerEducation" => "How educated is your flower?",
             "gender" => "What gender does your flower identify with?",
-            "country" => "From which part of the world does your flower come from?",
-            "webPortfolio" => "Provide a link to your flower's online portfolio",
+            "country" => "Which country is your flower from?",
+            "webPortfolio" => "Provide a link to your flower's online portfolio:",
             "favouriteSerial" => "What TV series does your flower never miss an episode of?",
             "favouriteSong" => "What's the song that gets your flower dancing?",
             "favouriteQuote" => "Which quote motivates your flower the most?",
