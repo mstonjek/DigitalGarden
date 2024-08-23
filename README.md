@@ -1,12 +1,12 @@
 # 🌱 Digital Garden - We Need Your Flower 🌷
-### 🪷 Ready to grow something unique? [Visit the Digital Garden](https://digital-garden.mstonjek.cz/www/) and start planting! 🌼🌿
+### 🪷  [Plant a flower today](https://digital-garden.mstonjek.cz/www/) — each one makes a difference! 🌼🌿
 
 <p align="center">
     <img width="45%" alt="Screenshot 2024-08-23 at 16 42 25" src="https://github.com/user-attachments/assets/99fc158b-e978-436f-9879-ec148e180205">
     <img width="45%" alt="Screenshot 2024-08-23 at 16 42 35" src="https://github.com/user-attachments/assets/07979b59-247b-433b-b8e3-1a1ad12f9312">
 </p>
 
-Welcome to the **Digital Garden** project! 🌼 This is a virtual garden where anyone can plant a flower. All you need is a GitHub account and a bit of imagination. But there's a catch—each user can plant only one flower! 🌸
+Welcome to the **Digital Garden** project! 🌹 This is a virtual garden where anyone can plant a flower. All you need is a GitHub account and a bit of imagination. But there's a catch—each user can plant only one flower! 🌸
 
 This project has the potential to blossom into a vast herbal collection 🌻, but it needs some dedicated gardeners to help it grow. If you're reading this, why not plant a flower? 🌺 If you want to, of course.
 
