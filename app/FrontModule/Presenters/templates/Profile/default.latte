@@ -1,4 +1,5 @@
 {block content}
+
     <div class="profiles-container">
 
         <div class="header-navigation">
@@ -27,7 +28,6 @@
         </div>
 
     </div>
-
 {/block}
 
 {block css}
@@ -304,9 +304,10 @@
                                 </div>
                                 ${ user.location ? `<div class="user-location">${ user.location} <span>🌍</span></div>` : ''}
                             </div>
+
                             <div class="user-links">
-                                <a href="${ basePath}/profile/show?username=${ user.username}&backUrl={ App\Model\Entity\BackUrlEnum::PROFILE->value}" class="user-profile-link"> 👤 </a>
-                                ${ user.flowerId ? `<a href="${ basePath}/garden/flower?flowerId=${ user.flowerId}&backUrl={ App\Model\Entity\BackUrlEnum::PROFILE->value}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> 🚫 </p>'}
+                                <a href="${ basePath}/profile/show?username=${ user.username}&backUrl=Profile:default" class="user-profile-link"> 👤 </a>
+                                ${ user.flowerId ? `<a href="${ basePath}/garden/flower?flowerId=${ user.flowerId}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> 🚫 </p>'}
                             </div>
                         `;
 

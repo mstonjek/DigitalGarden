@@ -10,6 +10,8 @@ use App\Repository\FlowerRepository;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Form;
 use Latte;
+use Ramsey\Uuid\Doctrine\UuidBinaryType;
+use Ramsey\Uuid\Uuid;
 
 class GardenPresenter extends Presenter
 {
@@ -89,7 +91,7 @@ class GardenPresenter extends Presenter
 
     }
 
-    public function renderFlower(string $flowerId, string $backUrl, ?string $argument = null): void
+    public function renderFlower(string $flowerId): void
     {
         $flower = $this->flowerRepository->find($flowerId);
         if (!$flower) {

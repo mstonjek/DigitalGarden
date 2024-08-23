@@ -64,7 +64,7 @@
                             <div class="owner-header">
                                 <div class="owner-names">
                                     <h3 class="owner-name">{$flower->user->name}'s <span class="planet-emoji">🌍</span></h3>
-                                    <p class="owner-username"><a class="owner-username-link" n:href="Profile:show $flower->user->username">@{$flower->user->username}</a></p>
+                                    <p class="owner-username"><a class="owner-username-link" n:href="Profile:show $flower->user->username, App\Model\Entity\BackUrlEnum::GARDEN_FLOWER->value, $flower->flowerId">@{$flower->user->username}</a></p>
                                 </div>
                                 <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
                             </div>
