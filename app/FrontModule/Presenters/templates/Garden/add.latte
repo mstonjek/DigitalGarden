@@ -1,41 +1,26 @@
 {block content}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-md-12">
-                <div class="form-card">
-                    <div class="form-card-header">
-                        <h3 class="form-card-title">Add a flower</h3>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="add-container">
 
         <div class="nav">
             <div class="nav-links">
-                <a n:href="Dashboard:default">🔙</a>
-                <p >Careful, you can't edit flower</p>
+                <a class="return-link" n:href="Dashboard:default">🔙</a>
+                <p class="nav-warning" >Careful, you can't edit flower</p>
             </div>
         </div>
 
         <div class="titles">
-            <h1 class="title">Add a flower</h1>
-            <p class="description">Make sure that it is a masterpiece!</p>
+            <h1 class="title"><span class="emoji">🌹</span> Create Your Flower <span class="emoji">🎨</span></h1>
+            <p class="description">Make sure your flower is one-of-a-kind! <span class="emoji emoji-smaller">💫</span></p>
+
         </div>
 
         <div class="form-container">
-
             <form n:name="addFlowerForm">
-
                 {foreach $inputNames as $inputPlaceholder => $inputName}
-                    <div class="card form-card {if $iterator->first}active{/if}">
-                        {$iterator}
+                    <div class="card form-card {if $iterator->first}activeInput{/if}">
                         <div class="card-body">
-                            <h5 class="card-title">{$inputName}</h5>
-                                <input type="hidden" name="questionIndex" value="{$iterator}">
+                            <h5 class="card-title">{$iterator}. {$inputName}</h5>
                                 <div class="form-group">
                                     <label>
                                         {if $inputPlaceholder === "flowerEducation" || $inputPlaceholder === "gender"}
@@ -48,35 +33,48 @@
                                         {/if}
                                     </label>
                                 </div>
+
+                                {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
+
                                 {if $iterator->last}
                                     <button n:name="submit" type="submit" class="btn btn-submit">Add</button>
                                 {else}
                                     <button type="button" class="btn btn-primary next-btn">Next</button>
                                 {/if}
 
-                                {if !$iterator->first}<button type="button" class="btn btn-primary prev-btn">Prev</button>{/if}
                         </div>
                     </div>
                 {/foreach}
             </form>
-
-
-
         </div>
 
 
     </div>
+
+{/block}
+
+{block script}
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            var $cards = $('.form-card');
-            var currentIndex = 0;
+            let $cards = $('.form-card');
+            let currentIndex = 0;
+
+            function focusOnFirstInput($card) {
+                let $firstInput = $card.find('input, select, textarea').first();
+                if ($firstInput.length) {
+                    $firstInput.focus();
+                }
+            }
+
+            focusOnFirstInput($cards.eq(currentIndex));
 
             $('.next-btn').click(function() {
-                var $currentCard = $cards.eq(currentIndex);
-                var $formElements = $currentCard.find('input, select, textarea');
+                let $currentCard = $cards.eq(currentIndex);
+                let $formElements = $currentCard.find('input, select, textarea');
 
-                var isValid = true;
+                let isValid = true;
 
                 $formElements.each(function() {
                     if (!this.checkValidity()) {
@@ -87,31 +85,160 @@
                 });
 
                 if (isValid) {
-                    var $nextCard = $cards.eq(currentIndex + 1);
+                    let $nextCard = $cards.eq(currentIndex + 1);
 
                     if ($nextCard.length) {
-                        $currentCard.removeClass('active');
-                        $nextCard.addClass('active');
+                        $currentCard.removeClass('activeInput');
+                        $nextCard.addClass('activeInput');
                         currentIndex++;
+
+                        focusOnFirstInput($nextCard);
                     }
                 }
             });
 
             $('.prev-btn').click(function() {
-                var $currentCard = $cards.eq(currentIndex);
-                var $prevCard = $cards.eq(currentIndex - 1);
+                let $currentCard = $cards.eq(currentIndex);
+                let $prevCard = $cards.eq(currentIndex - 1);
 
                 if ($prevCard.length) {
-                    $currentCard.removeClass('active');
-                    $prevCard.addClass('active');
+                    $currentCard.removeClass('activeInput');
+                    $prevCard.addClass('activeInput');
                     currentIndex--;
+
+                    focusOnFirstInput($prevCard);
                 }
             });
         });
-
     </script>
 
+
+
 {/block}
+
+
+
+
+{block css}
+    <style>
+
+
+        body {
+            background-color: #ddf6dd;
+            line-height: 1.6;
+        }
+
+        .add-container {
+            max-width: calc(100% - 30rem);
+            margin: 2.5rem auto;
+            padding: 3.5rem 5rem;
+            background-color: #e5ffe5;
+            background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
+            border-radius: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+            border: 0.4rem dashed #88bd8f;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-warning {
+            font-size: 1.60rem;
+        }
+
+        .return-link {
+            text-decoration: none;
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+        }
+
+        .return-link:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .titles {
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            justify-content: center;
+        }
+
+        .title {
+            margin: 0 auto;
+            font-size: 2.5rem;
+            color: #3d6e3d;
+        }
+
+        .description {
+            margin: 0 auto;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #3a623a;
+        }
+
+        .emoji {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.6rem;
+        }
+
+        .emoji-smaller {
+            font-size: 1.5rem !important;
+        }
+
+
+        .card {
+            max-width: 65%;
+            border: 1px dashed #4caf50;
+            min-height: 36vh;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            margin: 1.5rem auto;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .card .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control,
+        textarea,
+        select {
+            border: none;
+            border-radius: 0;
+            background-color: transparent;
+            font-size: 1.7rem;
+            padding: 5px;
+        }
+
+        .form-control:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+        }
+        
+
+
+        .form-card {
+            display: none;
+        }
+        .activeInput {
+            display: block;
+        }
+
+    </style>
+{/block}
+
+
 {*
 
 <form n:name="addFlowerForm">
@@ -244,20 +371,3 @@
 </form>
 
 *}
-
-{block css}
-    <style>
-
-        .form-card {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-
-        .is-invalid {
-            border: 1px solid red;
-        }
-
-    </style>
-{/block}
