@@ -24,7 +24,11 @@ class ProfilePresenter extends Presenter
     public function renderShow(string $username, string $backUrl, ?string $argument = null): void
     {
         $user = $this->userRepository->findByUsername($username);
-        $returnUrl = $backUrl . ($argument ?? '');
+        if ($argument !== null) {
+            $returnUrl = "Dashboard:default";
+        } else {
+            $returnUrl = $backUrl;
+        }
 
         if (!$user) {
             $this->error('User not found!');

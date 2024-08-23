@@ -2,6 +2,7 @@
 
 namespace App\FrontModule\Presenters;
 
+use App\Model\Entity\BackUrlEnum;
 use App\Model\Entity\Flower;
 use App\Model\Entity\User;
 use App\Model\Repository\UserRepository;
@@ -91,15 +92,23 @@ class GardenPresenter extends Presenter
 
     }
 
-    public function renderFlower(string $flowerId): void
+    public function renderFlower(string $flowerId, ?string $backUrl = null, ?string $argument = null): void
     {
         $flower = $this->flowerRepository->find($flowerId);
+        if ($backUrl === null) {
+            $backUrl = BackUrlEnum::PROFILE->value;
+        }
+        if ($argument !== null) {
+            $backUrl = "Dashboard:default";
+            bdump($backUrl);
+        }
         if (!$flower) {
             $this->error('Flower not found!');
             $this->redirect("Dashboard:");
         }
 
         $this->template->flower = $flower;
+        $this->template->backUrl = $backUrl;
     }
 
     protected function createComponentAddFlowerForm(): Form

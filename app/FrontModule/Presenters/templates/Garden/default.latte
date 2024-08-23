@@ -27,7 +27,7 @@
 
                 <div class="garden-container-table">
                     {foreach $flowers as $flower}
-                        <a n:href="Garden:flower $flower->flowerId" title="{$flower->flowerName}" class="flower">🌸</a>
+                        <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::GARDEN->value" title="{$flower->flowerName}" class="flower">🌸</a>
                     {/foreach}
                     {for $i=0;$i<5;$i++}
                     <div class="garden-element"

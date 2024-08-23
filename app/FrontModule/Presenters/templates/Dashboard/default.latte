@@ -39,7 +39,7 @@
 
         <div class="flower-opportunity">
             {if $flower !== null}
-                <a n:href="Garden:flower $flower->flowerId" class="flower-emoji">🌻</a>
+                <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class="flower-emoji">🌻</a>
                 <div class="flower-age-div">
                     <p class="flower-age">Flower age: <span>{$flowerAge}</span></p>
                 </div>
