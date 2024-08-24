@@ -6,6 +6,7 @@ About Project Page
     <div class="about-container">
         <div class="nav-links">
             <div class="front-pages">
+                <!-- TODO: ADD RESPONSIVE NAVBAR - GARDEN STYLE ALWAYYYS  -->
                 <a n:href="ContentFront:about" class="front-nav active">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="front-nav">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="front-nav">💚 Support Us</a>
@@ -51,6 +52,8 @@ About Project Page
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .about-container {
@@ -153,6 +156,104 @@ About Project Page
             font-size: 1rem;
             text-indent: 1rem;
         }
+
+        @media (max-width: 1200px) {
+            .about-container {
+                max-width: calc(100% - 20rem);
+                padding: 3rem 4rem 1.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .front-pages {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .login-link {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+                margin-top: 2.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-container {
+                max-width: calc(100% - 10rem);
+                padding: 2.5rem 3rem 1rem;
+            }
+
+            .front-nav, .login-link {
+                font-size: 0.9rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .plant-flower {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                padding: 1.5rem 2rem;
+                margin: 1rem auto;
+            }
+
+            .description-title {
+                font-size: 1.1rem;
+            }
+
+            .description {
+                font-size: 0.9rem;
+                text-indent: 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-container {
+                max-width: 100% - 0.5rem;
+                padding: 2rem 1.5rem 0.5rem;
+                border: 0.3rem dashed #88bd8f;
+            }
+
+            .nav-links, .front-pages {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login-link {
+                width: 100%;
+                padding: 0.5rem 0;
+                font-size: 1rem;
+                box-sizing: border-box;
+            }
+
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+
+            .plant-flower {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+                margin: 0.5rem auto;
+            }
+
+            .description-title {
+                font-size: 1rem;
+            }
+
+            .description {
+                font-size: 0.85rem;
+                text-indent: 0.5rem;
+            }
+        }
+
 
     </style>
 

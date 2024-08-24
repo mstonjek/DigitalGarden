@@ -37,7 +37,10 @@
                 <div class="flower-info">
                     {if $user->flower->flowerName}
                         <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW->value, $user->username"><span class="flower-name-strong">{$user->flower->flowerName}</span> {\FlowerEmojiEnum::getRandomEmoji(1)[0]} <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
-                        <p class="flower-description">{$pronounce} from {$user->flower->country} {$flowerFlag}, {$user->flower->height} cm tall and has {$user->flower->flowerEducation->value} education</p>
+                        <p class="flower-description">
+                            🌸 <strong>{$pronounce}</strong> from <strong>{$user->flower->country}</strong> {$flowerFlag},
+                            🌿 <strong>{$user->flower->height}</strong> cm tall and has <strong>{$user->flower->flowerEducation->value}</strong> education 🎓📚.
+                        </p>
 
                         {if $user->flower->favouriteQuote}
                             <q class="flower-quote">{$user->flower->favouriteQuote} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>

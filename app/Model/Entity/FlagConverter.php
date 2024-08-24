@@ -9,10 +9,6 @@ class FlagConverter
         $countryCode = strtoupper(substr($country, 0, 2));
         $flag = $this->countryCodeToFlag($countryCode);
 
-        if (!$this->isValidFlag($flag)) {
-            return \OtherFlagsEmojiEnum::getRandomEmoji(1);
-        }
-
         return $flag;
     }
 
@@ -37,8 +33,4 @@ class FlagConverter
         return mb_chr($firstChar) . mb_chr($secondChar);
     }
 
-    private function isValidFlag(string $flag): bool
-    {
-        return preg_match('/^\p{Regional_Indicator}\p{Regional_Indicator}$/u', $flag) === 1;
-    }
 }
