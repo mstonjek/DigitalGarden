@@ -1,5 +1,4 @@
 {block content}
-
     <div class="profiles-container">
 
         <div class="header-navigation">
@@ -10,7 +9,7 @@
         <div class="main-content">
 
             <div class="search-section">
-                <h1 class="search-title"><span class="title-emoji">🌸</span> Find Gardener:</h1>
+                <h1 class="search-title"><span class="title-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</span> Find Gardener:</h1>
                 <div class="search-div">
                     <!-- TODO: The user can see all users by entering 3 spaces :/ Not fixing now xd -->
                     <div class="search-input" id="search-input" contenteditable="true" onkeydown="preventEnter(event)" oninput="search(this.innerText)">@</div>

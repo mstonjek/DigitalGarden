@@ -8,7 +8,7 @@
 
             <div class="flower-header">
                 <div class="flower-names">
-                    <h1 class="flower-title">{$flower->flowerName} <span class="flower-emoji">🌸</span></h1>
+                    <h1 class="flower-title">{$flower->flowerName} <span class="flower-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</span></h1>
                     <p class="flower-latin-name">({$flower->flowerLatinName})</p>
                 </div>
                 <p class="flower-description">{$flower->flowerDescription}</p>

@@ -1,6 +1,14 @@
 <?php
 
-
+trait RandomEmojiTrait
+{
+    public static function getRandomEmoji(int $amount): array
+    {
+        $emojis = array_column(self::cases(), 'value');
+        shuffle($emojis);
+        return array_slice($emojis, 0, $amount);
+    }
+}
 
 enum OtherGardenEmojiEnum: string
 {
@@ -35,15 +43,7 @@ enum OtherGardenEmojiEnum: string
     case SUN = "☀️";
     case RAIN = "🌧";
 
-    // TODO: FIX THIS  
-
-    public static function getRandomEmoji(int $amount): array {
-        $emojis = self::cases();
-        $randomKeys = array_rand($emojis, $amount);
-
-
-        return $randomKeys;
-    }
+    use RandomEmojiTrait;
 }
 
 
@@ -60,5 +60,7 @@ enum FlowerEmojiEnum: string
     case TULIP = "🌷";
     case HYACINTH = "🪻";
     case WILTED = "🥀";
+
+   use RandomEmojiTrait;
 
 }

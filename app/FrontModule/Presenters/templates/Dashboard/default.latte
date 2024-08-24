@@ -27,7 +27,7 @@
         {include flashes}
         <div class="nav">
             <div class="nav-links">
-                <a n:href="Garden:" class="btn bnt-garden"><span class="nav-emoji">🌻Garden</span></a>
+                <a n:href="Garden:" class="btn bnt-garden"><span class="nav-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}Garden</span></a>
                 <a n:href="Profile:default" class="btn btn-all-profiles"><span class="nav-emoji">👤People</span></a>
             </div>
 
@@ -44,7 +44,7 @@
 
         <div class="flower-opportunity">
             {if $flower !== null}
-                <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class="flower-emoji">🌻</a>
+                <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class="flower-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</a>
                 <div class="flower-age-div">
                     <p class="flower-age">Flower age: <span>{$flowerAge}</span></p>
                 </div>

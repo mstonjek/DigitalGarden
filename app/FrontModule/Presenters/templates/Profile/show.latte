@@ -35,11 +35,11 @@
         {if $user->flower}
                 <div class="flower-info">
                     {if $user->flower->flowerName}
-                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW->value, $user->username"><span class="flower-name-strong">{$user->flower->flowerName}</span> 🌱 <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
+                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW->value, $user->username"><span class="flower-name-strong">{$user->flower->flowerName}</span> {\FlowerEmojiEnum::getRandomEmoji(1)[0]} <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
                         <p class="flower-description">{$pronounce} from {$user->flower->country}, {$user->flower->height} cm tall and has {$user->flower->flowerEducation->value} education</p>
 
                         {if $user->flower->favouriteQuote}
-                            <q class="flower-quote">{$user->flower->favouriteQuote} 🌸</q>
+                            <q class="flower-quote">{$user->flower->favouriteQuote} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
                         {/if}
                     {/if}
                 </div>
@@ -52,7 +52,7 @@
                 <p class="bio-text">{$user->bio}</p>
 
                 {if $user->flower}
-                    <q class="flower-quote">And I am also proud of my {$user->flower->flowerName} 🌻</q>
+                    <q class="flower-quote">And I am also proud of my {$user->flower->flowerName} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
                 {/if}
             </div>
         {/if}

@@ -21,18 +21,18 @@
                 <p class="garden-announcement">🌺 Already planted a flower? Try to find it below! 👇</p>
                 <p class="garden-warning" >🌷 Heads-up: You’ve got one shot to plant your flower—make it awesome! 🌻</p>
             </div>
-            <h1 class="garden-title">Welcome to the Virtual Garden! 🌸</h1>
+            <h1 class="garden-title">Welcome to the Virtual Garden! {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</h1>
         </div>
         <div class="garden-block">
 
                 <div class="garden-container-table">
                     {foreach $flowers as $flower}
-                        <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::GARDEN->value" title="{$flower->flowerName}" class="flower">🌸</a>
+                        <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::GARDEN->value" title="{$flower->flowerName}" class="flower">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</a>
                     {/foreach}
-                    {for $i=0;$i<5;$i++}
-                    <div class="garden-element"
-                         style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{randomEmoji()}</div>
-                    {/for}
+
+                    {foreach $randomEmojis as $emoji}
+                        <div class="garden-element" style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{$emoji}</div>
+                    {/foreach}
                 </div>
         </div>
     </div>

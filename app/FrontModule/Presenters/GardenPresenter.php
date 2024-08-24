@@ -77,10 +77,16 @@ class GardenPresenter extends Presenter
             return rand($min, $max);
         });
 
-        $this->template->addFunction('randomEmoji', function() {
+        $this->template->randomEmojis = \OtherGardenEmojiEnum::getRandomEmoji(5);
+
+        /*
+         * $this->template->addFunction('randomEmoji', function() {
             $emojis = ['🌳', '🍃', '🍂', '🌾', '🌱', '🐝', '🦋', '🐞', '🌤️', '🌈', '🌧️', '🌨️', '⛅', '🌿', '🐦', '🦗', '🦠', '🌻', '🍄', '🌰', '🪴'];
             return $emojis[array_rand($emojis)];
         });
+         *
+         * */
+
 
     }
 
@@ -97,10 +103,6 @@ class GardenPresenter extends Presenter
             $this->flashMessage('Flower not found!', "alert-danger");
             $this->redirect("Dashboard:");
         }
-
-        bdump(\OtherGardenEmojiEnum::WOLF->value);
-        bdump(\FlowerEmojiEnum::SUNFLOWER->value);
-        bdump(\OtherGardenEmojiEnum::getRandomEmoji(5));
 
         $this->template->flower = $flower;
         $this->template->backUrl = $backUrl;
