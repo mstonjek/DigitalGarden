@@ -1,13 +1,14 @@
 {block content}
 
+    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
 
     <div class="homepage-container">
 
         <div class="nav-links">
             <div class="front-pages">
-                <a n:href="Homepage:about" class="about-us-link">🌟 About Project</a>
-                <a n:href="Homepage:rules" class="about-us-link">🌿 Garden Rules</a>
-                <a n:href="Homepage:support" class="about-us-link">💚 Support Us</a>
+                <a n:href="ContentFront:about" class="about-us-link">🌟 About Project</a>
+                <a n:href="ContentFront:rules" class="about-us-link">🌿 Garden Rules</a>
+                <a n:href="ContentFront:support" class="about-us-link">💚 Support Us</a>
                 <a n:href="Homepage:default" class="about-us-link active">🏠 Home</a>
             </div>
             <a n:href="Auth:login" class="login-link">Login</a>
@@ -22,7 +23,7 @@
                 <h4 class="garden-title" >Our garden is growing <3</h4>
             <p>🚜
                  {foreach $flowers as $flower}
-                    <a class="flower" title="{$flower->flowerName}" n:href="Homepage:flower $flower->flowerId" >🌸</a>
+                    <a class="flower" title="{$flower->flowerName}" n:href="Auth:login" >🌸</a>
                 {/foreach}
             </p>
         </div>

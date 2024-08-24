@@ -15,6 +15,15 @@ class ProfilePresenter extends Presenter
 
     }
 
+    public function beforeRender(): void {
+        $userId = $this->getSession('user')->id ?? null;
+
+        if (!$userId) {
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
+            $this->redirect('Homepage:');
+        }
+    }
+
     public function renderDefault(): void
     {
         $userCount = $this->userRepository->getUserCount();
@@ -31,7 +40,7 @@ class ProfilePresenter extends Presenter
         }
 
         if (!$user) {
-            $this->error('User not found!');
+            $this->flashMessage('User not found!', "alert-danger");
             $this->redirect("Homepage:");
         }
 

@@ -26,7 +26,7 @@ class DashboardPresenter extends Presenter
         $userId = $this->getSession('user')->id ?? null;
 
         if (!$userId) {
-            $this->flashMessage('You need to be logged in to access this page!');
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
             $this->redirect('Homepage:');
         }
 
@@ -37,7 +37,7 @@ class DashboardPresenter extends Presenter
         $this->getSession('user')->remove();
         $this->getSession('oauth2')->remove();
 
-        $this->flashMessage('You have been logged out.');
+        $this->flashMessage('You have been logged out.', "alert-success");
         $this->redirect('Homepage:');
     }
 

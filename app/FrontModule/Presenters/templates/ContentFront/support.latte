@@ -1,44 +1,42 @@
 {block content}
 
-    <div class="about-container">
+    <div class="support-container">
         <div class="nav-links">
             <div class="front-pages">
-                <a n:href="Homepage:about" class="front-nav active">🌟 About Us</a>
-                <a n:href="Homepage:rules" class="front-nav">🌿 Garden Rules</a>
-                <a n:href="Homepage:support" class="front-nav">💚 Support Us</a>
+                <a n:href="ContentFront:about" class="front-nav">🌟 About Project</a>
+                <a n:href="ContentFront:rules" class="front-nav">🌿 Garden Rules</a>
+                <a n:href="ContentFront:support" class="front-nav active">💚 Support Us</a>
                 <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
             </div>
             <a n:href="Auth:login" class="login-link">Login</a>
         </div>
 
         <div class="titles">
-            <h1 class="welcome-title"> Welcome to the Digital Garden! 🐝</h1>
-            <p class="plant-flower">🌹 Ready to Make Your Mark? Plant a Flower! 🌷</p>
+            <h1 class="welcome-title"> You Can Support This Garden! 🐝</h1>
+            <p class="plant-flower">🌹 The biggest support is to plant a flower 🌷</p>
         </div>
 
         <div class="main-content">
-            <h4 class="description-title">What’s This Cool Project All About? 🤔💡</h4>
+            <h4 class="description-title">Contribute to Development 💐🐙</h4>
             <p class="description">
-                Hey there! Welcome to the <strong>Digital Garden</strong>, where <strong>You</strong> get to grow your own flower in this vibrant virtual space! 🌼🎉
-                All you need is a <strong>GitHub account</strong> and a sprinkle of imagination. 🦣🌺
+                <strong>🛠️ Contribute Code:</strong> Help improve the Digital Garden by contributing code. Whether <strong>fixing bugs</strong> or adding <strong>new features</strong>, your work makes a difference. Check out our
+                <a class="github-link" href="https://github.com/mstonjek/DigitalGarden">repo on GitHub</a> and <strong>get involved!</strong>
             </p>
 
-            <h4 class="description-title">Our Epic Vision & Goals 🚀🐦‍🔥</h4>
+            <h4 class="description-title">Star the Repo 💫🐞</h4>
             <p class="description">
-                We’re on a quest to build <strong>the most epic</strong> virtual garden ever, blooming with flowers from <strong>amazing people</strong> like you! 🪻🌈
-                Each person can plant just <strong>one flower</strong>, making every single bloom extra special. So dive in, plant your flower, and help us create a garden that’s truly out of this world! 📝🦕
+                <strong>⭐ Star the Repository:</strong> Show your support by starring <a class="github-link" href="https://github.com/mstonjek/DigitalGarden">our GitHub repo</a>. This helps others <strong>discover</strong> the project and lets us know you <strong>appreciate</strong> our work. Every star counts!
             </p>
 
-            <h4 class="description-title">Get Involved and Shine! 💐🐙</h4>
+            <h4 class="description-title">Spread the Word! 🚀🌍</h4>
             <p class="description">
-                Ready to jump in? 🌱
-                Plant a flower, watch it blossom, and become part of our <strong>incredible</strong> garden adventure.
-                <strong>Note:</strong> Since this is <strong>still a demo</strong>, you might spot a few bugs or hiccups. 🐞✨
-                Thanks for being <strong>awesome</strong> and helping us grow. Happy planting!🧑‍🌾🐛🪴
+                <strong>📢 Share the Project:</strong> Spread the word about the <strong>Digital Garden!</strong> Share your flower and our garden, or <strong>tell a friend.</strong> Every share helps our garden <strong>grow.</strong>
             </p>
         </div>
-    </div>
 
+
+
+    </div>
 
 {/block}
 
@@ -50,7 +48,7 @@
             line-height: 1.6;
         }
 
-        .about-container {
+        .support-container {
             max-width: calc(100% - 30rem);
             margin: 2.5rem auto;
             padding: 3.5rem 5rem 2rem;
@@ -129,19 +127,18 @@
             text-align: justify;
             border: 0.1rem solid #4caf50;
             padding: 2rem 3rem;
-            margin: 1.5rem auto;
+            margin: 3rem auto;
             border-radius: 1rem;
             background-color: #c8e6c9;
         }
 
         .description-title {
-            margin: 0;
             color: #4caf50;
             font-size: 1.3rem;
+            margin: 1rem 0 0 0;
         }
-
-        .description-title:first-child {
-            margin-top: 1rem;
+        .description:last-child {
+            margin-bottom: 1.5rem!important;
         }
 
         .description {
@@ -151,6 +148,9 @@
             text-indent: 1rem;
         }
 
+        .github-link {
+            color: darkblue;
+        }
     </style>
 
 {/block}

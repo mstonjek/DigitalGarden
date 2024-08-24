@@ -31,12 +31,12 @@ class AuthPresenter extends Presenter
         $sessionState = $this->getSession('oauth2')->state;
 
         if ($state !== $sessionState) {
-            $this->flashMessage('Invalid state');
+            $this->flashMessage('Invalid state occurred!', "alert-danger");
             $this->redirect('Homepage:');
         }
 
         if (!$code) {
-            $this->flashMessage('No code provided');
+            $this->flashMessage('No code provided!', "alert-danger");
             $this->redirect('Homepage:');
         }
 
@@ -46,13 +46,14 @@ class AuthPresenter extends Presenter
 
         // TODO:: HADLE THIS OUTPUT AND ADD MORE DATA ABOUT USER -> ALSO IN ENTITY USER
         
-        $this->flashMessage($user, $token);
-        $this->flashMessage('Hello ' . $user['login'] . '!');
+        // $this->flashMessage($user, $token);
+        // $this->flashMessage('Hello ' . $user['login'] . '!');
 
 
         $this->authService->findOrCreateUser($user);
         $this->getSession('user')->id = $user['id'];
-        
+
+        $this->flashMessage('Successfully logged in!', "alert-success");
         $this->redirect('Dashboard:default');
     }
 

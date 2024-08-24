@@ -20,8 +20,8 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
         $userId = $this->getSession('user')->id ?? null;
 
         if ($userId) {
-            $this->flashMessage('Continue in the garde :D');
-            $this->redirect('Garden:');
+            $this->flashMessage("You're already logged in!", "alert-success");
+            $this->redirect('Dashboard:');
         }
 
     }
@@ -33,14 +33,4 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
 
     }
 
-    public function renderFlower(string $id): void
-    {
-        $flower = $this->flowerRepository->find($id);
-        if (!$flower) {
-            $this->error('Flower not found!');
-            $this->redirect("Homepage:");
-        }
-
-        $this->template->flower = $flower;
-    }
 }

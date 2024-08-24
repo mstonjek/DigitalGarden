@@ -29,7 +29,7 @@ class GardenPresenter extends Presenter
         $userId = $this->getSession('user')->id ?? null;
 
         if (!$userId) {
-            $this->flashMessage('You need to be logged in to access this page!');
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
             $this->redirect('Homepage:');
         }
     }
@@ -41,7 +41,7 @@ class GardenPresenter extends Presenter
         $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
 
         if (!$userId) {
-            $this->flashMessage('You need to be logged in to access this page!');
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
             $this->redirect('Homepage:');
         }
 
@@ -93,7 +93,7 @@ class GardenPresenter extends Presenter
             $backUrl = "Dashboard:default";
         }
         if (!$flower) {
-            $this->error('Flower not found!');
+            $this->flashMessage('Flower not found!', "alert-danger");
             $this->redirect("Dashboard:");
         }
 
@@ -105,8 +105,8 @@ class GardenPresenter extends Presenter
     {
         $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
         return $this->flowerFormFactory->create(null, $user, function (Flower $flower): void {
-            $this->flashMessage('Flower created', 'alert-success');
-            $this->redirect('Garden:');
+            $this->flashMessage('Flower created successfully!', 'alert-success');
+            $this->redirect('Dashboard:');
         });
     }
 }
