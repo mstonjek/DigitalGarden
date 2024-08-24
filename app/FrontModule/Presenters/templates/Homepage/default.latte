@@ -1,9 +1,9 @@
 {block content}
 
-    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+
 
     <div class="homepage-container">
-
+        {include flashes}
         <div class="nav-links">
             <div class="front-pages">
                 <a n:href="ContentFront:about" class="about-us-link">🌟 About Project</a>

@@ -63,6 +63,8 @@
 
     </style>
 
+    {include flashesCSS}
+
     {ifset css}
         {include css}
     {/ifset}
@@ -86,3 +88,44 @@
 
 </body>
 </html>
+
+{define flashes}
+    <div onclick="this.style.display='none';" n:foreach="$flashes as $flash" n:class="alert, $flash->type">
+        {$flash->message}
+    </div>
+{/define}
+
+{define flashesCSS}
+    <style>
+        .alert {
+            padding: 0.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-radius: 0.3rem;
+            border: 0.1rem solid transparent;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert:hover {
+            opacity: 75%;
+            cursor: pointer;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+    </style>
+{/define}
