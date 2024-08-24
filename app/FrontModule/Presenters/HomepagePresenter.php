@@ -2,8 +2,6 @@
 
 namespace App\FrontModule\Presenters;
 
-
-
 use App\Repository\FlowerRepository;
 use http\Encoding\Stream\Inflate;
 
@@ -12,7 +10,7 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
     private bool $isLoggedIn = false;
 
     public function __construct(
-      private FlowerRepository $flowerRepository,
+        private FlowerRepository $flowerRepository,
     ) {
     }
     public function beforeRender(): void
@@ -23,14 +21,11 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
             $this->flashMessage("You're already logged in!", "alert-success");
             $this->redirect('Dashboard:');
         }
-
     }
 
     public function renderDefault(): void
     {
-       $flowers = $this->flowerRepository->getAll();
+        $flowers = $this->flowerRepository->getAll();
         $this->template->flowers = $flowers;
-
     }
-
 }

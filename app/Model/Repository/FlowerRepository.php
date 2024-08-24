@@ -19,9 +19,8 @@ class FlowerRepository extends BaseRepository
         return $this->getRepository()->findOneBy(['user' => $user]);
     }
 
-    public function getFlowerCount(): int {
+    public function getFlowerCount(): int
+    {
         return $this->getRepository()->count([]);
     }
-
-
 }

@@ -7,13 +7,11 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-
 #[ORM\Entity]
 #[ORM\Table(name: 'flower')]
 #[ORM\UniqueConstraint(columns: ['user_id'])]
 class Flower
 {
-
     #[ORM\Id]
     #[ORM\Column(name: 'flower_id', type: 'uuid_binary', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
@@ -64,7 +62,8 @@ class Flower
     public \DateTime $plantingDate;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->plantingDate = new \DateTime();
     }
 }

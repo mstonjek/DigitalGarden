@@ -13,21 +13,19 @@ class AuthService
     use SmartObject;
 
     private Github $provider;
-    
+
 
     public function __construct(
         string $clientId,
-        string $clientSecret, 
-        string $redirectUri, 
+        string $clientSecret,
+        string $redirectUri,
         private UserRepository $userRepository
-        ) {
-
+    ) {
         $this->provider = new Github([
             'clientId'  => $clientId,
             'clientSecret'  => $clientSecret,
             'redirectUri'   => $redirectUri,
         ]);
-        
     }
 
     public function getAuthorizationUrl(): string
@@ -66,5 +64,4 @@ class AuthService
             $user = $this->userRepository->update($user);
         }
     }
-
 }

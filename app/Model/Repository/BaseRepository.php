@@ -15,7 +15,8 @@ abstract class BaseRepository
     public function __construct(
         protected EntityManagerInterface $entityManager,
         protected string $entityClass,
-    ) {}
+    ) {
+    }
 
     protected function getRepository(): EntityRepository
     {

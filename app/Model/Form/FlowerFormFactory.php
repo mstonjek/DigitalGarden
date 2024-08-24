@@ -13,7 +13,6 @@ use App\Model\Entity\FlowerEducationEnum;
 use App\Model\Entity\FlowerGenderEnum;
 use Nette;
 
-
 final class FlowerFormFactory
 {
     use Nette\SmartObject;

@@ -17,7 +17,6 @@ use Ramsey\Uuid\Uuid;
 
 class GardenPresenter extends Presenter
 {
-
     public function __construct(
         private readonly FlowerFormFactory $flowerFormFactory,
         private UserRepository $userRepository,
@@ -37,7 +36,6 @@ class GardenPresenter extends Presenter
 
     public function actionAdd(): void
     {
-
         $userId = $this->getSession('user')->id ?? null;
         $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
 
@@ -62,8 +60,6 @@ class GardenPresenter extends Presenter
         ];
 
         $this->template->inputNames = $inputNames;
-
-
     }
 
     public function renderDefault(): void
@@ -73,21 +69,11 @@ class GardenPresenter extends Presenter
         $this->template->flowers = $flowers;
         $this->template->flowerCount = $flowerCount;
 
-        $this->template->addFunction('randomNum', function(int $min, int $max) {
+        $this->template->addFunction('randomNum', function (int $min, int $max) {
             return rand($min, $max);
         });
 
         $this->template->randomEmojis = \OtherGardenEmojiEnum::getRandomEmoji(5);
-
-        /*
-         * $this->template->addFunction('randomEmoji', function() {
-            $emojis = ['🌳', '🍃', '🍂', '🌾', '🌱', '🐝', '🦋', '🐞', '🌤️', '🌈', '🌧️', '🌨️', '⛅', '🌿', '🐦', '🦗', '🦠', '🌻', '🍄', '🌰', '🪴'];
-            return $emojis[array_rand($emojis)];
-        });
-         *
-         * */
-
-
     }
 
     public function renderFlower(string $flowerId, ?string $backUrl = null, ?string $argument = null): void

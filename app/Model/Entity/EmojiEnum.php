@@ -12,6 +12,7 @@ trait RandomEmojiTrait
 
 enum OtherGardenEmojiEnum: string
 {
+    use RandomEmojiTrait;
     case WOLF = "🐺";
     case BUTTERFLY = "🦋";
     case BEE = "🐝";
@@ -42,13 +43,12 @@ enum OtherGardenEmojiEnum: string
     case CLOUD = "☁️";
     case SUN = "☀️";
     case RAIN = "🌧";
-
-    use RandomEmojiTrait;
 }
 
 
 enum FlowerEmojiEnum: string
 {
+    use RandomEmojiTrait;
     case SUNFLOWER = "🌻";
     case ROSE = "🌹";
     case LOTUS = "🪷";
@@ -60,7 +60,4 @@ enum FlowerEmojiEnum: string
     case TULIP = "🌷";
     case HYACINTH = "🪻";
     case WILTED = "🥀";
-
-   use RandomEmojiTrait;
-
 }

@@ -17,7 +17,7 @@ class AuthPresenter extends Presenter
     public function actionLogin(): void
     {
         $authUrl = $this->authService->getAuthorizationUrl();
-        $state = $this->generateState(); 
+        $state = $this->generateState();
         $this->getSession('oauth2')->state = $state;
         $authUrl .= '&state=' . $state;
         $authUrl .= '&prompt=consent';

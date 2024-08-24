@@ -6,5 +6,4 @@ use Nette\Application\UI\Presenter;
 
 class ContentFrontPresenter extends Presenter
 {
-
 }
