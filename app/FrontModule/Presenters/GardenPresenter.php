@@ -10,6 +10,7 @@ use App\Forms\FlowerFormFactory;
 use App\Repository\FlowerRepository;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Form;
+use App\Model\Entity\EmojiEnum;
 use Latte;
 use Ramsey\Uuid\Doctrine\UuidBinaryType;
 use Ramsey\Uuid\Uuid;
@@ -96,6 +97,10 @@ class GardenPresenter extends Presenter
             $this->flashMessage('Flower not found!', "alert-danger");
             $this->redirect("Dashboard:");
         }
+
+        bdump(\OtherGardenEmojiEnum::WOLF->value);
+        bdump(\FlowerEmojiEnum::SUNFLOWER->value);
+        bdump(\OtherGardenEmojiEnum::getRandomEmoji(5));
 
         $this->template->flower = $flower;
         $this->template->backUrl = $backUrl;

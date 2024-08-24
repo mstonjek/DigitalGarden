@@ -44,12 +44,6 @@ class AuthPresenter extends Presenter
         $user = $this->authService->getUser($token);
 
 
-        // TODO:: HADLE THIS OUTPUT AND ADD MORE DATA ABOUT USER -> ALSO IN ENTITY USER
-        
-        // $this->flashMessage($user, $token);
-        // $this->flashMessage('Hello ' . $user['login'] . '!');
-
-
         $this->authService->findOrCreateUser($user);
         $this->getSession('user')->id = $user['id'];
 
