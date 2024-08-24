@@ -4,6 +4,7 @@
 
     use App\Model\Entity\BackUrlEnum;
 
+    use App\Model\Entity\FlagConverter;
     use Nette\Application\UI\Presenter;
 
     use App\Model\Repository\UserRepository;
@@ -11,7 +12,8 @@
     class ProfilePresenter extends Presenter
     {
         public function __construct(
-            private UserRepository $userRepository
+            private UserRepository $userRepository,
+            private FlagConverter $flagConverter,
         ) {
         }
 
@@ -46,6 +48,8 @@
             }
 
             $this->template->user = $user;
+            $this->template->userFlag = $this->flagConverter->getFlag($user->location);
+            $this->template->flowerFlag = $this->flagConverter->getFlowerFlag($user->flower->country);
             $this->template->backUrl = $returnUrl;
         }
 

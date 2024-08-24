@@ -10,6 +10,19 @@ trait RandomEmojiTrait
     }
 }
 
+enum OtherFlagsEmojiEnum: string
+{
+    use RandomEmojiTrait;
+    case CHEQUERED = "🏁";
+    case CROSSED = "🎌";
+    case WHITE = "🏳️";
+    case PIRATE = "🏴‍☠️";
+    case GOLF = "⛳";
+    case BLACK = "🏴";
+    case TRIANGULAR = "🚩";
+
+}
+
 enum OtherGardenEmojiEnum: string
 {
     use RandomEmojiTrait;
