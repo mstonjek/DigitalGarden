@@ -6,6 +6,7 @@
     <div class="about-container">
         <div class="nav-links">
             <div class="hamburger-menu">
+                <a n:href="Homepage:default" style="margin: 0 !important" class="front-nav">🏠 Home</a>
                 <div class="hamburger-icon" id="hamburger-icon">
                     &#9776;
                 </div>
@@ -15,7 +16,7 @@
                 <a n:href="ContentFront:about" class="front-nav active">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="front-nav">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="front-nav">💚 Support Us</a>
-                <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
+                <a n:href="Homepage:default" class="front-nav" id="homeHide">🏠 Home</a>
             </div>
             <a n:href="Auth:login" class="login-link">Login</a>
         </div>
@@ -77,6 +78,14 @@
             align-items: center;
             justify-content: space-between;
             position: relative;
+            width: 100%;
+        }
+
+        .front-pages {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2.5rem;
         }
 
         .front-nav {
@@ -88,11 +97,9 @@
             filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
         }
 
-        .front-pages {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 2.5rem;
+        .front-nav:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
         }
 
         .login-link {
@@ -115,11 +122,6 @@
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             color: #fff;
-        }
-
-        .front-nav:hover {
-            transform: scale(1.2);
-            filter: brightness(1.2);
         }
 
         .welcome-title {
@@ -162,16 +164,17 @@
             text-indent: 1rem;
         }
 
-
-        .hamburger-icon {
+        .hamburger-menu {
             display: none;
-            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
             font-size: 1.5rem;
             color: #467341;
         }
 
-        .nav-links .front-pages {
-            display: flex;
+        .show {
+            display: flex !important;
         }
 
         @media (max-width: 1200px) {
@@ -180,24 +183,14 @@
                 padding: 3rem 4rem 1.5rem;
             }
 
-            .nav-links {
-                flex-direction: column;
-            }
-
             .front-pages {
-                flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                gap: 1.5rem;
             }
 
             .login-link {
                 padding: 0.5rem 1.5rem;
                 font-size: 0.9rem;
-                margin-top: 2.5rem;
-                width: 100%;
-            }
-
-            .hamburger-icon {
-                display: block;
             }
         }
 
@@ -207,9 +200,8 @@
                 padding: 2.5rem 3rem 1rem;
             }
 
-            .front-nav,
-            .login-link {
-                font-size: 0.9rem;
+            .front-nav, .login-link {
+                font-size: 0.8rem;
             }
 
             .welcome-title {
@@ -234,13 +226,7 @@
                 text-indent: 0.5rem;
             }
 
-            .login-link {
-                width: 100%;
-            }
 
-            .hamburger-icon {
-                display: block;
-            }
         }
 
         @media (max-width: 600px) {
@@ -258,13 +244,20 @@
             .front-pages {
                 display: none;
                 flex-direction: column;
-                align-items: center;
-                width: 100%;
-                margin-top: 1rem;
             }
 
             .login-link {
-                width: 100%;
+                display: none;
+            }
+
+            .front-nav:first-child {
+                margin-top: 1.5rem;
+            }
+
+
+            .login-link {
+                margin-top: 1.5rem;
+                width: 20%;
                 padding: 0.5rem 0;
                 font-size: 1rem;
                 box-sizing: border-box;
@@ -292,11 +285,17 @@
                 text-indent: 0.5rem;
             }
 
-            .hamburger-icon {
-                display: block;
+            .hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
             }
 
+            #homeHide {
+                display: none !important;
+            }
         }
+
     </style>
 
 {/block}
@@ -304,7 +303,17 @@
 {block script}
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var hamburgerIcon = document.getElementById('hamburger-icon');
+            var navLinks = document.getElementById('nav-links');
+            let loginButton = document.getElementById()
 
+            if (hamburgerIcon && navLinks) {
+                hamburgerIcon.addEventListener('click', function () {
+                    navLinks.classList.toggle('show');
+                });
+            }
+        });
     </script>
 
 {/block}
