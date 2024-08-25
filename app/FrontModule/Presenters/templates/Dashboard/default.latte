@@ -78,10 +78,11 @@
 
 {block css}
     <style>
-
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .dashboard-container {
@@ -116,7 +117,6 @@
         .flower-age-div {
             display: flex;
             justify-content: center;
-
         }
 
         .nav {
@@ -130,7 +130,6 @@
             justify-content: space-between;
             gap: 1.5rem;
         }
-
 
         .btn-profile-pic {
             width: 72px;
@@ -172,6 +171,7 @@
             color: #3a623a;
             margin-bottom: 0.5rem;
         }
+
         .about-user p:last-child {
             margin-bottom: 2rem;
         }
@@ -185,12 +185,12 @@
             position: relative;
         }
 
-
         .nav-emoji {
             display: inline-block;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
         }
+
         .nav-emoji:hover {
             transform: scale(1.2);
             filter: brightness(1.2);
@@ -208,6 +208,89 @@
             transform: scale(1.1);
             filter: brightness(1.2);
         }
+        
+        @media (max-width: 1200px) {
+            .dashboard-container {
+                max-width: calc(100% - 20rem);
+                padding: 3rem 4rem;
+            }
+
+            .about-user h1 {
+                font-size: 2.2rem;
+            }
+
+            .btn {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-container {
+                max-width: calc(100% - 10rem);
+                padding: 2.5rem 3rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .about-user h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                font-size: 1.5rem;
+            }
+
+            .flower-age {
+                max-width: 60%;
+                font-size: 1rem;
+            }
+
+            .flower-emoji {
+                font-size: 9rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-container {
+                max-width: calc(100% - 5rem);
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .btn-profile-pic {
+                width: 60px;
+                height: 60px;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+            }
+
+            .about-user h1 {
+                font-size: 1.5rem;
+            }
+
+            .about-user p {
+                font-size: 1rem;
+            }
+
+            .flower-age {
+                max-width: 80%;
+                font-size: 0.9rem;
+            }
+
+            .flower-emoji {
+                font-size: 7rem;
+            }
+        }
+
     </style>
 {/block}
 

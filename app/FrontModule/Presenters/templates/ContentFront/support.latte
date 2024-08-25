@@ -17,7 +17,7 @@ Support Us Page
                 <a n:href="ContentFront:about" class="front-nav">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="front-nav">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="front-nav active">💚 Support Us</a>
-                <a n:href="Homepage:default" class="front-nav" id="hideHome">🏠 Home</a>
+                <a n:href="Homepage:default" class="front-nav" id="homeHide">🏠 Home</a>
             </div>
             <a n:href="Auth:login" class="login-link" id="loginButton">Login</a>
         </div>
@@ -189,20 +189,14 @@ Support Us Page
                 padding: 3rem 4rem 1.5rem;
             }
 
-            .nav-links {
-                flex-direction: column;
-            }
-
             .front-pages {
-                flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                gap: 1.5rem;
             }
 
             .login-link {
                 padding: 0.5rem 1.5rem;
                 font-size: 0.9rem;
-                margin-top: 2.5rem;
-                width: 100%;
             }
         }
 
@@ -213,7 +207,7 @@ Support Us Page
             }
 
             .front-nav, .login-link {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .welcome-title {
@@ -233,10 +227,6 @@ Support Us Page
                 font-size: 1.1rem;
             }
 
-            .login-link {
-                width: 100%;
-            }
-
             .description {
                 font-size: 0.9rem;
                 text-indent: 0.5rem;
@@ -250,16 +240,27 @@ Support Us Page
                 border: 0.3rem dashed #88bd8f;
             }
 
-            .nav-links, .front-pages {
+            .nav-links {
                 flex-direction: column;
                 align-items: center;
             }
 
+            .front-pages {
+                display: none;
+                flex-direction: column;
+            }
+
+            .front-nav:first-child {
+                margin-top: 1.5rem;
+            }
+
             .login-link {
-                width: 100%;
+                margin-top: 1.5rem;
+                width: 20%;
                 padding: 0.5rem 0;
                 font-size: 1rem;
                 box-sizing: border-box;
+                display: none;
             }
 
             .welcome-title {
@@ -283,6 +284,16 @@ Support Us Page
                 font-size: 0.85rem;
                 text-indent: 0.5rem;
             }
+
+            .hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            #homeHide {
+                display: none !important;
+            }
         }
 
 
@@ -293,7 +304,18 @@ Support Us Page
 {block script}
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let hamburgerIcon = document.getElementById('hamburger-icon');
+            let navLinks = document.getElementById('nav-links');
+            let loginButton = document.getElementById('loginButton');
 
+            if (hamburgerIcon && navLinks) {
+                hamburgerIcon.addEventListener('click', function () {
+                    navLinks.classList.toggle('show');
+                    loginButton.classList.toggle('showLogin');
+                });
+            }
+        });
     </script>
 
 {/block}
