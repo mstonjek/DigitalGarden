@@ -1,0 +1,27 @@
+:sunflower: Introducing the Digital Garden! :green_heart:
+
+
+:rocket: Heyy Hack Clubbers, I've just shipped a new project for Arcade, and I need YOU to help it grow:potted_plant:
+
+
+:cherry_blossom: Welcome to the Digital Garden :herb: – a virtual space where everyone can plant a flower. :blossom: It’s super simple: you just need a GitHub account and a touch of creativity. :star2: But here’s the twist: each user can plant only ONE flower! :hibiscus:
+
+
+:sunflower: Imagine a garden full of unique flowers from Hack Clubbers all over the world. :earth_africa: The more people join, the more diverse and beautiful our garden becomes. :tulip: Which flower will you add to our garden?:rose:
+
+
+:point_right: Why should you join?
+:stopwatch: It’s quick and easy! Takes just a few minutes.
+:star2: Your flower matters! Every flower adds something special to our garden.
+:tada: Be part of something fun and unique! Let’s see how many different flowers we can grow together.
+
+
+:warning: Heads up: This is an early demo, so there might be a few bugs :bug:, but that’s part of the adventure, right? :sweat_smile: ( Not mobile friendly yet :no_mobile_phones:)
+
+
+:globe_with_meridians: Visit the Digital Garden and plant your flower today! :sunflower:
+:octopus:Check out the GitHub Repo  if you’re curious about the code or want to contribute. :farmer:
+
+
+:herb: Help our garden grow – plant your flower today! :cherry_blossom:
+#digital-garden #help-needed #hackclub

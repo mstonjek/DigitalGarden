@@ -90,31 +90,31 @@ Flower {$flower->flowerName}
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .flower-details-container {
-            max-width: calc(100% - 30rem);
             margin: 2.5rem auto;
-            padding: 3.5rem 5rem;
+            padding: 2rem;
             background-color: #e5ffe5;
             background-image: url('https://www.transparenttextures.com/patterns/little-pluses.png');
-            border-radius: 2.5rem;
-            text-align: left;
+            border-radius: 1rem;
             box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
             border: 0.4rem dashed #88bd8f;
+            max-width: 90%;
+            box-sizing: border-box;
         }
 
-
-
         .nav-menu {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .return-link {
-            text-decoration: none;
-            font-size: 3rem;
+            font-size: 2rem;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
         }
@@ -124,108 +124,89 @@ Flower {$flower->flowerName}
             filter: brightness(1.2);
         }
 
-        .date-of-plant{
-            font-size: 1.65rem;
+        .date-of-plant {
+            font-size: 1.5rem;
         }
-
-
 
         .flower-header {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
         .flower-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #3a623a;
-            font-weight: lighter;
             margin: 0;
         }
 
         .flower-latin-name {
-            font-size: 1.65rem;
+            font-size: 1.5rem;
             color: #666;
             margin-top: 0;
         }
 
         .flower-description {
-            font-size: 1.2rem;
-            max-width: 45%;
+            font-size: 1.1rem;
             text-align: justify;
             color: #3a623a;
+            margin-top: 1rem;
         }
-
-
 
         .main-content {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            align-items: flex-start;
             justify-content: space-between;
+            gap: 1rem;
             margin-top: 2rem;
-            margin-bottom: 0.5rem;
         }
 
-        .flower-related {
+        .flower-related, .user-related {
             border: 1px solid #4CAF50;
             background-color: #c8e6c9;
-            color: #3a623a; /* temporary color */
+            color: #3a623a;
             border-radius: 1rem;
-            width: 45%;
-        }
-
-        .flower-info {
-            border-bottom: 0.1rem dashed #4caf50;
             padding: 1rem;
+            flex: 1;
         }
 
-        .flower-profession {
+        .flower-info, .flower-profession, .flower-hobbies {
             border-bottom: 0.1rem dashed #4caf50;
-            padding: 1rem;
-        }
-
-        .flower-hobbies {
             padding: 1rem;
         }
 
         .flower-link {
-            text-decoration: none;
-            font-size: 1.25rem;
-            margin-left: 0.5rem;
+            font-size: 1.1rem;
             display: inline-block;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
         }
 
         .flower-link:hover {
-            transform: scale(1.55);
+            transform: scale(1.2);
             filter: brightness(1.1);
         }
 
         .info-item span {
             color: #4caf50;
-            font-size: 1.2rem;
-        }
-
-
-
-        .user-related {
-            width: 45%;
+            font-size: 1.1rem;
         }
 
         .owner-header {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
             align-items: center;
-            gap: 0.1rem;
+            gap: 0.5rem;
         }
 
         .top-section {
             border: 2px solid darkslategrey;
             padding: 1rem;
             border-radius: 1rem;
+            margin-bottom: 1rem;
         }
 
         .contact-section {
@@ -233,8 +214,8 @@ Flower {$flower->flowerName}
         }
 
         .contact-instance {
-            margin-top: 2rem;
-            font-size: 1.3rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 0;
         }
 
@@ -243,26 +224,11 @@ Flower {$flower->flowerName}
         }
 
         .contact-email {
-            text-decoration: none;
-            display: inline-block;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: lighter;
-            margin-top: 0.35rem;
             color: #666;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
-        }
-
-        .emoji-contact {
-            font-size: 1.45rem;
-        }
-
-        .planet-emoji {
-            font-size: 1.35rem;
-        }
-
-        .star-emoji {
-            font-size: 1.85rem;
         }
 
         .contact-email:hover {
@@ -270,28 +236,28 @@ Flower {$flower->flowerName}
             filter: brightness(1.2);
         }
 
+        .emoji-contact, .planet-emoji, .star-emoji {
+            font-size: 1.2rem;
+        }
+
         .question-title {
             text-align: center;
             margin: 0 0 1rem;
-            font-size: 1.65rem;
+            font-size: 1.3rem;
             color: #4caf50;
-            font-weight: normal;
         }
 
         .owner-name {
-            margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #3a623a;
         }
 
         .owner-username {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             text-align: center;
-            margin: 0;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
-            font-weight: lighter;
         }
 
         .owner-username-link {
@@ -305,8 +271,7 @@ Flower {$flower->flowerName}
         }
 
         .owner-avatar {
-            max-width: 20%;
-            max-height: 20%;
+            max-width: 50%;
             border-radius: 50%;
         }
 
