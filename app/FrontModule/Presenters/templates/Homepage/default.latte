@@ -41,10 +41,11 @@ Homepage
 
 {block css}
     <style>
-
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .homepage-container {
@@ -116,16 +117,13 @@ Homepage
             text-align: center;
         }
 
-
         .welcome-title {
-            text-align: center;
             font-size: 2.5rem;
             margin: 1.5rem 0 0;
             color: #3d6e3d;
         }
 
         .plant-flower {
-            text-align: center;
             font-size: 1.5rem;
             font-style: italic;
             color: #666;
@@ -145,7 +143,6 @@ Homepage
             padding: 1rem;
             border-radius: 1rem;
             min-height: 45vh;
-            width: 100%;
             background-color: #c0f5c5;
             text-align: center;
             margin: 2rem auto 0;
@@ -170,7 +167,101 @@ Homepage
             filter: brightness(1.1);
         }
 
+        @media (max-width: 1200px) {
+            .homepage-container {
+                max-width: calc(100% - 20rem);
+                padding: 3rem 4rem 1.5rem;
+            }
 
+            .about-us-link {
+                font-size: 0.9rem !important;
+            }
+
+            .login-link {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .homepage-container {
+                max-width: calc(100% - 10rem);
+                padding: 2.5rem 3rem 1rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .plant-flower {
+                font-size: 1.2rem;
+            }
+
+            .garden-preview {
+                padding: 1rem;
+                min-height: 35vh;
+            }
+
+            .garden-title {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .front-pages {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                margin-top: 1rem;
+            }
+
+            .login-link {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .homepage-container {
+                max-width: calc(100% - 5rem);
+                padding: 2rem 1.5rem 0.5rem;
+            }
+
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+
+            .plant-flower {
+                font-size: 1rem;
+            }
+
+            .garden-info {
+                font-size: medium;
+            }
+
+            .garden-title {
+                font-size: 0.9rem;
+            }
+
+            .flower {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .front-pages {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .login-link {
+                width: 100%;
+                padding: 0.5rem 1rem;
+            }
+        }
     </style>
-
 {/block}

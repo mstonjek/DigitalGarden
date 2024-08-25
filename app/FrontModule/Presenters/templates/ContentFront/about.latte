@@ -18,7 +18,7 @@
                 <a n:href="ContentFront:support" class="front-nav">💚 Support Us</a>
                 <a n:href="Homepage:default" class="front-nav" id="homeHide">🏠 Home</a>
             </div>
-            <a n:href="Auth:login" class="login-link">Login</a>
+            <a n:href="Auth:login" class="login-link" id="loginButton">Login</a>
         </div>
 
         <div class="titles">
@@ -173,6 +173,10 @@
             color: #467341;
         }
 
+        .showLogin {
+            display: inline-block !important;
+        }
+
         .show {
             display: flex !important;
         }
@@ -304,13 +308,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var hamburgerIcon = document.getElementById('hamburger-icon');
-            var navLinks = document.getElementById('nav-links');
-            let loginButton = document.getElementById()
+            let hamburgerIcon = document.getElementById('hamburger-icon');
+            let navLinks = document.getElementById('nav-links');
+            let loginButton = document.getElementById('loginButton');
 
             if (hamburgerIcon && navLinks) {
                 hamburgerIcon.addEventListener('click', function () {
                     navLinks.classList.toggle('show');
+                    loginButton.classList.toggle('showLogin');
                 });
             }
         });
