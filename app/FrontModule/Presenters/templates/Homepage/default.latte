@@ -7,14 +7,21 @@ Homepage
 
     <div class="homepage-container">
         {include flashes}
+
+            <div class="hamburger-menu">
+                <a n:href="Homepage:default" style="margin: 0 !important" class="about-us-link">🏠 Home</a>
+                <div class="hamburger-icon" id="hamburger-icon">
+                    &#9776;
+                </div>
+            </div>
         <div class="nav-links">
-            <div class="front-pages">
+            <div class="front-pages" id="nav-links">
                 <a n:href="ContentFront:about" class="about-us-link">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="about-us-link">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="about-us-link">💚 Support Us</a>
-                <a n:href="Homepage:default" class="about-us-link active">🏠 Home</a>
+                <a n:href="Homepage:default" class="about-us-link active" id="homeHide">🏠 Home</a>
             </div>
-            <a n:href="Auth:login" class="login-link">Login</a>
+            <a n:href="Auth:login" class="login-link" id="loginButton">Login</a>
         </div>
 
         <div class="titles">
@@ -84,7 +91,7 @@ Homepage
 
         .login-link {
             border: 1px solid #004d40;
-            padding: 0.75rem 2.5rem;
+            padding: 0.75rem 1.5rem;
             font-size: 1rem;
             border-radius: 0.75rem;
             background-color: #e5ffe5;
@@ -167,6 +174,23 @@ Homepage
             filter: brightness(1.1);
         }
 
+        .hamburger-menu {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 1.5rem;
+            color: #467341;
+        }
+
+        .showLogin {
+            display: inline-block !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+
         @media (max-width: 1200px) {
             .homepage-container {
                 max-width: calc(100% - 20rem);
@@ -179,6 +203,10 @@ Homepage
 
             .login-link {
                 font-size: 0.9rem !important;
+            }
+
+            .front-pages {
+                gap: 2rem;
             }
         }
 
@@ -205,19 +233,17 @@ Homepage
                 font-size: 1rem;
             }
 
-            .nav-links {
-                flex-direction: column;
+            .about-us-link {
+                font-size: 0.8rem !important;
             }
 
             .front-pages {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-                margin-top: 1rem;
+                gap: 1.5rem;
             }
 
             .login-link {
                 text-align: center;
+                font-size: 0.8rem !important;
             }
         }
 
@@ -226,6 +252,8 @@ Homepage
                 max-width: calc(100% - 5rem);
                 padding: 2rem 1.5rem 0.5rem;
             }
+
+
 
             .welcome-title {
                 font-size: 1.5rem;
@@ -254,14 +282,50 @@ Homepage
 
             .front-pages {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1.5rem;
                 align-items: center;
+                display: none;
+            }
+
+            .front-pages:first-child {
+                margin-top: 1.25rem;
             }
 
             .login-link {
-                width: 100%;
+                width: 20%;
+                margin-top: 1.25rem;
                 padding: 0.5rem 1rem;
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            #homeHide {
+                display: none !important;
             }
         }
     </style>
 {/block}
+
+        {block script}
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    let hamburgerIcon = document.getElementById('hamburger-icon');
+                    let navLinks = document.getElementById('nav-links');
+                    let loginButton = document.getElementById('loginButton');
+
+                    if (hamburgerIcon && navLinks) {
+                        hamburgerIcon.addEventListener('click', function () {
+                            navLinks.classList.toggle('show');
+                            loginButton.classList.toggle('showLogin');
+                        });
+                    }
+                });
+            </script>
+
+        {/block}

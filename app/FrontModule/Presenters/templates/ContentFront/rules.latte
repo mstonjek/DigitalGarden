@@ -5,13 +5,20 @@ Garden Rules Page
 
     <div class="rules-container">
         <div class="nav-links">
-            <div class="front-pages">
+            <div class="hamburger-menu">
+                <a n:href="Homepage:default" style="margin: 0 !important" class="front-nav">🏠 Home</a>
+                <div class="hamburger-icon" id="hamburger-icon">
+                    &#9776;
+                </div>
+            </div>
+
+            <div class="front-pages" id="nav-links">
                 <a n:href="ContentFront:about" class="front-nav">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="front-nav active">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="front-nav">💚 Support Us</a>
-                <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
+                <a n:href="Homepage:default" class="front-nav" id="homeHide">🏠 Home</a>
             </div>
-            <a n:href="Auth:login" class="login-link">Login</a>
+            <a n:href="Auth:login" class="login-link" id="loginButton">Login</a>
         </div>
 
         <div class="titles">
@@ -154,6 +161,23 @@ Garden Rules Page
             margin-bottom: 1.5rem !important;
         }
 
+        .hamburger-menu {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 1.5rem;
+            color: #467341;
+        }
+
+        .showLogin {
+            display: inline-block !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+
         @media (max-width: 1200px) {
             .rules-container {
                 max-width: calc(100% - 20rem);
@@ -161,19 +185,17 @@ Garden Rules Page
             }
 
             .nav-links {
-                flex-direction: column;
+                font-size: 0.9rem;
             }
 
             .front-pages {
-                flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                gap: 1.5rem;
             }
 
             .login-link {
                 padding: 0.5rem 1.5rem;
                 font-size: 0.9rem;
-                margin-top: 2.5rem;
-                width: 100%;
             }
         }
 
@@ -184,7 +206,7 @@ Garden Rules Page
             }
 
             .front-nav, .login-link {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .welcome-title {
@@ -193,10 +215,6 @@ Garden Rules Page
 
             .plant-flower {
                 font-size: 1.2rem;
-            }
-
-            .login-link {
-                width: 100%;
             }
 
             .main-content {
@@ -221,16 +239,27 @@ Garden Rules Page
                 border: 0.3rem dashed #88bd8f;
             }
 
-            .nav-links, .front-pages {
+            .nav-links {
                 flex-direction: column;
                 align-items: center;
             }
 
+            .front-pages {
+                display: none;
+                flex-direction: column;
+            }
+
+            .front-nav:first-child {
+                margin-top: 1.5rem;
+            }
+
             .login-link {
-                width: 100%;
+                margin-top: 1.5rem;
+                width: 20%;
                 padding: 0.5rem 0;
                 font-size: 1rem;
                 box-sizing: border-box;
+                display: none;
             }
 
             .welcome-title {
@@ -254,8 +283,38 @@ Garden Rules Page
                 font-size: 0.85rem;
                 text-indent: 0.5rem;
             }
+
+            .hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            #homeHide {
+                display: none !important;
+            }
         }
 
     </style>
+
+{/block}
+
+
+{block script}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let hamburgerIcon = document.getElementById('hamburger-icon');
+            let navLinks = document.getElementById('nav-links');
+            let loginButton = document.getElementById('loginButton');
+
+            if (hamburgerIcon && navLinks) {
+                hamburgerIcon.addEventListener('click', function () {
+                    navLinks.classList.toggle('show');
+                    loginButton.classList.toggle('showLogin');
+                });
+            }
+        });
+    </script>
 
 {/block}

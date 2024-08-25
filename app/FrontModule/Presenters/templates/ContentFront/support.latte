@@ -6,13 +6,20 @@ Support Us Page
 
     <div class="support-container">
         <div class="nav-links">
-            <div class="front-pages">
+            <div class="hamburger-menu">
+                <a n:href="Homepage:default" style="margin: 0 !important" class="front-nav">🏠 Home</a>
+                <div class="hamburger-icon" id="hamburger-icon">
+                    &#9776;
+                </div>
+            </div>
+
+            <div class="front-pages" id="nav-links">
                 <a n:href="ContentFront:about" class="front-nav">🌟 About Project</a>
                 <a n:href="ContentFront:rules" class="front-nav">🌿 Garden Rules</a>
                 <a n:href="ContentFront:support" class="front-nav active">💚 Support Us</a>
-                <a n:href="Homepage:default" class="front-nav">🏠 Home</a>
+                <a n:href="Homepage:default" class="front-nav" id="hideHome">🏠 Home</a>
             </div>
-            <a n:href="Auth:login" class="login-link">Login</a>
+            <a n:href="Auth:login" class="login-link" id="loginButton">Login</a>
         </div>
 
         <div class="titles">
@@ -159,6 +166,23 @@ Support Us Page
             color: darkblue;
         }
 
+        .hamburger-menu {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 1.5rem;
+            color: #467341;
+        }
+
+        .showLogin {
+            display: inline-block !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+
         @media (max-width: 1200px) {
             .support-container {
                 max-width: calc(100% - 20rem);
@@ -263,5 +287,13 @@ Support Us Page
 
 
     </style>
+
+{/block}
+
+{block script}
+
+    <script>
+
+    </script>
 
 {/block}
