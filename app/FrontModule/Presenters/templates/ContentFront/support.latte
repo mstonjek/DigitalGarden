@@ -50,6 +50,8 @@ Support Us Page
         body {
             background-color: #ddf6dd;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .support-container {
@@ -141,9 +143,6 @@ Support Us Page
             font-size: 1.3rem;
             margin: 1rem 0 0 0;
         }
-        .description:last-child {
-            margin-bottom: 1.5rem!important;
-        }
 
         .description {
             margin: 0 0 1rem;
@@ -152,9 +151,117 @@ Support Us Page
             text-indent: 1rem;
         }
 
+        .description:last-child {
+            margin-bottom: 1.5rem!important;
+        }
+
         .github-link {
             color: darkblue;
         }
+
+        @media (max-width: 1200px) {
+            .support-container {
+                max-width: calc(100% - 20rem);
+                padding: 3rem 4rem 1.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .front-pages {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .login-link {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+                margin-top: 2.5rem;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .support-container {
+                max-width: calc(100% - 10rem);
+                padding: 2.5rem 3rem 1rem;
+            }
+
+            .front-nav, .login-link {
+                font-size: 0.9rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .plant-flower {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                padding: 1.5rem 2rem;
+                margin: 1.5rem auto;
+            }
+
+            .description-title {
+                font-size: 1.1rem;
+            }
+
+            .login-link {
+                width: 100%;
+            }
+
+            .description {
+                font-size: 0.9rem;
+                text-indent: 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .support-container {
+                max-width: calc(100% - 5rem);
+                padding: 2rem 1.5rem 0.5rem;
+                border: 0.3rem dashed #88bd8f;
+            }
+
+            .nav-links, .front-pages {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login-link {
+                width: 100%;
+                padding: 0.5rem 0;
+                font-size: 1rem;
+                box-sizing: border-box;
+            }
+
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+
+            .plant-flower {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+                margin: 0.5rem auto;
+            }
+
+            .description-title {
+                font-size: 1rem;
+            }
+
+            .description {
+                font-size: 0.85rem;
+                text-indent: 0.5rem;
+            }
+        }
+
+
     </style>
 
 {/block}
