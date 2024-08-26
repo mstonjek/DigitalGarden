@@ -25,12 +25,85 @@ Public Garden
                     {/foreach}
 
                     {foreach $randomEmojis as $emoji}
-                        <div class="garden-element" style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{$emoji}</div>
+                        {if $emoji === "🛌"}
+                            <div id="supaDupaSecretThing" style="cursor: pointer;" class="garden-element" style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{$emoji}</div>
+                        {else}
+                            <div class="garden-element" style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%;">{$emoji}</div>
+                        {/if}
+
                     {/foreach}
                 </div>
         </div>
     </div>
 
+
+
+
+{/block}
+
+{block script}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const flowerEmoji = document.getElementById("supaDupaSecretThing");
+
+            let clickCount = 0;
+            flowerEmoji.addEventListener('click', function () {
+                clickCount++;
+                if (clickCount === 3) {
+                    triggerEasterEgg();
+                }
+            });
+
+            function triggerEasterEgg() {
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                overlay.style.zIndex = 1000;
+                overlay.style.opacity = 0;
+                overlay.style.transition = 'opacity 0.5s';
+                document.body.appendChild(overlay);
+                setTimeout(() => overlay.style.opacity = 1, 10);
+
+                setTimeout(() => {
+                    const lawnMower = document.createElement('div');
+                    lawnMower.style.position = 'fixed';
+                    lawnMower.style.bottom = '25%';
+                    lawnMower.style.left = '25%';
+                    lawnMower.style.width = '35rem';
+                    lawnMower.style.height = '25rem';
+                    lawnMower.style.backgroundImage = 'url("https://cdn.pixabay.com/photo/2017/06/04/11/40/lawn-mower-2370837_1280.jpg")';
+                    lawnMower.style.backgroundSize = 'cover';
+                    lawnMower.style.zIndex = 1001;
+                    lawnMower.style.transition = 'transform 3s ease-in-out, opacity 3s ease-in-out';
+                    document.body.appendChild(lawnMower);
+
+                    const audio = new Audio("https://cdn.freesound.org/previews/60/60609_27178-lq.mp3");
+                    audio.play();
+
+                    setTimeout(() => {
+                        lawnMower.remove();
+                        overlay.remove();
+                        showSecretReward();
+                    }, 21000);
+
+                }, 1000);
+            }
+
+            function showSecretReward() {
+                alert("Congratulations! You’ve discovered the secret lawn cutter! Good job!");
+            }
+        });
+    </script>
+
+
+{/block}
+
+{block css}
     <style>
 
         body {
@@ -201,19 +274,4 @@ Public Garden
 
     </style>
 
-
-
-{/block}
-
-
-{block css}
-    <style>
-
-
-
-
-
-
-
-    </style>
 {/block}

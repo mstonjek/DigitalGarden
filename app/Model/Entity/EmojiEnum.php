@@ -27,6 +27,7 @@ enum OtherGardenEmojiEnum: string
 {
     use RandomEmojiTrait;
     case WOLF = "🐺";
+    case SECRET_SUPA_BED = "🛌";
     case BUTTERFLY = "🦋";
     case BEE = "🐝";
     case LADYBUG = "🐞";
