@@ -49,7 +49,9 @@
 
             $this->template->user = $user;
             $this->template->userFlag = $this->flagConverter->getFlag($user->location);
-            $this->template->flowerFlag = $this->flagConverter->getFlowerFlag($user->flower->country);
+            if ($user->flower !== null) {
+                $this->template->flowerFlag = $this->flagConverter->getFlowerFlag($user->flower->country);
+            }
             $this->template->backUrl = $returnUrl;
         }
 

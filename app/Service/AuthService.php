@@ -30,7 +30,9 @@ class AuthService
 
     public function getAuthorizationUrl(): string
     {
-        return $this->provider->getAuthorizationUrl();
+        return $this->provider->getAuthorizationUrl([
+            'scope' => ['user', 'user:email'],
+        ]);
     }
 
     public function getAccessToken(string $code): AccessToken
@@ -42,9 +44,14 @@ class AuthService
 
     public function getUser(AccessToken $token): array
     {
-        $resourceOwner = $this->provider->getResourceOwner($token);
-        return $resourceOwner->toArray();
+        try {
+            $resourceOwner = $this->provider->getResourceOwner($token);
+            return $resourceOwner->toArray();
+        } catch (GithubIdentityProviderException $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
+
 
     public function findOrCreateUser(array $userData): void
     {

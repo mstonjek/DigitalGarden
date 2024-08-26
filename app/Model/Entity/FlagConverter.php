@@ -4,19 +4,24 @@ namespace App\Model\Entity;
 
 class FlagConverter
 {
-    public function getFlowerFlag(string $country): string
+    public function getFlowerFlag(?string $country): string
     {
+        if ($country === null || $country === '') {
+            return \OtherFlagsEmojiEnum::getRandomEmoji(1);
+        }
+
         $countryCode = strtoupper(substr($country, 0, 2));
         $flag = $this->countryCodeToFlag($countryCode);
 
         return $flag;
     }
 
-    public function getFlag(string $country): string
+    public function getFlag(?string $country): string
     {
-        if (empty($country)) {
+        if ($country === null || $country === '') {
             return "🌍";
         }
+
         $countryCode = strtoupper(substr($country, 0, 2));
         return $this->countryCodeToFlag($countryCode);
     }
