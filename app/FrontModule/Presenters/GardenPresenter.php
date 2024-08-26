@@ -58,7 +58,6 @@ class GardenPresenter extends Presenter
             $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
             $this->redirect('Homepage:');
         }
-
         if ($user->flower !== null) {
             $this->flashMessage('You already have a flower!', "alert-danger");
             $this->redirect('Dashboard:');
