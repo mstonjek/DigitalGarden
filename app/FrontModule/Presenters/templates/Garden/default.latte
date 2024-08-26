@@ -2,15 +2,7 @@
 Public Garden
 {/block}
 {block content}
-    {php
-        $flowers = array_map(function($flower) {
-        $flower->randomTop = rand(0, 90);
-        $flower->randomLeft = rand(0, 90);
-        $flower->randomRotate = rand(-30, 30);
-        return $flower;
-        }, $flowers);
-
-    }
+   
 
     <div class="garden-container">
 
@@ -30,7 +22,7 @@ Public Garden
 
                 <div class="garden-container-table">
                     {foreach $flowers as $flower}
-                        <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::GARDEN->value" title="{$flower->flowerName}" class="flower">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</a>
+                        <a style="top: {randomNum(1,90)}%; left: {randomNum(1,90)}%; transform: rotate({randomNum(1, 90)}deg)" n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::GARDEN->value" title="{$flower->flowerName}" class="flower">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</a>
                     {/foreach}
 
                     {foreach $randomEmojis as $emoji}
@@ -141,20 +133,15 @@ Public Garden
             background-color: #4caf50;
             overflow: hidden;
         }
-        {ifset $flower}
+
         .flower {
             position: absolute;
             font-size: 2rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            top: {$flower->randomTop}%;
-            left: {$flower->randomLeft}%;
-            transform: rotate({$flower->randomRotate}deg);
             text-decoration: none;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
         }
-        {/ifset}
-
 
         .flower:hover {
             transform: scale(1.2);
