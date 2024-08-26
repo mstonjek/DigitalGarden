@@ -268,13 +268,117 @@
             text-decoration: none;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 880px) {
             .profile-container {
-                padding: 1rem;
+                padding: 2.5rem 2.5rem;
+                max-width: calc(100% - 8rem);
             }
 
+            .date-of-join {
+                font-size: 1.2rem;
+            }
 
+            .profile-header h1 {
+                font-size: 2.25rem;
+            }
+
+            .profile-header p {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .return-link a {
+                font-size: 2.5rem;
+            }
+
+            .profile-header {
+                flex-direction: column;
+            }
+
+            .profile-avatar {
+                margin-top: 1rem;
+                max-width: 35%;
+                max-height: 35%;
+            }
+
+            .flower-info, .bio-div, .profile-info {
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .flower-name {
+                font-size: 1.35rem;
+            }
+
+            .flower-description {
+                font-size: 1.1rem;
+            }
+
+            .bio-text {
+                font-size: 1rem;
+            }
+
+            .profile-info li {
+                font-size: 1.15rem;
+            }
         }
+
+        @media (max-width: 550px) {
+            .profile-container {
+                padding: 2rem 1.5rem;
+                max-width: calc(100% - 4rem);
+            }
+
+            .date-of-join {
+                font-size: 1rem;
+            }
+
+            .profile-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .profile-header p {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .return-link a {
+                font-size: 1.8rem;
+            }
+
+            .profile-avatar {
+                margin-top: 1rem;
+                max-width: 50%;
+                max-height: 50%;
+            }
+
+            .flower-info, .bio-div, .profile-info {
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .flower-name {
+                font-size: 1.15rem;
+            }
+
+            .flower-description {
+                font-size: 1rem;
+            }
+
+            .flower-quote {
+                font-size: 1.25rem;
+            }
+
+            .bio-text {
+                font-size: 0.95rem;
+            }
+
+            .profile-info li {
+                font-size: 1rem;
+            }
+        }
+
+
 
     </style>
 {/block}
