@@ -31,7 +31,7 @@ class AuthService
     public function getAuthorizationUrl(): string
     {
         return $this->provider->getAuthorizationUrl([
-            'scope' => ['user', 'user:email'],
+            'scope' => ['read:user', 'user:email'],
         ]);
     }
 
@@ -61,7 +61,7 @@ class AuthService
             $user = new User();
             $user->githubId = $userData['id'];
             $user->username = $userData['login'];
-            $user->name = $userData['name'];
+            $user->name = $userData['name'] ?? $userData['login'];
             $user->email = $userData['email'];
             $user->avatarUrl = $userData['avatar_url'];
             $user->bio = $userData['bio'];
