@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Model\Entity\User;
 use App\Model\Repository\UserRepository;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\Github;
 use League\OAuth2\Client\Token\AccessToken;
-use App\Model\Entity\User;
 use Nette\SmartObject;
 
 class AuthService
@@ -71,18 +71,34 @@ class AuthService
 
         if (!$user) {
             $user = new User();
-            $user->githubId = $userData['id'];
+            // GitHub user IDs are integers; the entity property is string-typed
+            // and this file uses strict types, so the cast is mandatory.
+            $user->githubId = (string) $userData['id'];
             $user->username = $userData['login'];
             $user->name = $userData['name'] ?? $userData['login'];
             // GitHub returns email: null when the user keeps it private.
             $user->email = $userData['email'] ?? $this->fetchPrimaryEmail($token);
-            $user->avatarUrl = $userData['avatar_url'];
+            // profileUrl/avatarUrl are rendered as link href / img src.
+            // Only accept absolute https URLs; otherwise fall back to
+            // deterministic GitHub URLs so the NOT NULL columns stay valid.
+            $user->avatarUrl = self::sanitizeUrl(
+                $userData['avatar_url'] ?? null,
+                'https://avatars.githubusercontent.com/u/' . $user->githubId . '?v=4'
+            );
             $user->bio = $userData['bio'];
-            $user->profileUrl = $userData['html_url'];
+            $user->profileUrl = self::sanitizeUrl(
+                $userData['html_url'] ?? null,
+                'https://github.com/' . $userData['login']
+            );
             $user->location = $userData['location'];
 
-            $user = $this->userRepository->update($user);
+            $this->userRepository->update($user);
         }
+    }
+
+    private static function sanitizeUrl(mixed $url, string $fallback): string
+    {
+        return is_string($url) && str_starts_with($url, 'https://') ? $url : $fallback;
     }
 
     /**

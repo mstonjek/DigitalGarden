@@ -10,6 +10,36 @@ extensions:
 session:
 	expiration: 14 days
 
+http:
+	# Secure flag follows the request scheme (on behind the Coolify TLS
+	# proxy thanks to the trusted proxy ranges below, off on plain-http
+	# local dev). HttpOnly + SameSite=Lax are Nette defaults.
+	# NOTE: SameSite must stay Lax, Strict would drop the session cookie
+	# on the top-level GET redirect back from github.com (OAuth callback).
+	cookieSecure: auto
+	proxy:
+		- 10.0.0.0/8
+		- 172.16.0.0/12
+		- 192.168.0.0/16
+	# Security headers, single source of truth (Apache serves only static
+	# files directly). frames: false => X-Frame-Options: DENY, replacing
+	# Nette's SAMEORIGIN default. CSP stays Report-Only: templates use
+	# inline styles/scripts and GitHub avatar CDN images.
+	frames: false
+	headers:
+		X-Content-Type-Options: nosniff
+		Referrer-Policy: strict-origin-when-cross-origin
+		Permissions-Policy: 'camera=(), microphone=(), geolocation=()'
+	cspReportOnly:
+		default-src: [self]
+		base-uri: [self]
+		img-src: [self, 'https:', 'data:']
+		style-src: [self, "'unsafe-inline'"]
+		script-src: [self, "'unsafe-inline'"]
+		connect-src: [self]
+		frame-ancestors: [none]
+		form-action: [self]
+
 di:
 	export:
 		parameters: no

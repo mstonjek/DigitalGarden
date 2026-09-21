@@ -328,6 +328,19 @@ Search Profiles
 
 {block script}
     <script>
+        // Search results are rendered via innerHTML below, so every value
+        // coming from the server (GitHub profile fields are free text!)
+        // must be HTML-escaped first - otherwise a malicious GitHub display
+        // name would execute as stored XSS in every visitor's browser.
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         function search(rawQuery) {
             const query = rawQuery.startsWith('@') ? rawQuery.substring(1) : rawQuery;
 
@@ -358,17 +371,17 @@ Search Profiles
 
                                 let cardContent = `
                             <div class="user-header">
-                                <img src="${ user.avatarUrl}" alt="Avatar of ${ user.name}" class="user-avatar">
+                                <img src="${ escapeHtml(user.avatarUrl)}" alt="Avatar of ${ escapeHtml(user.name)}" class="user-avatar">
                                 <div class="user-names">
-                                    <p class="user-username"><a class="user-username-link" href="${ user.profileUrl}">@${ user.username}</a></p>
-                                    <h2 class="user-name" >${ user.name}</h2>
+                                    <p class="user-username"><a class="user-username-link" href="${ escapeHtml(user.profileUrl)}">@${ escapeHtml(user.username)}</a></p>
+                                    <h2 class="user-name" >${ escapeHtml(user.name)}</h2>
                                 </div>
-                                ${ user.location ? `<div class="user-location">${ user.location} <span>🌍</span></div>` : ''}
+                                ${ user.location ? `<div class="user-location">${ escapeHtml(user.location)} <span>🌍</span></div>` : ''}
                             </div>
 
                             <div class="user-links">
-                                <a href="${ basePath}/profile/show?username=${ user.username}&backUrl=Profile:default" class="user-profile-link"> 👤 </a>
-                                ${ user.flowerId ? `<a href="${ basePath}/garden/flower?flowerId=${ user.flowerId}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> 🚫 </p>'}
+                                <a href="${ escapeHtml(basePath)}/profile/show?username=${ escapeHtml(user.username)}&backUrl=Profile:default" class="user-profile-link"> 👤 </a>
+                                ${ user.flowerId ? `<a href="${ escapeHtml(basePath)}/garden/flower?flowerId=${ escapeHtml(user.flowerId)}" class="flower-profile-link"> 🌱 </a>` : '<p class="flower-profile-link" style="margin: 0;"> 🚫 </p>'}
                             </div>
                         `;
 

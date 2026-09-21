@@ -6,6 +6,9 @@ Require all granted
 	Options -Indexes
 </IfModule>
 
+# NOTE: security headers are sent by the application (Nette http extension
+# in config/common.neon), so this file only keeps routing/compression rules.
+
 # enable cool URL
 <IfModule mod_rewrite.c>
 	RewriteEngine On
