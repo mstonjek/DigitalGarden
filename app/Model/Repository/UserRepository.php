@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model\Repository;
 
 use App\Model\Entity\User;
-use App\Repository\BaseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserRepository extends BaseRepository
@@ -23,7 +24,7 @@ class UserRepository extends BaseRepository
         return $this->getRepository()->findOneBy(['username' => $username]);
     }
 
-    public function search(string $query = "", int $limit = 50)
+    public function search(string $query = '', int $limit = 50)
     {
         $queryBuilder = $this->getRepository()->createQueryBuilder('l');
 

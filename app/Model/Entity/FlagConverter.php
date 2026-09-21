@@ -1,29 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 class FlagConverter
 {
     public function getFlowerFlag(?string $country): string
     {
-        if ($country === null || $country === '') {
-            return \OtherFlagsEmojiEnum::getRandomEmoji(1);
+        $code = self::countryCode($country);
+        if ($code === null) {
+            return \OtherFlagsEmojiEnum::getRandomEmoji(1)[0];
         }
 
-        $countryCode = strtoupper(substr($country, 0, 2));
-        $flag = $this->countryCodeToFlag($countryCode);
-
-        return $flag;
+        return $this->countryCodeToFlag($code);
     }
 
     public function getFlag(?string $country): string
     {
-        if ($country === null || $country === '') {
-            return "🌍";
+        $code = self::countryCode($country);
+        if ($code === null) {
+            return '🌍';
         }
 
-        $countryCode = strtoupper(substr($country, 0, 2));
-        return $this->countryCodeToFlag($countryCode);
+        return $this->countryCodeToFlag($code);
+    }
+
+    /**
+     * First two ASCII letters of the country name, uppercased.
+     * Anything else (null, empty, too short, non-latin) means "unknown".
+     */
+    private static function countryCode(?string $country): ?string
+    {
+        if ($country === null || $country === '') {
+            return null;
+        }
+
+        $code = strtoupper(substr($country, 0, 2));
+        return strlen($code) === 2 && ctype_alpha($code) ? $code : null;
     }
 
 

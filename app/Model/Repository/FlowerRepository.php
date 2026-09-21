@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+declare(strict_types=1);
+
+namespace App\Model\Repository;
 
 use App\Model\Entity\Flower;
 use App\Model\Entity\User;
-use App\Repository\BaseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class FlowerRepository extends BaseRepository

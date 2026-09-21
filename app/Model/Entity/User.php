@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -30,7 +32,7 @@ class User
     #[ORM\Column(name: 'avatar_url', type: 'string', length: 255)]
     public string $avatarUrl;
 
-    #[ORM\Column(name: 'bio', type: 'text', nullable: true, options: ["collation" => "utf8mb4_unicode_ci"])]
+    #[ORM\Column(name: 'bio', type: 'text', nullable: true, options: ['collation' => 'utf8mb4_unicode_ci'])]
     public ?string $bio = null;
 
     #[ORM\Column(name: 'profile_url', type: 'string', length: 255)]

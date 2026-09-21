@@ -14,4 +14,28 @@
             <file name="app/Bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
+    <!--
+        Presenters, migrations and the router are instantiated reflectively by
+        Nette / Doctrine Migrations, entity properties are read by Latte
+        templates and DI services are constructed by the container - psalm
+        cannot see these usages, so the corresponding "unused" checks are
+        noise in this codebase.
+    -->
+    <issueHandlers>
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </UnusedClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <PossiblyUnusedProperty>
+            <errorLevel type="suppress">
+                <directory name="app/Model/Entity" />
+            </errorLevel>
+        </PossiblyUnusedProperty>
+    </issueHandlers>
 </psalm>

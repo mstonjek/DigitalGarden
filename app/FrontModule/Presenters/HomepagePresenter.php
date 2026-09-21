@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\FrontModule\Presenters;
 
-use App\Repository\FlowerRepository;
-use http\Encoding\Stream\Inflate;
+use App\Model\Repository\FlowerRepository;
 
 class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
 {
@@ -13,12 +14,13 @@ class HomepagePresenter extends \App\FrontModule\FrontBasePresenter
         private FlowerRepository $flowerRepository,
     ) {
     }
+    #[\Override]
     public function beforeRender(): void
     {
         $userId = $this->getSession('user')->id ?? null;
 
         if ($userId) {
-            $this->flashMessage("You're already logged in!", "alert-success");
+            $this->flashMessage("You're already logged in!", 'alert-success');
             $this->redirect('Dashboard:');
         }
     }

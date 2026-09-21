@@ -8,6 +8,7 @@ use App\ProjectBasePresenter;
 
 class BackBasePresenter extends ProjectBasePresenter
 {
+    #[\Override]
     protected function startup(): void
     {
         parent::startup();

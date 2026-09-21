@@ -44,12 +44,12 @@ class AuthPresenter extends Presenter
             || !is_string($sessionState) || $sessionState === ''
             || !hash_equals($sessionState, $state)
         ) {
-            $this->flashMessage('Invalid state occurred!', "alert-danger");
+            $this->flashMessage('Invalid state occurred!', 'alert-danger');
             $this->redirect('Homepage:');
         }
 
         if (!$code) {
-            $this->flashMessage('No code provided!', "alert-danger");
+            $this->flashMessage('No code provided!', 'alert-danger');
             $this->redirect('Homepage:');
         }
 
@@ -63,7 +63,7 @@ class AuthPresenter extends Presenter
         $this->getSession()->regenerateId();
         $this->getSession('user')->id = $user['id'];
 
-        $this->flashMessage('Successfully logged in!', "alert-success");
+        $this->flashMessage('Successfully logged in!', 'alert-success');
         $this->redirect('Dashboard:default');
     }
 }

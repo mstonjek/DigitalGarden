@@ -1,64 +1,63 @@
 <?php
 
-    namespace App\FrontModule\Presenters;
+declare(strict_types=1);
 
-    use App\Model\Entity\User;
+namespace App\FrontModule\Presenters;
 
-    use App\Model\Entity\Flower;
+use App\Model\Entity\Flower;
+use App\Model\Entity\User;
+use App\Model\Repository\FlowerRepository;
+use App\Model\Repository\UserRepository;
+use Nette\Application\UI\Presenter;
 
-    use App\Model\Repository\UserRepository;
+class DashboardPresenter extends Presenter
+{
+    private User $user;
+    private ?Flower $flower = null;
 
-    use App\Repository\FlowerRepository;
 
-    use Nette\Application\UI\Presenter;
+    public function __construct(
+        private UserRepository $userRepository,
+        private FlowerRepository $flowerRepository,
+    ) {
+    }
 
-    class DashboardPresenter extends Presenter
+    #[\Override]
+    public function beforeRender(): void
     {
-        private User $user;
-        private ?Flower $flower = null;
+        $userId = $this->getSession('user')->id ?? null;
 
-
-        public function __construct(
-            private UserRepository $userRepository,
-            private FlowerRepository $flowerRepository,
-        ) {
+        if (!$userId) {
+            $this->flashMessage('You need to be logged in to access this page!', 'alert-danger');
+            $this->redirect('Homepage:');
         }
+    }
 
-        public function beforeRender(): void
-        {
-            $userId = $this->getSession('user')->id ?? null;
+    public function actionLogout(): void
+    {
+        $this->getSession('user')->remove();
+        $this->getSession('oauth2')->remove();
 
-            if (!$userId) {
-                $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
-                $this->redirect('Homepage:');
-            }
-        }
+        $this->flashMessage('You have been logged out.', 'alert-success');
+        $this->redirect('Homepage:');
+    }
 
-        public function actionLogout(): void
-        {
+    public function renderDefault(): void
+    {
+        $userId = $this->getSession('user')->id ?? null;
+        $user = $userId !== null ? $this->userRepository->findByGithubId($userId) : null;
+
+        if ($user === null) {
+            // Stale session (user no longer exists) - force a clean re-login.
             $this->getSession('user')->remove();
-            $this->getSession('oauth2')->remove();
-
-            $this->flashMessage('You have been logged out.', "alert-success");
+            $this->flashMessage('You need to be logged in to access this page!', 'alert-danger');
             $this->redirect('Homepage:');
         }
 
-        public function renderDefault(): void
-        {
-            $userId = $this->getSession('user')->id ?? null;
-            $user = $userId !== null ? $this->userRepository->findByGithubId($userId) : null;
+        $this->user = $user;
+        $this->template->user = $this->user;
 
-            if ($user === null) {
-                // Stale session (user no longer exists) - force a clean re-login.
-                $this->getSession('user')->remove();
-                $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
-                $this->redirect('Homepage:');
-            }
-
-            $this->user = $user;
-            $this->template->user = $this->user;
-
-            $this->flower = $this->flowerRepository->findFlowerByUser($this->user);
-            $this->template->flower = $this->flower;
-        }
+        $this->flower = $this->flowerRepository->findFlowerByUser($this->user);
+        $this->template->flower = $this->flower;
     }
+}
