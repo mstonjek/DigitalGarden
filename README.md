@@ -42,7 +42,6 @@ For a GitHub OAuth app used locally, register `http://localhost:8000/callback` a
 Coolify builds `Dockerfile` directly (multi-stage: composer deps → `php:8.5-apache`, document root `www/`, OPcache, healthcheck). MySQL is provided as a managed service. `docker-entrypoint.sh` runs pending migrations on every deploy — if they fail, the container exits and Coolify keeps the previous version.
 
 Required environment variables (never commit them, `config/local*.neon` is excluded from the image):
-
 | Variable | Example |
 |---|---|
 | `DEBUG_MODE` | `0` |
@@ -80,3 +79,4 @@ php bin/clearcache                   # clears temp/cache
 - CSRF protection on the flower form (`addProtection()`); `webPortfolio` accepts `http(s)` URLs only.
 - Security headers are sent by the application (`http` section in `config/common.neon`); CSP runs in `Report-Only` mode (inline styles/scripts in templates).
 - `Profile:search` JSON endpoint requires a login; search results are HTML-escaped client-side before `innerHTML` rendering.
+- The entrypoint runs console commands as `www-data` (same user as Apache workers) and `chown`s `temp/` + `log/` on boot — generated cache/lock files stay writable, including on persistent volumes mounted over these directories. Never run the container's console as root in production.
