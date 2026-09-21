@@ -1,5 +1,5 @@
 # ---------- Stage 1: production PHP dependencies ----------
-FROM php:8.4-cli AS vendor
+FROM php:8.5-cli AS vendor
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -13,29 +13,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 COPY composer.json composer.lock ./
+# NOTE: --no-autoloader here. composer.json maps app/Bootstrap.php via
+# classmap, but app/ sources are only copied in the runtime stage below -
+# generating the (optimized) autoloader now would fail. It is generated
+# in the runtime stage once all files are present.
 RUN composer install \
     --no-dev \
     --no-scripts \
     --no-progress \
+    --no-autoloader \
     --prefer-dist \
-    --optimize-autoloader \
     --no-interaction
 
 # ---------- Stage 2: runtime ----------
-FROM php:8.4-apache
+FROM php:8.5-apache
 
 RUN a2enmod rewrite headers expires
 
+# The php:8.5 base image already ships mbstring, iconv, PDO and Zend OPcache.
+# Only intl (Nette Forms/Latte) and pdo_mysql are compiled in.
+# GD was dropped: the app serves no generated images (smaller image,
+# less attack surface, faster builds).
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     libicu-dev \
-    zlib1g-dev \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libwebp-dev \
-    libfreetype6-dev \
-    && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install -j$(nproc) gd iconv intl opcache pdo pdo_mysql \
+    && docker-php-ext-install -j$(nproc) intl pdo_mysql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -61,6 +63,13 @@ RUN printf '<Directory /var/www/html/www>\n\tAllowOverride All\n\tRequire all gr
 
 COPY --chown=www-data:www-data . /var/www/html
 COPY --from=vendor --chown=www-data:www-data /app/vendor /var/www/html/vendor
+
+# Generate the optimized autoloader now that app/ sources are present
+# (see the note in the vendor stage above).
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer dump-autoload --optimize --no-dev --no-interaction \
+    && rm /usr/bin/composer
 
 WORKDIR /var/www/html
 

@@ -19,6 +19,11 @@ nettrine.orm:
     managers:
         default:
             connection: default
+            # PHP 8.4+ native lazy objects. Without this, Doctrine ORM falls
+            # back to Symfony LazyGhost, which no longer exists in
+            # symfony/var-exporter 8 (hard failure at EntityManager boot).
+            # Native lazy objects are also mandatory in ORM 4.
+            lazyNativeObjects: true
             mapping:
                 "App.Model.Entity":
                     directories: [%appDir%/Model/Entity]

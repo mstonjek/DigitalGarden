@@ -7,4 +7,5 @@ docker
 documents/*
 config/local.neon
 config/local-prod.neon
+.env
 .github
