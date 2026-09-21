@@ -2,10 +2,10 @@ services:
     - App\Router\RouterFactory::createRouter
     - App\Service\AuthService(%github_client_id%, %github_client_secret%, %github_redirect_uri%)
 search:
-    manager:
-        in: %appDir%/Model/Manager
-        classes:
-            - *Manager
+    # NOTE: there is intentionally no `manager` batch - app/Model/Manager
+    # does not exist (never has in git; an empty leftover dir on old dev
+    # machines is invisible to git but breaks fresh clones, because
+    # SearchExtension requires every `in` directory to exist).
     entity:
         in: %appDir%/Model/Entity
     form:
