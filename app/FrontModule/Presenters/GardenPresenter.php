@@ -51,13 +51,25 @@ class GardenPresenter extends Presenter
 
     public function actionAdd(): void
     {
+        // The login check MUST run before any database call: for anonymous users
+        // getSession('user')->id is null and the repository call below would
+        // throw a TypeError (500 with a stack trace) instead of redirecting.
         $userId = $this->getSession('user')->id ?? null;
-        $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
 
         if (!$userId) {
             $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
             $this->redirect('Homepage:');
         }
+
+        $user = $this->userRepository->findByGithubId($userId);
+
+        if ($user === null) {
+            // Stale session (user no longer exists) - force a clean re-login.
+            $this->getSession('user')->remove();
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
+            $this->redirect('Homepage:');
+        }
+
         if ($user->flower !== null) {
             $this->flashMessage('You already have a flower!', "alert-danger");
             $this->redirect('Dashboard:');
@@ -100,7 +112,16 @@ class GardenPresenter extends Presenter
 
     protected function createComponentAddFlowerForm(): Form
     {
-        $user = $this->userRepository->findByGithubId($this->getSession('user')->id);
+        $userId = $this->getSession('user')->id ?? null;
+        $user = $userId !== null ? $this->userRepository->findByGithubId($userId) : null;
+
+        if ($user === null) {
+            // Unreachable via actionAdd (it redirects), but guards against
+            // stale sessions if the component is ever created directly.
+            $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
+            $this->redirect('Homepage:');
+        }
+
         return $this->flowerFormFactory->create(null, $user, function (Flower $flower): void {
             $this->flashMessage('Flower created successfully!', 'alert-success');
             $this->redirect('Dashboard:');

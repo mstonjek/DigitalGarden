@@ -24,8 +24,8 @@ class User
     #[ORM\Column(name: 'name', type: 'string', length: 255)]
     public string $name;
 
-    #[ORM\Column(name: 'email', type: 'string', length: 255)]
-    public string $email;
+    #[ORM\Column(name: 'email', type: 'string', length: 255, nullable: true)]
+    public ?string $email = null;
 
     #[ORM\Column(name: 'avatar_url', type: 'string', length: 255)]
     public string $avatarUrl;

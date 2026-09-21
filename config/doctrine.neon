@@ -1,39 +1,33 @@
 extensions:
-    doctrine.dbal: Nettrine\DBAL\DI\DbalExtension
-    doctrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
-    doctrine.orm: Nettrine\ORM\DI\OrmExtension
-    doctrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
-    doctrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
-#    doctrine.cache: Nettrine\Cache\DI\CacheExtension
+    nettrine.dbal: Nettrine\DBAL\DI\DbalExtension(%debugMode%)
+    nettrine.orm: Nettrine\ORM\DI\OrmExtension
     nettrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
-    nettrine.fixtures: Nettrine\Fixtures\DI\FixturesExtension
-    nettrine.cache: Nettrine\Cache\DI\CacheExtension
 
-nettrine.fixtures:
-  paths:
-    - %appDir%/fixtures
+nettrine.dbal:
+    types:
+        uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
+    connections:
+        default:
+            driver: pdo_mysql
+            host: %doctrine.host%
+            user: %doctrine.user%
+            password: %doctrine.password%
+            dbname: %doctrine.dbname%
+            charset: utf8mb4
 
-doctrine.orm.attributes:
-    mapping:
-        App\Model\Entity: %appDir%/Model/Entity
+nettrine.orm:
+    managers:
+        default:
+            connection: default
+            mapping:
+                "App.Model.Entity":
+                    directories: [%appDir%/Model/Entity]
+                    namespace: App\Model\Entity
+            defaultCache: Symfony\Component\Cache\Adapter\FilesystemAdapter(namespace: orm, defaultLifetime: 0, directory: %tempDir%/cache/doctrine/orm)
 
 nettrine.migrations:
-  directory: %appDir%/migrations
-  namespace: App\migrations
-  versionsOrganization: null
-  table: doctrine_migrations
-  column: version
-
-nettrine.cache:
-# driver: Doctrine\Common\Cache\ApcuCache()
- driver: Doctrine\Common\Cache\ArrayCache()
-
-doctrine.dbal:
-    debug:
-        panel: %debugMode%
-    connection:
-        driver: pdo_mysql
-        host: %doctrine.host%
-        user: %doctrine.user%
-        password: %doctrine.password%
-        dbname: %doctrine.dbname%
+    directories:
+        App\migrations: %appDir%/migrations
+    versionsOrganization: null
+    table: doctrine_migrations
+    column: version

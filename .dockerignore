@@ -1,0 +1,25 @@
+# Never ship these into the image:
+# - secrets (config/local*.neon), logs with Tracy dumps, temp caches,
+#   the git history, the dev database or dev-only tooling.
+.git
+.gitignore
+.idea
+.vscode
+.DS_Store
+docker/
+log/
+temp/
+vendor/
+config/local.neon
+config/local-prod.neon
+ProjectScreenshots/
+docker-compose.yml
+docker-compose.override.yml
+.compose/
+*.md
+.php-cs-fixer.cache
+psalm.xml
+.php-cs-fixer.php
+.php-cs-fixer.dist.php
+.env
+.env.*

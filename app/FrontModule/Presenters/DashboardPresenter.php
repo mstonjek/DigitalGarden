@@ -45,7 +45,17 @@
 
         public function renderDefault(): void
         {
-            $this->user = $this->userRepository->findByGithubId($this->getSession('user')->id);
+            $userId = $this->getSession('user')->id ?? null;
+            $user = $userId !== null ? $this->userRepository->findByGithubId($userId) : null;
+
+            if ($user === null) {
+                // Stale session (user no longer exists) - force a clean re-login.
+                $this->getSession('user')->remove();
+                $this->flashMessage('You need to be logged in to access this page!', "alert-danger");
+                $this->redirect('Homepage:');
+            }
+
+            $this->user = $user;
             $this->template->user = $this->user;
 
             $this->flower = $this->flowerRepository->findFlowerByUser($this->user);

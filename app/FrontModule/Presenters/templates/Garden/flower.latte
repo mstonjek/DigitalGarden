@@ -1,86 +1,92 @@
 {block title}
-Flower {$flower->flowerName}
+    Flower {$flower->flowerName}
 {/block}
 {block content}
     <div class="flower-details-container">
 
-            <div class="nav-menu">
-                <a class="return-link" n:href="{$backUrl}">🔙</a>
-                <p class="date-of-plant">Planted in {$flower->plantingDate->format("M Y")}</p>
+        <div class="nav-menu">
+            <a class="return-link" n:href="{$backUrl}">🔙</a>
+            <p class="date-of-plant">Planted in {$flower->plantingDate->format("M Y")}</p>
+        </div>
+
+        <div class="flower-header">
+            <div class="flower-names">
+                <h1 class="flower-title">{$flower->flowerName} <span
+                            class="flower-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</span></h1>
+                <p class="flower-latin-name">({$flower->flowerLatinName})</p>
             </div>
+            <p class="flower-description">{$flower->flowerDescription}</p>
+        </div>
 
-            <div class="flower-header">
-                <div class="flower-names">
-                    <h1 class="flower-title">{$flower->flowerName} <span class="flower-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</span></h1>
-                    <p class="flower-latin-name">({$flower->flowerLatinName})</p>
-                </div>
-                <p class="flower-description">{$flower->flowerDescription}</p>
-            </div>
-
-            <div class="main-content">
-                <div class="flower-related">
-                    <div class="flower-info">
-                        <div class="info-item">
-                            <span>Family:</span> {$flower->family}
-                        </div>
-                        <div class="info-item">
-                            <span>Height:</span> {$flower->height} cm
-                        </div>
+        <div class="main-content">
+            <div class="flower-related">
+                <div class="flower-info">
+                    <div class="info-item">
+                        <span>Family:</span> {$flower->family}
                     </div>
-
-                    <div class="flower-profession">
-                        <div class="info-item">
-                            <span>Education:</span> {$flower->flowerEducation->value}
-                        </div>
-                        <div class="info-item">
-                            <span>Gender:</span> {$flower->gender->value}
-                        </div>
-                        <div class="info-item">
-                            <span>Country:</span> {$flower->country}
-                        </div>
-                        <div class="info-item">
-                            <span>Web:</span> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link"> 🌐 </a>
-                        </div>
-                    </div>
-
-                    <div class="flower-hobbies">
-                        <div class="info-item">
-                            <span>Serial:</span> {$flower->favouriteSerial}
-                        </div>
-                        <div class="info-item">
-                            <span>Song:</span> {$flower->favouriteSong}
-                        </div>
-                        <div class="info-item">
-                            <span >Vacation:</span> {$flower->dreamVacation}
-                        </div>
-                        <div class="info-item">
-                            <span >Quote:</span> {$flower->favouriteQuote}
-                        </div>
+                    <div class="info-item">
+                        <span>Height:</span> {$flower->height} cm
                     </div>
                 </div>
 
-                <div class="user-related">
-                    <div class="owner-info">
+                <div class="flower-profession">
+                    <div class="info-item">
+                        <span>Education:</span> {$flower->flowerEducation->value}
+                    </div>
+                    <div class="info-item">
+                        <span>Gender:</span> {$flower->gender->value}
+                    </div>
+                    <div class="info-item">
+                        <span>Country:</span> {$flower->country}
+                    </div>
+                    <div class="info-item">
+                        <span>Web:</span> <a href="{$flower->webPortfolio}" target="_blank" class="flower-link"> 🌐 </a>
+                    </div>
+                </div>
 
-                        <div class="top-section">
-                            <h2 class="question-title" >Who's beauty is it? <span class="star-emoji">💫</span> </h2>
-                            <div class="owner-header">
-                                <div class="owner-names">
-                                    <h3 class="owner-name">{$flower->user->name}'s <span class="planet-emoji">🌍</span></h3>
-                                    <p class="owner-username"><a class="owner-username-link" n:href="Profile:show $flower->user->username, App\Model\Entity\BackUrlEnum::GARDEN_FLOWER->value, $flower->flowerId">@{$flower->user->username}</a></p>
-                                </div>
-                                <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture" class="owner-avatar">
+                <div class="flower-hobbies">
+                    <div class="info-item">
+                        <span>Serial:</span> {$flower->favouriteSerial}
+                    </div>
+                    <div class="info-item">
+                        <span>Song:</span> {$flower->favouriteSong}
+                    </div>
+                    <div class="info-item">
+                        <span>Vacation:</span> {$flower->dreamVacation}
+                    </div>
+                    <div class="info-item">
+                        <span>Quote:</span> {$flower->favouriteQuote}
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-related">
+                <div class="owner-info">
+
+                    <div class="top-section">
+                        <h2 class="question-title">Who's beauty is it? <span class="star-emoji">💫</span></h2>
+                        <div class="owner-header">
+                            <div class="owner-names">
+                                <h3 class="owner-name">{$flower->user->name}'s <span class="planet-emoji">🌍</span></h3>
+                                <p class="owner-username"><a
+                                            class="owner-username-link" n:href="Profile:show $flower->user->username, App\Model\Entity\BackUrlEnum::GARDEN_FLOWER->value, $flower->flowerId">@{$flower->user->username}</a>
+                                </p>
                             </div>
+                            <img src="{$flower->user->avatarUrl}" alt="{$flower->user->username}'s profile picture"
+                                 class="owner-avatar">
                         </div>
-
-                        <div class="contact-section">
-                            <p class="contact-instance"><span class="emoji-contact">⬇</span>️ You can praise that flower <span class="emoji-contact">💖</span></p>
-                            <h2><a href="{$flower->user->profileUrl}" class="contact-email"> By starring few repos <span class="emoji-contact">⭐</span></a></h2>
-                        </div>
-
                     </div>
+
+                    <div class="contact-section">
+                        <p class="contact-instance"><span class="emoji-contact">⬇</span>️ You can praise that flower
+                            <span class="emoji-contact">💖</span></p>
+                        <h2><a href="{$flower->user->profileUrl}" class="contact-email"> By starring few repos <span
+                                        class="emoji-contact">⭐</span></a></h2>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
     </div>
 {/block}
@@ -105,11 +111,10 @@ Flower {$flower->flowerName}
         }
 
 
-
         .nav-menu {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .return-link {
@@ -124,10 +129,9 @@ Flower {$flower->flowerName}
             filter: brightness(1.2);
         }
 
-        .date-of-plant{
+        .date-of-plant {
             font-size: 1.65rem;
         }
-
 
 
         .flower-header {
@@ -157,7 +161,6 @@ Flower {$flower->flowerName}
             text-align: justify;
             color: #3a623a;
         }
-
 
 
         .main-content {
@@ -208,7 +211,6 @@ Flower {$flower->flowerName}
             color: #4caf50;
             font-size: 1.2rem;
         }
-
 
 
         .user-related {
@@ -393,7 +395,6 @@ Flower {$flower->flowerName}
                 font-size: 1.1rem;
             }
         }
-
 
 
     </style>
