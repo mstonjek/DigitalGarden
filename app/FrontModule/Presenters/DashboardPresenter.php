@@ -55,7 +55,7 @@ class DashboardPresenter extends Presenter
         }
 
         $this->user = $user;
-        $this->template->user = $this->user;
+        $this->template->currentUser = $this->user;
 
         $this->flower = $this->flowerRepository->findFlowerByUser($this->user);
         $this->template->flower = $this->flower;

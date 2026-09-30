@@ -48,7 +48,7 @@ class ProfilePresenter extends Presenter
             $this->redirect('Homepage:');
         }
 
-        $this->template->user = $user;
+        $this->template->profileUser = $user;
         $this->template->userFlag = $this->flagConverter->getFlag($user->location);
         if ($user->flower !== null) {
             $this->template->flowerFlag = $this->flagConverter->getFlowerFlag($user->flower->country);

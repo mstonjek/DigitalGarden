@@ -66,4 +66,28 @@ class Flower
     {
         $this->plantingDate = new \DateTime();
     }
+
+    public function getAge(): string
+    {
+        $currentDate = new \DateTime();
+        $interval = $currentDate->diff($this->plantingDate);
+
+        $ageString = '';
+        if ($interval->y > 0) {
+            $ageString .= $interval->y . ' years ';
+        }
+        if ($interval->m > 0) {
+            $ageString .= $interval->m . ' months ';
+        }
+        if ($interval->d > 0) {
+            $ageString .= $interval->d . ' days ';
+        }
+
+        return trim($ageString) ?: 'less than a day';
+    }
+
+    public function getPronoun(): string
+    {
+        return $this->gender->getPronoun();
+    }
 }

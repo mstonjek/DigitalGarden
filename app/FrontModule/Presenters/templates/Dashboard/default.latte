@@ -3,25 +3,6 @@
 {/block}
 {block content}
 
-    {if $flower}
-        {php
-            $plantingDateObj = $flower->plantingDate;
-            $currentDate = new DateTime();
-            $interval = $currentDate->diff($plantingDateObj);
-
-            $ageString = "";
-            if ($interval->y > 0) {
-            $ageString .= $interval->y . " years ";
-            }
-            if ($interval->m > 0) {
-            $ageString .= $interval->m . " months ";
-            }
-            if ($interval->d > 0) {
-            $ageString .= $interval->d . " days ";
-            }
-            $flowerAge = trim($ageString) ?: "less than a day";
-        }
-    {/if}
 
 
 
@@ -34,14 +15,14 @@
                 <a n:href="Profile:default" class="btn btn-all-profiles"><span class="nav-emoji">👤People</span></a>
             </div>
 
-            <a n:href="Profile:show $user->username, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class=" btn-profile-pic">
-                    <img class="profile-pic" src="{$user->avatarUrl}" alt="{$user->name}'s profile picture">
+            <a n:href="Profile:show $currentUser->username, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class=" btn-profile-pic">
+                    <img class="profile-pic" src="{$currentUser->avatarUrl}" alt="{$currentUser->name}'s profile picture">
             </a>
 
         </div>
 
         <div class="about-user">
-            <h1 class="garden-name-tag">{$user->username|firstUpper}'s garden <a href="#" id="logoutLink" onclick="confirmLogout(event)" style="text-decoration: none;"><span class="nav-emoji">🚪</span></a></h1>
+            <h1 class="garden-name-tag">{$currentUser->username|firstUpper}'s garden <a href="#" id="logoutLink" onclick="confirmLogout(event)" style="text-decoration: none;"><span class="nav-emoji">🚪</span></a></h1>
             <p class="garden-about">"Step into your personal garden. Nurture your flowers and watch them bloom!"</p>
         </div>
 
@@ -49,7 +30,7 @@
             {if $flower !== null}
                 <a n:href="Garden:flower $flower->flowerId, App\Model\Entity\BackUrlEnum::DASHBOARD->value" class="flower-emoji">{\FlowerEmojiEnum::getRandomEmoji(1)[0]}</a>
                 <div class="flower-age-div">
-                    <p class="flower-age">Flower age: <span>{$flowerAge}</span></p>
+                    <p class="flower-age">Flower age: <span>{$flower->getAge()}</span></p>
                 </div>
             {else}
                 <p class="no-flower-message">Plant a flower in your garden. Once it blooms, you'll see it here.</p>

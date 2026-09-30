@@ -1,62 +1,46 @@
-{if $user->flower}
-    {php
-        $pronounce = "";
-        switch($user->flower->gender){
-        case App\Model\Entity\FlowerGenderEnum::MALE:
-        $pronounce = "He's";
-        break;
-        case App\Model\Entity\FlowerGenderEnum::FEMALE:
-        $pronounce = "She's";
-        break;
-        case App\Model\Entity\FlowerGenderEnum::OTHER:
-        $pronounce = "It's";
-        break;
-        }
-    }
-{/if}
 
-{block title}{$user->username|firstUpper}'s Profile{/block}
+{block title}{$profileUser->username|firstUpper}'s Profile{/block}
 {block content}
     <div class="profile-container">
 
         <div class="return-link">
             <a n:href="{$backUrl}">🔙</a>
-            <p class="date-of-join">Member since {$user->createdAt->format("M Y")}</p>
+            <p class="date-of-join">Member since {$profileUser->createdAt->format("M Y")}</p>
         </div>
 
         <div class="profile-header">
 
             <div class="profile-names">
-                <h1>{$user->name}</h1>
-                <p><a href="{$user->profileUrl}" style="text-decoration: none;">@{$user->username}</a></p>
+                <h1>{$profileUser->name}</h1>
+                <p><a href="{$profileUser->profileUrl}" style="text-decoration: none;">@{$profileUser->username}</a></p>
             </div>
-            <img src="{$user->avatarUrl}" alt="{$user->username}'s avatar" class="profile-avatar">
+            <img src="{$profileUser->avatarUrl}" alt="{$profileUser->username}'s avatar" class="profile-avatar">
         </div>
 
-        {if $user->flower}
+        {if $profileUser->flower}
                 <div class="flower-info">
-                    {if $user->flower->flowerName}
-                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $user->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW->value, $user->username"><span class="flower-name-strong">{$user->flower->flowerName}</span> {\FlowerEmojiEnum::getRandomEmoji(1)[0]} <span class="flower-latin">({$user->flower->flowerLatinName})</span></a> </p>
+                    {if $profileUser->flower->flowerName}
+                        <p class="flower-name">The one who planted: <a class="flower-link" n:href="Garden:flower $profileUser->flower->flowerId, App\Model\Entity\BackUrlEnum::PROFILE_SHOW->value, $profileUser->username"><span class="flower-name-strong">{$profileUser->flower->flowerName}</span> {\FlowerEmojiEnum::getRandomEmoji(1)[0]} <span class="flower-latin">({$profileUser->flower->flowerLatinName})</span></a> </p>
                         <p class="flower-description">
-                            🌸 <strong>{$pronounce}</strong> from <strong>{$user->flower->country}</strong> {$flowerFlag},
-                            🌿 <strong>{$user->flower->height}</strong> cm tall and has <strong>{$user->flower->flowerEducation->value}</strong> education 🎓📚.
+                            🌸 <strong>{$profileUser->flower->getPronoun()}</strong> from <strong>{$profileUser->flower->country}</strong> {$flowerFlag},
+                            🌿 <strong>{$profileUser->flower->height}</strong> cm tall and has <strong>{$profileUser->flower->flowerEducation->value}</strong> education 🎓📚.
                         </p>
 
-                        {if $user->flower->favouriteQuote}
-                            <q class="flower-quote">{$user->flower->favouriteQuote} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
+                        {if $profileUser->flower->favouriteQuote}
+                            <q class="flower-quote">{$profileUser->flower->favouriteQuote} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
                         {/if}
                     {/if}
                 </div>
         {/if}
 
 
-        {if $user->bio}
+        {if $profileUser->bio}
             <div class="bio-div">
                 <h2 class="bio-title">Gardener's Story:</h2>
-                <p class="bio-text">{$user->bio}</p>
+                <p class="bio-text">{$profileUser->bio}</p>
 
-                {if $user->flower}
-                    <q class="flower-quote">And I am also proud of my {$user->flower->flowerName} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
+                {if $profileUser->flower}
+                    <q class="flower-quote">And I am also proud of my {$profileUser->flower->flowerName} {\FlowerEmojiEnum::getRandomEmoji(1)[0]}</q>
                 {/if}
             </div>
         {/if}
@@ -64,9 +48,9 @@
         <div class="profile-info">
             <h2>Profile Information:</h2>
                 <ul>
-                    <li><strong>GitHub Profile:</strong> <a class="github-link" href="{$user->profileUrl}" target="_blank" rel="noopener noreferrer"> 🐙</a></li>
-                    {if $user->location}
-                        <li><strong>Location:</strong> {$user->location} {$userFlag}</li>
+                    <li><strong>GitHub Profile:</strong> <a class="github-link" href="{$profileUser->profileUrl}" target="_blank" rel="noopener noreferrer"> 🐙</a></li>
+                    {if $profileUser->location}
+                        <li><strong>Location:</strong> {$profileUser->location} {$userFlag}</li>
                     {/if}
                 </ul>
         </div>
