@@ -3,6 +3,7 @@
 services:
   www:
     build: .
+    mem_limit: 512m
     ports:
       - "8000:80"
     volumes:

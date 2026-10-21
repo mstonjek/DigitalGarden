@@ -1,5 +1,5 @@
 # ---------- Stage 1: production PHP dependencies ----------
-FROM php:8.5-cli AS vendor
+FROM php:8.5.12-cli AS vendor
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -26,7 +26,7 @@ RUN composer install \
     --no-interaction
 
 # ---------- Stage 2: runtime ----------
-FROM php:8.5-apache
+FROM php:8.5.12-apache
 
 RUN a2enmod rewrite headers expires
 
@@ -48,6 +48,14 @@ RUN { \
     echo 'opcache.max_accelerated_files=10000'; \
     echo 'opcache.validate_timestamps=0'; \
 } > /usr/local/etc/php/conf.d/opcache-prod.ini
+
+# Hardening for CVE-2026-109618 / CVE-2026-109619 (defense in depth; the
+# actual fix is the pinned patched PHP version above). The ini file sets
+# sane defaults, the Apache snippet locks the same values with
+# php_admin_value so they cannot be overridden by ini_set() at runtime.
+COPY build/php-hardening.ini /usr/local/etc/php/conf.d/99-hardening.ini
+COPY build/apache-hardening.conf /etc/apache2/conf-available/hardening.conf
+RUN a2enconf hardening
 
 # Document root is the public www/ directory only.
 # Config, logs, temp, vendor and .git are never web-accessible.

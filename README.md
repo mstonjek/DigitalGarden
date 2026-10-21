@@ -75,6 +75,8 @@ php bin/clearcache                   # clears temp/cache
 
 ## Security notes
 
+- PHP base images are pinned to an exact patch version (`php:8.5.12-*`) on purpose: a floating `php:8.5-*` tag silently changes the runtime and makes security updates untraceable. When PHP publishes a security release, bump both stages in `Dockerfile` and redeploy (rebuild without cache).
+- Defense in depth for CVE-2026-109618 / CVE-2026-109619 lives in `build/php-hardening.ini` and `build/apache-hardening.conf` (`memory_limit=-1`, `post_max_size=8M`, `session.upload_progress.enabled=0`, `fatal_error_backtraces=0`, locked via `php_admin_value`). `memory_limit=-1` is only safe together with a container memory limit (`mem_limit` in compose / Coolify resource limit).
 - Sessions: `HttpOnly` + `SameSite=Lax` cookies, `Secure` flag auto-enabled behind the TLS proxy (`http.proxy` + `cookieSecure: auto` in `config/common.neon`). SameSite must stay Lax — Strict would break the OAuth callback.
 - CSRF protection on the flower form (`addProtection()`); `webPortfolio` accepts `http(s)` URLs only.
 - Security headers are sent by the application (`http` section in `config/common.neon`); CSP runs in `Report-Only` mode (inline styles/scripts in templates).
